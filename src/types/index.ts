@@ -15,6 +15,21 @@ export interface Comunicado {
   destacada?: boolean
 }
 
+export interface ProgramaCurso {
+  semestre: string
+  costo_matricula: number
+  numero_matriculas: number
+  costo_cuota: number
+  numero_cuotas: number
+}
+
+export interface CursoConRelacion {
+  nombre: string
+  creditos: number
+  categoria: string
+  programaCurso: ProgramaCurso
+}
+
 export interface Programa {
   slug: string
   title: string
@@ -24,6 +39,12 @@ export interface Programa {
   description: string
   enConvocatoria: boolean
   image?: string
+  objetivo_general?: string
+  objetivos_especificos?: string
+  perfil_egresado?: string
+  cursos?: CursoConRelacion[]
+  lineas_investigacion?: string
+  content?: string
 }
 
 export interface TimelineStep {

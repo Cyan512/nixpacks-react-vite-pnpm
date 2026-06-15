@@ -1,17 +1,80 @@
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 import { PageHero } from '@/components/shared/PageHero'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Share2, Printer } from 'lucide-react'
+import { Tabs } from '@/components/shared/Tabs'
+import { PresentacionTab } from '@/components/shared/PresentacionTab'
+import { MallaCurricularTab } from '@/components/shared/MallaCurricularTab'
+import { InversionBecasTab } from '@/components/shared/InversionBecasTab'
+import { LineasInvestigacionTab } from '@/components/shared/LineasInvestigacionTab'
 
-const programsData: Record<string, Record<string, { title: string; duration: string; modality: string; description: string; content: string }>> = {
+import type { Programa } from '@/types'
+
+const programsData: Record<string, Record<string, Programa>> = {
   maestrias: {
     'gestion-publica': {
+      slug: 'gestion-publica',
       title: 'Maestría en Gestión Pública',
+      facultad: 'Facultad de Ciencias Económicas',
       duration: '2 años',
       modality: 'Presencial',
       description: 'Formación especializada en administración y gestión de recursos públicos.',
       content: 'La Maestría en Gestión Pública está diseñada para profesionales que buscan desarrollar competencias en la administración eficiente de los recursos del Estado. El programa aborda temas como formulación de proyectos, presupuesto público, contrataciones del Estado y modernización de la gestión pública. Los egresados estarán capacitados para liderar procesos de transformación institucional en el sector público.',
+      objetivo_general: 'Formar profesionales con competencias avanzadas en gestión pública, capaces de diseñar, implementar y evaluar políticas y proyectos públicos que contribuyan al desarrollo del país.',
+      objetivos_especificos: 'Desarrollar habilidades en formulación de proyectos públicos.\nAdquirir conocimientos en presupuesto público y contrataciones.\nImplementar técnicas de modernización de la gestión pública.\nCapacitar para el liderazgo de procesos de transformación institucional.',
+      perfil_egresado: 'Egresado con capacidad para liderar procesos de transformación institucional en el sector público, con conocimientos avanzados en gestión pública y habilidades para la formulación y evaluación de proyectos públicos.',
+      cursos: [
+        {
+          nombre: 'Formulación de Proyectos Públicos',
+          creditos: 4,
+          categoria: 'Obligatorio',
+          programaCurso: {
+            semestre: 'I',
+            costo_matricula: 1500,
+            numero_matriculas: 30,
+            costo_cuota: 800,
+            numero_cuotas: 2,
+          },
+        },
+        {
+          nombre: 'Presupuesto Público',
+          creditos: 3,
+          categoria: 'Obligatorio',
+          programaCurso: {
+            semestre: 'I',
+            costo_matricula: 1500,
+            numero_matriculas: 30,
+            costo_cuota: 800,
+            numero_cuotas: 2,
+          },
+        },
+        {
+          nombre: 'Contrataciones del Estado',
+          creditos: 4,
+          categoria: 'Obligatorio',
+          programaCurso: {
+            semestre: 'II',
+            costo_matricula: 1500,
+            numero_matriculas: 30,
+            costo_cuota: 800,
+            numero_cuotas: 2,
+          },
+        },
+        {
+          nombre: 'Modernización de la Gestión Pública',
+          creditos: 3,
+          categoria: 'Optativo',
+          programaCurso: {
+            semestre: 'II',
+            costo_matricula: 1500,
+            numero_matriculas: 30,
+            costo_cuota: 800,
+            numero_cuotas: 2,
+          },
+        },
+      ],
+      lineas_investigacion: 'Gestión de políticas públicas.\nTransparencia y acceso a la información.\nInnovación en servicios públicos.',
+      enConvocatoria: true,
     },
   },
 }
@@ -42,6 +105,29 @@ export default function ProgramDetail() {
     )
   }
 
+  const tabs = [
+    {
+      id: 'presentacion',
+      label: 'Presentación',
+      content: <PresentacionTab programa={program} />,
+    },
+    {
+      id: 'malla',
+      label: 'Malla Curricular',
+      content: program.cursos ? <MallaCurricularTab cursos={program.cursos} /> : null,
+    },
+    {
+      id: 'inversion',
+      label: 'Inversión y Becas',
+      content: program.cursos ? <InversionBecasTab cursos={program.cursos} modalidad={program.modality} /> : null,
+    },
+    {
+      id: 'lineas',
+      label: 'Líneas de Investigación',
+      content: program.lineas_investigacion ? <LineasInvestigacionTab programa={program} /> : null,
+    },
+  ].filter(tab => tab.content !== null)
+
   return (
     <>
       <PageHero
@@ -52,23 +138,38 @@ export default function ProgramDetail() {
           { label: program.modality, variant: 'outline' },
         ]}
       />
-      <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-        <Button variant="ghost" asChild className="mb-8">
-          <Link to={`/${tipo}`}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Volver a programas
-          </Link>
-        </Button>
-        <div className="aspect-video w-full rounded-xl bg-muted" />
-        <div className="mt-8">
-          <Separator className="my-6" />
-          <div>
-            <p className="font-sans font-light leading-relaxed text-muted-foreground">
-              {program.content}
-            </p>
-          </div>
+      <div className="w-full border-b border-border/40">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          {/* COLUMNA IZQUIERDA (Sidebar de Navegación) - Ocupa 3/12 partes */}
+          <aside className="lg:col-span-3 space-y-6 lg:sticky lg:top-24 h-fit">
+            <Button variant="ghost" asChild className="group -ml-4 rounded-none hover:bg-transparent text-muted-foreground hover:text-foreground">
+              <Link to={`/${tipo}`} className="inline-flex items-center gap-2">
+                <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                <span className="font-sans text-xs uppercase tracking-widest">
+                  Volver a programas
+                </span>
+              </Link>
+            </Button>
+
+            <div className="h-px bg-border/40" />
+
+            <div className="flex flex-col gap-3 pt-2">
+              <button className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
+                <Share2 className="h-4 w-4" /> Compartir programa
+              </button>
+              <button onClick={() => window.print()} className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
+                <Printer className="h-4 w-4" /> Imprimir programa
+              </button>
+            </div>
+          </aside>
+
+          {/* COLUMNA DERECHA (El Contenido del Programa) - Ocupa 9/12 partes */}
+          <main className="lg:col-span-9 lg:pl-8 border-t lg:border-t-0 lg:border-l border-border/40 pt-8 lg:pt-0">
+            <Tabs tabs={tabs} defaultValue="presentacion" />
+          </main>
         </div>
-      </article>
+      </div>
     </>
   )
 }
