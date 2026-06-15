@@ -1,9 +1,11 @@
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 
 const noticias = [
   {
     id: 1,
+    slug: 'convocatoria-2026',
     titulo: 'Convocatoria 2026',
     fecha: '15 de junio, 2026',
     resumen: 'Apertura de inscripciones para el semestre académico 2026 en todos los programas de posgrado.',
@@ -12,6 +14,7 @@ const noticias = [
   },
   {
     id: 2,
+    slug: 'resultados-de-admision',
     titulo: 'Resultados de Admisión',
     fecha: '10 de junio, 2026',
     resumen: 'Publicación de resultados del último proceso de admisión.',
@@ -19,6 +22,7 @@ const noticias = [
   },
   {
     id: 3,
+    slug: 'seminario-de-investigacion',
     titulo: 'Seminario de Investigación',
     fecha: '5 de junio, 2026',
     resumen: 'Invitación al seminario internacional de metodología de la investigación.',
@@ -26,6 +30,7 @@ const noticias = [
   },
   {
     id: 4,
+    slug: 'becas-de-posgrado',
     titulo: 'Becas de Posgrado',
     fecha: '1 de junio, 2026',
     resumen: 'Programa de becas para estudiantes destacados para el semestre 2026.',
@@ -82,7 +87,10 @@ export function LatestComunicados() {
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {destacada && (
-              <div className="flex flex-col overflow-hidden rounded-xl border bg-card shadow-sm md:col-span-1">
+              <Link
+                to={`/comunicados/${destacada.slug}`}
+                className="flex flex-col overflow-hidden rounded-xl border bg-card shadow-sm transition-shadow hover:shadow-md md:col-span-1"
+              >
                 <div className="relative h-48 overflow-hidden bg-muted md:h-56">
                   <img
                     src={destacada.imagen}
@@ -96,20 +104,21 @@ export function LatestComunicados() {
                     {destacada.titulo}
                   </h3>
                   <div className="mt-4 flex items-center justify-between">
-                    <span className="font-sans text-xs font-light text-muted-foreground">
+                    <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                       {destacada.fecha}
                     </span>
-                    <span className="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-primary/80">
+                    <span className="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground">
                       Leer más <ArrowRight className="h-3 w-3" />
                     </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             )}
             <div className="flex flex-col gap-4">
               {secundarias.map((noticia) => (
-                <div
+                <Link
                   key={noticia.id}
+                  to={`/comunicados/${noticia.slug}`}
                   className="flex overflow-hidden rounded-xl border bg-card shadow-sm transition-shadow hover:shadow-md"
                 >
                   <div className="w-1/3 shrink-0 bg-muted">
@@ -121,18 +130,18 @@ export function LatestComunicados() {
                   </div>
                   <div className="flex w-2/3 flex-col justify-between p-3">
                     <div>
-                      <span className="font-sans text-xs font-light text-muted-foreground">
+                      <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                         {noticia.fecha}
                       </span>
                       <h4 className="mt-1 font-heading text-xs font-light uppercase tracking-wide line-clamp-2">
                         {noticia.titulo}
                       </h4>
                     </div>
-                    <span className="mt-2 inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-primary/80">
+                    <span className="mt-2 inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground">
                       Leer más <ArrowRight className="h-3 w-3" />
                     </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
