@@ -32,7 +32,7 @@ export default function ProgramDetail() {
         <Button asChild className="mt-6">
           <Link
             to={`/${tipo}`}
-            className="font-sans text-xs uppercase tracking-widest"
+            className="font-sans text-sm uppercase tracking-widest"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver a programas

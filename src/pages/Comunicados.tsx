@@ -30,7 +30,7 @@ export default function Comunicados() {
             <Card className="h-full transition-shadow hover:shadow-sm">
               <div className="aspect-[16/9] w-full bg-muted" />
               <CardHeader>
-                <Badge className="w-fit bg-muted/60 font-sans text-[10px] uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
+                <Badge className="w-fit bg-muted/60 font-sans text-xs uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
                   {comunicado.date}
                 </Badge>
                 <CardTitle className="font-heading text-lg font-light tracking-wide">

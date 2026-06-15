@@ -90,7 +90,7 @@ export function HeroSection() {
                 <Button asChild size="lg">
                   <Link
                     to={slide.botonRuta}
-                    className="font-sans text-xs uppercase tracking-widest"
+                    className="font-sans text-sm uppercase tracking-widest"
                   >
                     {slide.botonTexto}
                     <ArrowRight className="ml-2 h-4 w-4" />

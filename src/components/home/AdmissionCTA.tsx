@@ -22,7 +22,7 @@ export function AdmissionCTA() {
             <Button
               asChild
               size="lg"
-              className="bg-primary-foreground font-sans text-xs uppercase tracking-widest text-primary hover:bg-primary-foreground/90"
+              className="bg-primary-foreground font-sans text-sm uppercase tracking-widest text-primary hover:bg-primary-foreground/90"
             >
               <Link to="/proceso-admision">
                 Inscribirme ahora

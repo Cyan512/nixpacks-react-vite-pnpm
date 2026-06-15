@@ -185,11 +185,12 @@ export function LatestComunicados() {
           <div className="mt-4 flex justify-center border-t border-primary-foreground/10 pt-4">
             <Button
               variant="outline"
-              size="sm"
-              className="border-primary-foreground/30 font-sans text-xs uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10"
-            >
-              Ver todos los eventos
-              <ArrowRight className="ml-1 h-3 w-3" />
+              size="default"
+              className="bg-transparent border-primary-foreground/30 font-sans text-sm uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10"
+            asChild>
+              <Link to="/comunicados">
+                Ver todos los eventos
+                <ArrowRight className="ml-1 h-3 w-3" /></Link>
             </Button>
           </div>
         </div>

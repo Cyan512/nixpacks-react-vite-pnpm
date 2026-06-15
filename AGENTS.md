@@ -127,6 +127,34 @@ Nunca usar `hover:underline` como hover state principal. Cada contexto tiene su 
 
 ---
 
+## 🖱️ Regla de Botones CTA
+
+### Tamaño de texto obligatorio
+- **Botones CTA** (`size="lg"`, `size="default"`, `size="sm"`): usar **`text-sm`** (14px) como mínimo.
+- **`text-xs`** (12px) solo se permite en botones `size="icon"`, `size="icon-sm"` o badges/etiquetas.
+- `text-xs` sobre un botón CTA genera texto desproporcionadamente pequeño e ilegible.
+
+### Outline buttons sobre `bg-primary`
+Cuando un `variant="outline"` se coloca dentro de una sección con fondo `bg-primary` (terracota, CTA sections), **siempre** agregar `bg-transparent` al className. Sin esto, el outline hereda `bg-background` (crema) del variant y el texto `text-primary-foreground` (crema) queda invisible sobre fondo crema.
+
+```
+// ❌ MAL — texto invisible (crema sobre crema)
+<Button variant="outline" className="border-primary-foreground/30 text-primary-foreground ...">
+
+// ✅ BIEN — fondo transparente, texto crema visible sobre bg-primary del padre
+<Button variant="outline" className="bg-transparent border-primary-foreground/30 text-primary-foreground ...">
+```
+
+### Resumen rápido
+
+| Contexto | Clase de texto | Clase de fondo del botón |
+|---|---|---|
+| Botón primario sobre `bg-primary` | `text-primary` | `bg-primary-foreground` |
+| Botón outline sobre `bg-primary` | `text-primary-foreground` | **`bg-transparent`** + `border-primary-foreground/30` |
+| Botón outline default (fondo claro) | `text-foreground` | `bg-background` (heredado del variant) |
+
+---
+
 ## 📐 Regla de Layout Split (Secciones Divididas)
 - Secciones con imagen + texto (RectorMessage, FAQ) usar grid `lg:grid-cols-12`.
 - Distribución estándar: imagen 5 columnas (`lg:col-span-5`), texto 7 columnas (`lg:col-span-7`).
@@ -161,10 +189,10 @@ Toda sección CTA en el sitio debe seguir este patrón exacto:
       DESCRIPCIÓN
     </p>
     <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <Button asChild size="lg" className="bg-primary-foreground font-sans text-xs uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
+      <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
         <Link to="...">BOTÓN PRIMARIO</Link>
       </Button>
-      <Button asChild variant="outline" size="lg" className="border-primary-foreground/30 font-sans text-xs uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
+      <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
         <Link to="...">BOTÓN SECUNDARIO</Link>
       </Button>
     </div>
