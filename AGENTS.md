@@ -4,6 +4,47 @@
 Desarrollar un sitio web institucional moderno para la Escuela de Posgrado UNSAAC, enfocado en informar, comunicar y mostrar programas académicos de forma clara y profesional.
 
 ---
+# 🎨 Sistema de Diseño: Tipografía y Paleta de Colores "Editorial Warm"
+El proyecto utiliza **Tailwind CSS v4** junto con la fuente **Geist** y un enfoque estricto en tokens semánticos basados en `oklch`. Queda prohibido hardcodear valores hexadecimales directos en los componentes (como `bg-[#FDF9F5]`). En su lugar, se deben usar los tokens de interfaz o clases de opacidad sobre los colores base para mantener la coherencia y el soporte nativo de modo oscuro (`dark:`).
+
+## 📌 Reglas de Fuentes y Textos
+- **Títulos Principales e Institucionales (H1, H2, H3):** - Utilizar obligatoriamente la clase `font-heading`.
+  - Para emular una estética elegante, minimalista y tipo "editorial/SaaS", combinar con pesos ligeros y tracking ajustado: `font-light tracking-tight` o `font-extralight`.
+  - Estilo de letra: Mayúsculas controladas (`uppercase`) según diseño de secciones como "Mensaje del Rector".
+- **Párrafos, Textos de Bloque y Contenido General:**
+  - Utilizar obligatoriamente la clase `font-sans` (mapeada a `Geist Variable`).
+  - Peso regular o ligero: `font-normal` o `font-light` con un interlineado cómodo (`leading-relaxed`).
+- **Botones, Tags y Elementos de Interfaz (CTA):**
+  - Utilizar `font-sans`, texto en mayúsculas (`uppercase`), tamaño reducido (`text-xs` o `text-sm`) y tracking espaciado (`tracking-widest` o `tracking-wider`) para denotar modernidad.
+
+---
+
+## 🎨 Mapeo Semántico de la Paleta de Colores (Cálidos / Terracota)
+Para recrear la estética minimalista, cálida y editorial del diseño guía, se deben utilizar las variables del tema de la siguiente manera:
+
+| Elemento de Diseño | Equivalente Semántico en Código (Modo Claro) | Comportamiento en Modo Oscuro (`dark:`) |
+| :--- | :--- | :--- |
+| **Fondo General de Sección** *(Fondo crema / #FDF9F5)* | `bg-background` (que hereda el tono puro/claro base) o `bg-muted/30` para contrastar. | Cambia automáticamente a `bg-background` oscuro (`oklch(0.145 0 0)`). |
+| **Títulos Principales** *(Negro orgánico / #2D2B2A)* | `text-foreground` | Cambia automáticamente a un blanco suave (`oklch(0.985 0 0)`). |
+| **Textos y Párrafos** *(Gris tierra / #5A5451)* | `text-muted-foreground` | Pasa a un tono gris legible optimizado para pantallas oscuras. |
+| **Detalles y Arcos Decorativos** *(Rosa viejo / #EAD7CF)* | `bg-muted` o `bg-secondary` con opacidad sutil (Ej: `bg-muted/60` o `bg-primary/10`). | Utilizar opacidades controladas (`dark:bg-muted/20`) para que el arco no brille en exceso sobre el fondo oscuro. |
+| **Botones Principales (CTA)** *(Terracota suave / #D9B4A7)* | `bg-primary` con estados de hover controlados por opacidad (`hover:bg-primary/90`). | El botón se invierte de forma nativa a `bg-primary` del modo oscuro, manteniendo la consistencia de un sistema SaaS. |
+| **Líneas y Bordes de Acento** *(Borde sutil / #EAD7CF)* | `border-border` o `border-primary/20` | Se adaptan al borde de contraste tenue del modo oscuro. |
+
+---
+
+## 🌓 Regla de Oro para el Modo Oscuro
+Ningún componente debe quedar "bloqueado" en un color claro. Si un elemento decorativo (como el arco de fondo del rector) utiliza un tono cálido, en modo oscuro debe atenuarse usando clases de opacidad (`opacity-40 dark:opacity-10`) o mutar hacia el color de tarjeta (`bg-card`), asegurando una transición suave que no fatigue la vista del usuario y respete la estética limpia estilo *Notion / Vercel*.
+
+---
+
+# 🌓 Directrices de Color y Modo Oscuro (Tokens Oklch)
+Queda prohibido hardcodear colores en hexadecimal (Ej: `bg-[#FDF9F5]`). Todos los componentes deben ser construidos utilizando los tokens semánticos definidos en el archivo de temas:
+- **Fondos principales:** `bg-background` o `bg-card`.
+- **Textos:** `text-foreground` para títulos y `text-muted-foreground` para descripciones/párrafos.
+- **Detalles y Acentos:** Utilizar opacidades sobre los colores del sistema (Ej: `bg-muted/40`, `text-primary/10`) para elementos decorativos como arcos de fondo, siluetas o comillas de citas. Esto garantiza compatibilidad nativa con el modo oscuro (`dark:`).
+
+---
 
 # 🧭 Estructura de rutas del sistema
 
