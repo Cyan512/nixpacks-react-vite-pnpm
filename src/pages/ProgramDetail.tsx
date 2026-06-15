@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import { PageHero } from '@/components/shared/PageHero'
 import { ArrowLeft } from 'lucide-react'
 
 const programsData: Record<string, Record<string, { title: string; duration: string; modality: string; description: string; content: string }>> = {
@@ -43,36 +44,32 @@ export default function ProgramDetail() {
   }
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
-      <Button variant="ghost" asChild className="mb-8">
-        <Link to={`/${tipo}`}>
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Volver a programas
-        </Link>
-      </Button>
-      <div className="aspect-video w-full rounded-xl bg-muted" />
-      <div className="mt-8">
-        <div className="flex flex-wrap gap-2">
-          <Badge className="bg-muted/60 font-sans text-xs uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
-            {program.duration}
-          </Badge>
-          <Badge variant="outline" className="font-sans text-xs uppercase tracking-widest">
-            {program.modality}
-          </Badge>
+    <>
+      <PageHero
+        title={program.title}
+        description={program.description}
+        badges={[
+          { label: program.duration },
+          { label: program.modality, variant: 'outline' },
+        ]}
+      />
+      <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+        <Button variant="ghost" asChild className="mb-8">
+          <Link to={`/${tipo}`}>
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Volver a programas
+          </Link>
+        </Button>
+        <div className="aspect-video w-full rounded-xl bg-muted" />
+        <div className="mt-8">
+          <Separator className="my-6" />
+          <div>
+            <p className="font-sans font-light leading-relaxed text-muted-foreground">
+              {program.content}
+            </p>
+          </div>
         </div>
-        <h1 className="mt-4 font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
-          {program.title}
-        </h1>
-        <p className="mt-3 font-sans text-lg font-light leading-relaxed text-muted-foreground">
-          {program.description}
-        </p>
-        <Separator className="my-6" />
-        <div>
-          <p className="font-sans font-light leading-relaxed text-muted-foreground">
-            {program.content}
-          </p>
-        </div>
-      </div>
-    </article>
+      </article>
+    </>
   )
 }

@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { PageHero } from '@/components/shared/PageHero'
 import { ArrowRight } from 'lucide-react'
 
 const programsByType: Record<string, Array<{ slug: string; title: string; duration: string; modality: string; description: string }>> = {
@@ -47,17 +48,13 @@ export default function ProgramList() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-2xl text-center">
-        <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
-          {title}
-        </h1>
-        <p className="mt-3 font-sans text-lg font-light leading-relaxed text-muted-foreground">
-          Explora nuestros programas de {title.toLowerCase()} y encuentra el
-          que mejor se adapte a tus objetivos profesionales.
-        </p>
-      </div>
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <>
+      <PageHero
+        title={title}
+        subtitle={`Explora nuestros programas de ${title.toLowerCase()} y encuentra el que mejor se adapte a tus objetivos profesionales.`}
+      />
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mt-0 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {programs.map((program) => (
           <Link key={program.slug} to={`/${tipo}/${program.slug}`}>
             <Card className="h-full transition-shadow hover:shadow-sm">
@@ -91,5 +88,6 @@ export default function ProgramList() {
         ))}
       </div>
     </div>
+    </>
   )
 }

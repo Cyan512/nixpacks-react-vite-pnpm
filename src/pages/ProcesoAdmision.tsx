@@ -1,24 +1,16 @@
 import { Link } from 'react-router-dom'
 import { AdmissionTimeline } from '@/components/home/AdmissionTimeline'
 import { Button } from '@/components/ui/button'
+import { PageHero } from '@/components/shared/PageHero'
 import { ArrowRight } from 'lucide-react'
 
 export default function ProcesoAdmision() {
   return (
     <>
-      <section className="border-b bg-muted/30">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
-              Proceso de Admisión
-            </h1>
-            <p className="mt-3 font-sans text-lg font-light leading-relaxed text-muted-foreground">
-          Conoce cada etapa del proceso de admisión y los requisitos
-          necesarios para formar parte de nuestros programas de posgrado.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="Proceso de Admisión"
+        subtitle="Conoce cada etapa del proceso de admisión y los requisitos necesarios para formar parte de nuestros programas de posgrado."
+      />
 
       <AdmissionTimeline />
 
