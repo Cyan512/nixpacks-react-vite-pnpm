@@ -29,8 +29,8 @@ Para recrear la estética minimalista, cálida y editorial del diseño guía, se
 
 | Elemento de Diseño | Equivalente Semántico en Código (Modo Claro) | Comportamiento en Modo Oscuro (`dark:`) |
 | :--- | :--- | :--- |
-| **Fondos Principales** *(Fondo crema / #FDF9F5)* | `bg-background` o `bg-card` (para contenedores tipo tarjeta). | Cambia automáticamente a `bg-background` u `bg-card` oscuro (`oklch(0.145 0 0)`). |
-| **Títulos Principales** *(Negro orgánico / #2D2B2A)* | `text-foreground` (utilizando la fuente `font-heading`) | Cambia automáticamente a un blanco suave (`oklch(0.985 0 0)`). |
+| **Fondos Principales** *(Fondo crema / #FDF9F5)* | `bg-background` o `bg-card` (para contenedores tipo tarjeta). | Cambia automáticamente a `bg-background` u `bg-card` oscuro (`oklch(0.145 0.008 55)`). |
+| **Títulos Principales** *(Negro orgánico / #2D2B2A)* | `text-foreground` (utilizando la fuente `font-heading`) | Cambia automáticamente a un blanco suave (`oklch(0.93 0.01 70)`). |
 | **Textos y Párrafos** *(Gris tierra / #5A5451)* | `text-muted-foreground` (utilizando la fuente `font-sans`) | Pasa a un tono gris legible optimizado para pantallas oscuras. |
 | **Detalles y Arcos Decorativos** *(Rosa viejo / #EAD7CF)* | `bg-muted` o `bg-secondary` con opacidad sutil (Ej: `bg-muted/60` o `bg-primary/10`). | Utilizar opacidades controladas (`dark:bg-muted/20`) para que los acentos no brillen en exceso. |
 | **Botones Principales (CTA)** *(Terracota suave / #D9B4A7)* | `bg-primary` con estados de hover controlados por opacidad (`hover:bg-primary/90`). | El botón se adapta de forma nativa a `bg-primary` del modo oscuro, manteniendo la consistencia visual. |
@@ -40,6 +40,40 @@ Para recrear la estética minimalista, cálida y editorial del diseño guía, se
 
 ## 🌓 Regla de Oro para el Modo Oscuro
 Ningún componente debe quedar "bloqueado" en un color claro. Si un elemento decorativo (como el arco de fondo del rector) utiliza un tono cálido, en modo oscuro debe atenuarse usando clases de opacidad (`opacity-40 dark:opacity-10`) o mutar hacia el color de tarjeta (`bg-card`), asegurando una transición suave que no fatigue la vista del usuario y respete la estética limpia estilo *Notion / Vercel*.
+
+---
+
+## 🖼️ Regla de Imágenes Institucionales
+- Usar `<img>` tag, nunca `background-image` CSS.
+- El atributo `alt` es obligatorio y debe describir el contenido de la imagen.
+- Para imágenes decorativas sin valor semántico, usar `alt=""`.
+
+---
+
+## 🎯 Regla de Hover States
+- Botones principales CTA: `hover:bg-primary/90` (heredado del shadcn Button).
+- Elementos interactivos (triggers, links en nav): `hover:bg-muted/50` (claro) / `dark:hover:bg-muted/20` (oscuro).
+- Prohibido usar `hover:underline` como hover state principal; preferir el cambio de fondo.
+
+---
+
+## 📐 Regla de Layout Split (Secciones Divididas)
+- Secciones con imagen + texto (RectorMessage, FAQ) usar grid `lg:grid-cols-12`.
+- Distribución estándar: imagen 5 columnas (`lg:col-span-5`), texto 7 columnas (`lg:col-span-7`).
+- En mobile ambas columnas apilan (la imagen arriba por defecto).
+
+---
+
+## 🎭 Regla de Elementos Decorativos
+- Arcos, elipses, shapes decorativos de fondo: usar `bg-muted` con opacidad controlada.
+- Modo claro: `opacity-60`.
+- Modo oscuro: `dark:opacity-20` (nunca dejar opacidad fija que brille en oscuro).
+
+---
+
+## 👤 Regla de Nombres Propios Institucionales
+- Nombres, cargos y firmas de autoridades (rector, directores, decanos): usar `font-heading`.
+- El cargo debajo del nombre: `font-sans text-xs uppercase tracking-widest text-muted-foreground/80`.
 
 ---
 
@@ -89,7 +123,7 @@ Ningún componente debe quedar "bloqueado" en un color claro. Si un elemento dec
 ## 🎓 Tipos de programas (rutas dinámicas)
 El sistema **NO** utiliza una página estática `/programas`. Los tipos de programas son rutas dinámicas de primer nivel:
 - `/:tipo` ➔ Listado de programas según el tipo seleccionado.
-- Ejemplos válidos según categorías destacadas: `/maestrias`, `/doctorados`, `/residentado-medico`, `/segundas-especialidades`.
+- Ejemplos válidos según categorías destacadas en la Home: `/maestrias`, `/doctorados`, `/residentado-medico`, `/segundas-especialidades`.
 
 ---
 
