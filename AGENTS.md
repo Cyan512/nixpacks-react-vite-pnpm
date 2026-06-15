@@ -273,6 +273,78 @@ Los siguientes componentes base de shadcn/ui han sido personalizados para hereda
 - El card completo debe ser clickeable (envuelto en `<Link>`)
 - Hover state: `hover:shadow-md` (elevación)
 
+### Card Structure - Comunicados (`src/pages/Comunicados.tsx`)
+
+**Patrón de card para listado de comunicados (`/comunicados`):**
+
+La página tiene un layout de grilla `lg:grid-cols-3`. Los comunicados ocupan `lg:col-span-2` y el sidebar de eventos la tercera columna.
+El comunicado destacado (primer elemento) se muestra más grande que los secundarios.
+
+**Card destacado (principal, más grande):**
+
+| Elemento | Clase exacta | Descripción |
+|---|---|---|
+| Card wrapper | `flex flex-col overflow-hidden rounded-xl border bg-card shadow-sm transition-shadow hover:shadow-md` | Card completo, envuelto en `<Link>` |
+| Imagen | `relative h-48 overflow-hidden bg-muted md:h-56` | Imagen grande con gradiente overlay |
+| Gradient overlay | `absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent` | Degradado sobre la imagen |
+| Título (H3) | `font-heading text-lg font-light uppercase tracking-wide` | Título del comunicado |
+| Fecha | `font-sans text-xs uppercase tracking-widest text-muted-foreground` | Fecha del comunicado |
+| CTA | `inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground` | "Leer más" con flecha |
+
+**Card secundario (horizontal, más pequeño):**
+
+| Elemento | Clase exacta | Descripción |
+|---|---|---|
+| Card wrapper | `flex overflow-hidden rounded-xl border bg-card shadow-sm transition-shadow hover:shadow-md` | Card horizontal, envuelto en `<Link>` |
+| Imagen | `w-1/3 shrink-0 bg-muted` | Imagen a la izquierda (33%) |
+| Contenedor texto | `flex w-2/3 flex-col justify-between p-3` | Texto a la derecha (66%) |
+| Fecha | `font-sans text-xs uppercase tracking-widest text-muted-foreground` | Fecha del comunicado |
+| Título (H4) | `font-heading text-xs font-light uppercase tracking-wide line-clamp-2` | Título del comunicado |
+| CTA | `mt-2 inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground` | "Leer más" con flecha |
+
+**Sidebar de eventos:**
+
+| Elemento | Clase exacta | Descripción |
+|---|---|---|
+| Sidebar wrapper | `flex flex-col justify-between rounded-2xl bg-primary p-6 shadow-sm` | Contenedor con fondo primary |
+| Título sección | `border-b border-primary-foreground/20 pb-3 font-heading text-lg font-light uppercase tracking-wide text-primary-foreground` | "Próximos eventos" |
+| Día del evento | `font-heading text-2xl font-light text-primary-foreground` | Número del día |
+| Mes del evento | `font-sans text-xs font-light text-primary-foreground/80` | Mes abreviado |
+| Nombre evento | `font-heading text-xs font-light uppercase tracking-wide text-primary-foreground` | Título del evento |
+| Metadata | `font-sans text-xs font-light text-primary-foreground/70` | Fecha y hora |
+| Lugar | `font-sans text-xs font-light text-primary-foreground/60` | Ubicación |
+
+**Estructura de datos:**
+
+```ts
+// Comunicado
+{
+  slug: string
+  title: string    // Título del comunicado
+  date: string     // Fecha de publicación (ej: "15 de junio, 2026")
+  imagen: string   // URL de la imagen
+  destacada?: boolean // Si es el comunicado principal
+}
+
+// Evento
+{
+  id: number
+  dia: string      // Día numérico (ej: "15")
+  mes: string      // Mes abreviado (ej: "JUL")
+  titulo: string   // Título del evento
+  fechaCompleta: string // Fecha completa
+  hora: string     // Hora del evento
+  lugar: string    // Ubicación
+}
+```
+
+**Reglas de card para `/comunicados`:**
+- El primer comunicado del array debe tener `destacada: true` para mostrarse más grande
+- Los comunicados secundarios usan layout horizontal (imagen 1/3, texto 2/3) y se apilan verticalmente
+- El sidebar de eventos usa `bg-primary` con textos en `text-primary-foreground`
+- Fechas en `font-sans text-xs uppercase tracking-widest`
+- Títulos siguen la escala tipográfica obligatoria (H3 destacado, H4 secundarios)
+
 ### Button (`src/components/ui/button.tsx`)
 
 | Elemento | Cambio aplicado |
