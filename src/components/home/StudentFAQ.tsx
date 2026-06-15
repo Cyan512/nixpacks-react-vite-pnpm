@@ -1,49 +1,89 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion'
+import { ClipboardList, Network, CalendarDays, Signpost, Languages } from 'lucide-react'
 
-const faqs = [
-  { id: 'matricula', question: '¿Cómo realizo mi matrícula?', answer: 'La matrícula se realiza de forma virtual a través del sistema académico institucional. Debes ingresar con tus credenciales, seleccionar los cursos y completar el proceso de registro.' },
-  { id: 'pagos', question: '¿Cuáles son los medios de pago disponibles?', answer: 'Puedes realizar tus pagos a través de depósito bancario, transferencia interbancaria o en la ventanilla de tesorería de la universidad. Todos los pagos deben realizarse en los plazos establecidos.' },
-  { id: 'certificados', question: '¿Cómo solicito certificados de estudios?', answer: 'Los certificados de estudios se solicitan a través de la secretaría académica. El tiempo de entrega es de 5 días hábiles después de la solicitud y el pago correspondiente.' },
-  { id: 'requisitos', question: '¿Cuáles son los requisitos para postular?', answer: 'Los requisitos varían según el programa. Generalmente incluyen: grado académico de bachiller, DNI, currículum vitae, y aprobar el proceso de admisión establecido por la escuela.' },
-  { id: 'soporte', question: '¿Cómo accedo al soporte académico?', answer: 'El soporte académico está disponible a través de la oficina de bienestar universitario, tutorías asignadas por programa y la plataforma virtual de aprendizaje.' },
+const items = [
+  {
+    id: 1,
+    titulo: 'Reglamentos y Normas',
+    descripcion:
+      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
+    icono: <ClipboardList className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+  },
+  {
+    id: 2,
+    titulo: 'Trámites Académicos',
+    descripcion:
+      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
+    icono: <Network className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+  },
+  {
+    id: 3,
+    titulo: 'Calendario Académico y de Pagos',
+    descripcion:
+      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
+    icono: <CalendarDays className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+  },
+  {
+    id: 4,
+    titulo: 'Ruta del Graduado',
+    descripcion:
+      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
+    icono: <Signpost className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+  },
+  {
+    id: 5,
+    titulo: 'Acreditación del Idioma',
+    descripcion:
+      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
+    icono: <Languages className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+  }
 ]
 
 export function StudentFAQ() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="grid items-start gap-12 lg:grid-cols-2">
-        <div className="aspect-[4/3] overflow-hidden rounded-xl bg-muted/60 lg:aspect-auto lg:h-full dark:bg-muted/20">
-          <div className="flex h-full min-h-[300px] items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10 text-muted-foreground">
-            <span className="font-sans text-xs uppercase tracking-widest">
-              Imagen de servicios
-            </span>
-          </div>
+      <div className="relative mb-10">
+        <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
+          Información para el Estudiante
+        </h2>
+      </div>
+
+      <div className="relative flex flex-col items-start gap-6 lg:flex-row">
+        <div className="hidden lg:block lg:h-152.5 lg:w-[54%] lg:overflow-hidden lg:rounded-xl lg:bg-muted lg:shadow-sm">
+          <img
+            src="https://images.unsplash.com/photo-1544535830-9dff9e0d4bec?auto=format&fit=crop&q=80&w=1000"
+            alt="Estatua Académica"
+            className="h-full w-full object-cover object-center grayscale-15 contrast-110"
+          />
         </div>
-        <div>
-          <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
-            Servicios al Estudiante
-          </h2>
-          <p className="mt-3 font-sans text-base font-light leading-relaxed text-muted-foreground">
-            Resolvemos tus dudas sobre los servicios académicos y
+
+        <div className="z-10 w-full rounded-lg border border-border bg-card p-6 shadow-xl sm:p-8 lg:relative lg:-ml-24 lg:mt-16 lg:w-[53%] lg:p-10">
+          <p className="mb-10 max-w-[90%] font-sans text-xs font-light leading-relaxed text-muted-foreground">
+            En esta sección encontrarás toda la información esencial para
+            organizar y gestionar tu vida académica. Te recomendamos revisarla
+            con frecuencia para estar al tanto de fechas importantes y procesos
             administrativos.
           </p>
-          <Accordion type="single" collapsible className="mt-8 w-full">
-            {faqs.map((faq) => (
-              <AccordionItem key={faq.id} value={faq.id}>
-                <AccordionTrigger>
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent>
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
+
+          <div className="space-y-7">
+            {items.map((item) => (
+              <div
+                key={item.id}
+                className="group flex items-start gap-5 transition-transform duration-200"
+              >
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md bg-muted">
+                  {item.icono}
+                </div>
+                <div className="pt-0.5">
+                  <h3 className="font-heading text-sm font-light uppercase tracking-wide">
+                    {item.titulo}
+                  </h3>
+                  <p className="mt-1 max-w-sm font-sans text-xs font-light leading-relaxed text-muted-foreground">
+                    {item.descripcion}
+                  </p>
+                </div>
+              </div>
             ))}
-          </Accordion>
+          </div>
         </div>
       </div>
     </section>
