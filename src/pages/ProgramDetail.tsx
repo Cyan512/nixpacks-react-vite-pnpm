@@ -1,6 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { PageHero } from '@/components/shared/PageHero'
 import { ArrowLeft } from 'lucide-react'
