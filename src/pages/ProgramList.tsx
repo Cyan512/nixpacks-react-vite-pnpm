@@ -1,18 +1,17 @@
 import { useParams, Link } from 'react-router-dom'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { PageHero } from '@/components/shared/PageHero'
-import { ArrowRight } from 'lucide-react'
 
-const programsByType: Record<string, Array<{ slug: string; title: string; duration: string; modality: string; description: string }>> = {
+const programsByType: Record<string, Array<{ slug: string; title: string; facultad: string; duration: string; modality: string; description: string; enConvocatoria: boolean }>> = {
   maestrias: [
-    { slug: 'gestion-publica', title: 'Maestría en Gestión Pública', duration: '2 años', modality: 'Presencial', description: 'Formación especializada en administración y gestión de recursos públicos.' },
-    { slug: 'educacion', title: 'Maestría en Educación', duration: '2 años', modality: 'Semipresencial', description: 'Investigación y docencia en el campo educativo.' },
-    { slug: 'derecho', title: 'Maestría en Derecho', duration: '2 años', modality: 'Presencial', description: 'Estudios avanzados en ciencias jurídicas.' },
+    { slug: 'gestion-publica', title: 'Maestría en Gestión Pública', facultad: 'Facultad de Ciencias Económicas', duration: '2 años', modality: 'Presencial', description: 'Formación especializada en administración y gestión de recursos públicos.', enConvocatoria: true },
+    { slug: 'educacion', title: 'Maestría en Educación', facultad: 'Facultad de Educación', duration: '2 años', modality: 'Semipresencial', description: 'Investigación y docencia en el campo educativo.', enConvocatoria: false },
+    { slug: 'derecho', title: 'Maestría en Derecho', facultad: 'Facultad de Derecho', duration: '2 años', modality: 'Presencial', description: 'Estudios avanzados en ciencias jurídicas.', enConvocatoria: true },
   ],
   doctorados: [
-    { slug: 'ciencias-sociales', title: 'Doctorado en Ciencias Sociales', duration: '3 años', modality: 'Presencial', description: 'Investigación de alto nivel en ciencias sociales.' },
-    { slug: 'ingenieria', title: 'Doctorado en Ingeniería', duration: '3 años', modality: 'Presencial', description: 'Formación de investigadores en ingeniería.' },
+    { slug: 'ciencias-sociales', title: 'Doctorado en Ciencias Sociales', facultad: 'Facultad de Ciencias Sociales', duration: '3 años', modality: 'Presencial', description: 'Investigación de alto nivel en ciencias sociales.', enConvocatoria: false },
+    { slug: 'ingenieria', title: 'Doctorado en Ingeniería', facultad: 'Facultad de Ingeniería', duration: '3 años', modality: 'Presencial', description: 'Formación de investigadores en ingeniería.', enConvocatoria: true },
   ],
 }
 
@@ -57,31 +56,30 @@ export default function ProgramList() {
         <div className="mt-0 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {programs.map((program) => (
           <Link key={program.slug} to={`/${tipo}/${program.slug}`}>
-            <Card className="h-full transition-shadow hover:shadow-sm">
-              <div className="aspect-video w-full bg-muted" />
+            <Card className="group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md">
+              <div className="relative aspect-video w-full bg-muted">
+                {program.enConvocatoria && (
+                  <Badge className="absolute left-1/2 top-3 z-10 -translate-x-1/2 bg-primary font-sans text-xs uppercase tracking-widest text-primary-foreground hover:bg-primary">
+                    En convocatoria
+                  </Badge>
+                )}
+              </div>
               <CardHeader>
-                <CardTitle className="font-heading text-lg font-light tracking-wide">
+                <CardTitle className="font-heading text-lg font-light uppercase tracking-wide">
                   {program.title}
                 </CardTitle>
+                <CardDescription className="font-sans text-xs uppercase tracking-widest text-muted-foreground/80">
+                  {program.facultad}
+                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="font-sans text-sm font-light leading-relaxed text-muted-foreground line-clamp-2">
-                  {program.description}
-                </p>
-                <div className="mt-4 flex gap-2">
-                  <Badge className="bg-muted/60 font-sans text-xs uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
-                    {program.duration}
-                  </Badge>
-                  <Badge variant="outline" className="font-sans text-xs uppercase tracking-widest">
-                    {program.modality}
-                  </Badge>
+              <CardFooter className="border-t border-border/40 bg-transparent transition-colors duration-300 group-hover:border-primary/30">
+                <div className="flex w-full items-center gap-3">
+                  <span className="h-px flex-1 origin-left scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                  <span className="flex shrink-0 items-center gap-1.5 font-sans text-xs uppercase tracking-widest text-primary/60 transition-colors duration-300 group-hover:text-primary">
+                    Ver programa
+                  </span>
+                  <span className="h-px flex-1 origin-right scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
                 </div>
-              </CardContent>
-              <CardFooter>
-                <span className="flex items-center font-sans text-xs uppercase tracking-widest text-primary">
-                  Ver programa
-                  <ArrowRight className="ml-1 h-3 w-3" />
-                </span>
               </CardFooter>
             </Card>
           </Link>

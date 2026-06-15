@@ -235,6 +235,44 @@ Los siguientes componentes base de shadcn/ui han sido personalizados para hereda
 
 **Regla de uso:** Los títulos dentro de Cards ya utilizan `font-heading` por defecto. Si se necesita una variante (como `font-light tracking-wide uppercase`), aplicar clases adicionales mediante `className`.
 
+### Card Structure - ProgramList (`src/pages/ProgramList.tsx`)
+
+**Patrón de card para listado de programas (`/:tipo`):**
+
+| Elemento | Clase exacta | Descripción |
+|---|---|---|
+| Card wrapper | `group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md` | Card completo, envuelto en `<Link>` |
+| Imagen placeholder | `relative aspect-video w-full bg-muted` | Área de imagen con position relative |
+| Badge convocatoria | `absolute left-1/2 top-3 z-10 -translate-x-1/2 bg-primary font-sans text-xs uppercase tracking-widest text-primary-foreground` | Solo si `enConvocatoria === true` |
+| CardTitle | `font-heading text-lg font-light uppercase tracking-wide` | Nombre del programa |
+| CardDescription | `font-sans text-xs uppercase tracking-widest text-muted-foreground/80` | Nombre de la facultad |
+| CardFooter | `border-t border-border/40 bg-transparent transition-colors duration-300 group-hover:border-primary/30` | Borde animado en hover |
+| Línea izquierda | `h-px flex-1 origin-left scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100` | Crece desde el centro |
+| Texto CTA | `font-sans text-xs uppercase tracking-widest text-primary/60 transition-colors duration-300 group-hover:text-primary` | "Ver programa" |
+| Línea derecha | `h-px flex-1 origin-right scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100` | Crece desde el centro |
+
+**Estructura de datos:**
+
+```ts
+{
+  slug: string
+  title: string           // Nombre del programa
+  facultad: string        // Nombre de la facultad
+  duration: string        // Duración (ej: "2 años")
+  modality: string        // Modalidad (ej: "Presencial")
+  description: string     // Descripción breve
+  enConvocatoria: boolean // Si está en convocatoria activa
+}
+```
+
+**Reglas de card para `/:tipo`:**
+- Badge "En convocatoria": solo se muestra si `enConvocatoria === true`, centrado sobre la imagen con `absolute left-1/2 top-3 -translate-x-1/2`
+- `CardTitle`: `font-heading text-lg font-light uppercase tracking-wide`
+- `CardDescription` (facultad): `font-sans text-xs uppercase tracking-widest text-muted-foreground/80`
+- `CardFooter`: animación de líneas que crecen desde el centro en hover (`scale-x-0 → scale-x-100`)
+- El card completo debe ser clickeable (envuelto en `<Link>`)
+- Hover state: `hover:shadow-md` (elevación)
+
 ### Button (`src/components/ui/button.tsx`)
 
 | Elemento | Cambio aplicado |
