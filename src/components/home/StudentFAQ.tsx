@@ -48,7 +48,7 @@ export function StudentFAQ() {
       </div>
 
       <div className="relative flex flex-col items-start gap-6 lg:flex-row">
-        <div className="hidden lg:block lg:h-152.5 lg:w-[54%] lg:overflow-hidden lg:rounded-xl lg:bg-muted lg:shadow-sm">
+        <div className="hidden lg:block lg:h-[720px] lg:w-[54%] lg:overflow-hidden lg:rounded-xl lg:bg-muted lg:shadow-sm">
           <img
             src="https://images.unsplash.com/photo-1544535830-9dff9e0d4bec?auto=format&fit=crop&q=80&w=1000"
             alt="Estatua Académica"
@@ -57,7 +57,7 @@ export function StudentFAQ() {
         </div>
 
         <div className="z-10 w-full rounded-lg border border-border bg-card p-6 shadow-xl sm:p-8 lg:relative lg:-ml-24 lg:mt-16 lg:w-[53%] lg:p-10">
-          <p className="mb-10 max-w-[90%] font-sans text-xs font-light leading-relaxed text-muted-foreground">
+          <p className="mb-10 font-sans text-sm font-light leading-relaxed text-muted-foreground">
             En esta sección encontrarás toda la información esencial para
             organizar y gestionar tu vida académica. Te recomendamos revisarla
             con frecuencia para estar al tanto de fechas importantes y procesos
@@ -74,10 +74,10 @@ export function StudentFAQ() {
                   {item.icono}
                 </div>
                 <div className="pt-0.5">
-                  <h3 className="font-heading text-sm font-light uppercase tracking-wide">
+                  <h3 className="font-heading text-lg font-light uppercase tracking-wide">
                     {item.titulo}
                   </h3>
-                  <p className="mt-1 max-w-sm font-sans text-xs font-light leading-relaxed text-muted-foreground">
+                  <p className="mt-1 font-sans text-sm font-light leading-relaxed text-muted-foreground">
                     {item.descripcion}
                   </p>
                 </div>
