@@ -12,17 +12,18 @@ export interface Comunicado {
   author: string
   authorImage?: string
   tags?: string[]
+  destacada?: boolean
 }
 
 export interface Programa {
-  id: string
   slug: string
-  tipo: string
   title: string
-  description: string
+  facultad: string
   duration: string
   modality: string
-  image: string
+  description: string
+  enConvocatoria: boolean
+  image?: string
 }
 
 export interface TimelineStep {

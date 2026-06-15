@@ -1,4 +1,4 @@
-# Proyecto: Escuela de Posgrado UNSAAC
+﻿# Proyecto: Escuela de Posgrado UNSAAC
 
 ## Objetivo del sistema
 Desarrollar un sitio web institucional moderno para la Escuela de Posgrado UNSAAC, enfocado en informar, comunicar y mostrar programas académicos de forma clara y profesional.
@@ -33,7 +33,7 @@ Cada tipo de elemento TIENE UN TAMAÑO FIJO. No se permite variar tamaños entre
 | H1 página (hero) | `font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl` | Comunicados, ProcesoAdmision, ProgramList |
 | H1 hero institucional | `font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl lg:text-6xl` | HeroSection (única excepción) |
 | H1 error/empty state | `font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl` | "Comunicado no encontrado", "Programa no encontrado" |
-| H2 sección Home | `font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl` | RectorMessage, AdmissionCTA, LatestComunicados, FeaturedPrograms, StudentFAQ, AdmissionTimeline, ProcesoAdmision CTA |
+| H2 sección Home | `font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl` | RectorMessage, AdmissionCTA, LatestComunicados, FeaturedPrograms, StudentFAQ, ProcesoAdmision CTA |
 | H3 card título | `font-heading text-lg font-light uppercase tracking-wide` | Card de noticia destacada, Card en Comunicados/ProgramList |
 | H3 step título | `font-heading text-sm font-light uppercase tracking-wide` | Timeline step title |
 | H4 card secundario | `font-heading text-xs font-light uppercase tracking-wide` | Noticia secundaria, eventos |
@@ -414,19 +414,23 @@ Padding: `py-16` siempre en secciones normales (hero usa `py-24 sm:py-32`).
   - Sección tipo CTA que invita a conocer el proceso de admisión completo.
   - Botón: "Inscribirme ahora" ➔ Redirige a `/proceso-admision`.
 
-- **Últimos comunicados (Carrusel)**
-  - Muestra los 4 comunicados más recientes en formato carrusel horizontal.
-  - Cada card incluye: Título, Fecha, Resumen corto e Imagen.
-  - Botón final: “Ver todos los comunicados” ➔ Redirige a `/comunicados`.
+- **Últimos comunicados (Grid + Sidebar)**
+  - Muestra los comunicados más recientes: card destacada + grid de secundarios + sidebar de eventos.
+  - Layout: 2/3 contenido (noticias) + 1/3 sidebar (eventos próximos) en desktop.
+  - Card destacada: imagen grande + título H3 + fecha + "Leer más".
+  - Cards secundarios: layout horizontal (imagen 1/3 + texto 2/3) con título H4.
+  - Sidebar de eventos: fondo `bg-primary`, fechas en formato día/mes, título, hora y lugar.
+  - Botón final en sidebar: "Ver todos los eventos" ➔ Redirige a `/comunicados`.
 
 - **Programas destacados**
   - Sección con 4 cards principales: Maestrías, Doctorados, Residentado médico, Segundas especialidades.
   - Cada card incluye: Imagen de fondo completa (cover), nombre del tipo de programa y cantidad disponible.
   - Interacción: Click en card ➔ redirige a `/:tipo`.
 
-- **Servicios al estudiante (FAQ)**
-  - Imagen principal de la sección junto a una lista de consultas frecuentes en formato expandible (accordion).
-  - Ejemplos: Consultas de matrícula, Pagos, Certificados, Requisitos, Soporte académico.
+- **Servicios al estudiante (Información)**
+  - Imagen principal decorativa a la izquierda + tarjetas con iconos a la derecha (card overlay).
+  - Cada tarjeta incluye: icono, título H3 y descripción breve.
+  - Temas: Reglamentos y Normas, Trámites Académicos, Calendario Académico y de Pagos, Ruta del Graduado, Acreditación del Idioma.
 
 ---
 
@@ -483,8 +487,8 @@ El sistema **NO** utiliza una página estática `/programas`. Los tipos de progr
 * `/pages` ➔ Páginas principales del sistema (Inicio, Comunicados, etc.).
 * `/components` ➔ Componentes visuales reutilizables (Botones, Cards, Navbars).
 * `/layouts` ➔ Estructuras base de las páginas (Layout institucional).
-* `/hooks` ➔ Lógica y estado reutilizable.
-* `/services` ➔ Consumo y llamadas a APIs externas.
+* `/data` ➔ Datos estáticos de ejemplo (comunicados, programas).
+* `/services` ➔ Consumo y llamadas a APIs externas (en desarrollo, actualmente sin uso).
 * `/types` ➔ Tipos y contratos globales de TypeScript.
 
 ---

@@ -1,42 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-
-const noticias = [
-  {
-    id: 1,
-    slug: 'convocatoria-2026',
-    titulo: 'Convocatoria 2026',
-    fecha: '15 de junio, 2026',
-    resumen: 'Apertura de inscripciones para el semestre académico 2026 en todos los programas de posgrado.',
-    imagen: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop',
-    destacada: true,
-  },
-  {
-    id: 2,
-    slug: 'resultados-de-admision',
-    titulo: 'Resultados de Admisión',
-    fecha: '10 de junio, 2026',
-    resumen: 'Publicación de resultados del último proceso de admisión.',
-    imagen: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=150&auto=format&fit=crop',
-  },
-  {
-    id: 3,
-    slug: 'seminario-de-investigacion',
-    titulo: 'Seminario de Investigación',
-    fecha: '5 de junio, 2026',
-    resumen: 'Invitación al seminario internacional de metodología de la investigación.',
-    imagen: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=150&auto=format&fit=crop',
-  },
-  {
-    id: 4,
-    slug: 'becas-de-posgrado',
-    titulo: 'Becas de Posgrado',
-    fecha: '1 de junio, 2026',
-    resumen: 'Programa de becas para estudiantes destacados para el semestre 2026.',
-    imagen: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=150&auto=format&fit=crop',
-  },
-]
+import { comunicados } from '@/data/comunicados'
 
 const eventos = [
   {
@@ -69,8 +34,8 @@ const eventos = [
 ]
 
 export function LatestComunicados() {
-  const destacada = noticias.find((n) => n.destacada)
-  const secundarias = noticias.filter((n) => !n.destacada)
+  const destacada = comunicados[0]
+  const secundarias = comunicados.slice(1, 4)
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
@@ -93,19 +58,19 @@ export function LatestComunicados() {
               >
                 <div className="relative h-48 overflow-hidden bg-muted md:h-56">
                   <img
-                    src={destacada.imagen}
-                    alt={destacada.titulo}
+                    src={destacada.image}
+                    alt={destacada.title}
                     className="h-full w-full object-cover transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
                 </div>
                 <div className="flex flex-1 flex-col justify-between p-5">
                   <h3 className="font-heading text-lg font-light uppercase tracking-wide">
-                    {destacada.titulo}
+                    {destacada.title}
                   </h3>
                   <div className="mt-4 flex items-center justify-between">
                     <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
-                      {destacada.fecha}
+                      {destacada.date}
                     </span>
                     <span className="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground">
                       Leer más <ArrowRight className="h-3 w-3" />
@@ -117,24 +82,24 @@ export function LatestComunicados() {
             <div className="flex flex-col gap-4">
               {secundarias.map((noticia) => (
                 <Link
-                  key={noticia.id}
+                  key={noticia.slug}
                   to={`/comunicados/${noticia.slug}`}
                   className="flex overflow-hidden rounded-xl border bg-card shadow-sm transition-shadow hover:shadow-md"
                 >
                   <div className="w-1/3 shrink-0 bg-muted">
                     <img
-                      src={noticia.imagen}
-                      alt={noticia.titulo}
+                      src={noticia.image}
+                      alt={noticia.title}
                       className="h-full w-full object-cover"
                     />
                   </div>
                   <div className="flex w-2/3 flex-col justify-between p-3">
                     <div>
                       <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
-                        {noticia.fecha}
+                        {noticia.date}
                       </span>
                       <h4 className="mt-1 font-heading text-xs font-light uppercase tracking-wide line-clamp-2">
-                        {noticia.titulo}
+                        {noticia.title}
                       </h4>
                     </div>
                     <span className="mt-2 inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground">

@@ -8,13 +8,14 @@ export const comunicados: Comunicado[] = [
     description: 'Apertura de inscripciones para el semestre académico 2026 en todos los programas de posgrado. Conoce los requisitos, plazos y modalidades disponibles.',
     content:
       'La Escuela de Posgrado de la Universidad Nacional de San Antonio Abad del Cusco anuncia la apertura de inscripciones para el semestre académico 2026-I. Los interesados podrán presentar sus expedientes desde el 1 de julio hasta el 15 de agosto del presente año.\n\nLos programas disponibles incluyen maestrías en Gestión Pública, Educación, Derecho, Ingeniería, entre otros. Para mayor información, acercarse a la oficina de admisión de la Escuela de Posgrado o visitar nuestra plataforma virtual.\n\nSe recomienda a los postulantes revisar detenidamente los requisitos específicos de cada programa antes de iniciar su trámite de inscripción. Cualquier consulta puede ser dirigida al correo electrónico admision@posgrado.unsaac.edu.pe.',
-    image: '',
+    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop',
     contentImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=675&fit=crop',
     contentImageAlt: 'Estudiantes en ceremonia de graduación de posgrado',
     contentImageCaption: 'Ceremonia de graduación de la promoción 2025 - Escuela de Posgrado UNSAAC',
     category: 'Convocatoria',
     author: 'Escuela de Posgrado UNSAAC',
     tags: ['convocatoria', 'inscripcion', '2026'],
+    destacada: true,
   },
   {
     slug: 'resultados-admision',
@@ -23,7 +24,7 @@ export const comunicados: Comunicado[] = [
     description: 'Publicación de resultados del último proceso de admisión.',
     content:
       'La Escuela de Posgrado de la UNSAAC comunica a todos los postulantes que los resultados del proceso de admisión 2026-I ya se encuentran disponibles.\n\nLos ingresantes podrán realizar su matrícula desde el 15 de julio hasta el 31 de julio en las instalaciones de la Escuela de Posgrado. Es indispensable presentar los documentos originales para la validación de su inscripción.\n\nFelicitamos a todos los nuevos miembros de nuestra comunidad académica y les deseamos éxitos en esta etapa de formación profesional.',
-    image: '',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop',
     category: 'Noticia',
     author: 'Oficina de Admisión',
     tags: ['resultados', 'admision'],
@@ -35,7 +36,7 @@ export const comunicados: Comunicado[] = [
     description: 'Invitación al seminario internacional de metodología de la investigación.',
     content:
       'La Escuela de Posgrado invita a toda la comunidad académica al Seminario Internacional de Metodología de la Investigación, que se llevará a cabo del 20 al 24 de julio del presente año.\n\nEl evento contará con la participación de ponentes internacionales de universidades de España, México y Argentina. Se abordarán temas como investigación cualitativa, cuantitativa y mixta, así como el uso de herramientas digitales para la investigación.\n\nLa participación es gratuita para estudiantes de la Escuela de Posgrado. Los interesados deben inscribirse a través del formulario disponible en nuestra página web.',
-    image: '',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780efad99a?q=80&w=600&auto=format&fit=crop',
     category: 'Evento',
     author: 'Dirección de Investigación',
     tags: ['seminario', 'investigacion', 'internacional'],
@@ -47,7 +48,7 @@ export const comunicados: Comunicado[] = [
     description: 'Programa de becas para estudiantes destacados 2026.',
     content:
       'La Escuela de Posgrado de la UNSAAC anuncia el lanzamiento del Programa de Becas 2026, dirigido a estudiantes con alto rendimiento académico que deseen cursar estudios de maestría o doctorado.\n\nLas becas cubren hasta el 50% del costo total del programa y están disponibles para todas las áreas de conocimiento. Los postulantes deben haber obtenido un promedio mínimo de 14 en sus estudios de pregrado.\n\nEl plazo de postulación vence el 31 de julio de 2026. Los resultados se publicarán en la primera semana de agosto.',
-    image: '',
+    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=600&auto=format&fit=crop',
     category: 'Beca',
     author: 'Oficina de Bienestar Universitario',
     tags: ['becas', 'estudiantes', '2026'],
