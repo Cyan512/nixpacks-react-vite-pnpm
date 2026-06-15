@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { PageHero } from '@/components/shared/PageHero'
 import { ArrowLeft, Share2, Printer } from 'lucide-react'
-import { Tabs } from '@/components/shared/Tabs'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { PresentacionTab } from '@/components/shared/PresentacionTab'
 import { MallaCurricularTab } from '@/components/shared/MallaCurricularTab'
 import { InversionBecasTab } from '@/components/shared/InversionBecasTab'
@@ -166,7 +166,46 @@ export default function ProgramDetail() {
 
           {/* COLUMNA DERECHA (El Contenido del Programa) - Ocupa 9/12 partes */}
           <main className="lg:col-span-9 lg:pl-8 border-t lg:border-t-0 lg:border-l border-border/40 pt-8 lg:pt-0">
-            <Tabs tabs={tabs} defaultValue="presentacion" />
+            <Tabs defaultValue="presentacion" className="w-full">
+              <TabsList variant="line" className="flex border-b border-border w-full bg-transparent p-0 gap-0">
+                <TabsTrigger 
+                  value="presentacion"
+                  className="px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent text-muted-foreground hover:text-foreground data-[state=active]:text-foreground"
+                >
+                  Presentación
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="malla"
+                  className="px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent text-muted-foreground hover:text-foreground data-[state=active]:text-foreground"
+                >
+                  Malla Curricular
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="inversion"
+                  className="px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent text-muted-foreground hover:text-foreground data-[state=active]:text-foreground"
+                >
+                  Inversión y Becas
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="lineas"
+                  className="px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent text-muted-foreground hover:text-foreground data-[state=active]:text-foreground"
+                >
+                  Líneas de Investigación
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="presentacion" className="mt-6">
+                <PresentacionTab programa={program} />
+              </TabsContent>
+              <TabsContent value="malla" className="mt-6">
+                {program.cursos ? <MallaCurricularTab cursos={program.cursos} /> : null}
+              </TabsContent>
+              <TabsContent value="inversion" className="mt-6">
+                {program.cursos ? <InversionBecasTab cursos={program.cursos} modalidad={program.modality} /> : null}
+              </TabsContent>
+              <TabsContent value="lineas" className="mt-6">
+                {program.lineas_investigacion ? <LineasInvestigacionTab programa={program} /> : null}
+              </TabsContent>
+            </Tabs>
           </main>
         </div>
       </div>
