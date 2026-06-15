@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 
 const programs = [
-  { tipo: 'maestrias', title: 'Maestrías', count: 12, description: 'Programas de maestría en diversas áreas del conocimiento.' },
-  { tipo: 'doctorados', title: 'Doctorados', count: 5, description: 'Programas doctorales con altos estándares académicos.' },
-  { tipo: 'residentado-medico', title: 'Residentado Médico', count: 8, description: 'Formación especializada para profesionales de la salud.' },
-  { tipo: 'segundas-especialidades', title: 'Segundas Especialidades', count: 15, description: 'Especializaciones profesionales de alto nivel.' },
+  { tipo: 'maestrias', title: 'Maestrías', count: 12 },
+  { tipo: 'doctorados', title: 'Doctorados', count: 5 },
+  { tipo: 'residentado-medico', title: 'Residentado Médico', count: 8 },
+  { tipo: 'segundas-especialidades', title: 'Segundas Especialidades', count: 15 },
 ]
 
 export function FeaturedPrograms() {
@@ -34,9 +34,6 @@ export function FeaturedPrograms() {
                 </h3>
                 <p className="mt-2 font-sans text-sm font-light text-primary-foreground/80">
                   {program.count} programas disponibles
-                </p>
-                <p className="mt-1 font-sans text-xs text-primary-foreground/60">
-                  {program.description}
                 </p>
               </div>
             </Link>
