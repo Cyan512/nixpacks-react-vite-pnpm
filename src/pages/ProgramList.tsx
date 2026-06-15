@@ -30,11 +30,16 @@ export default function ProgramList() {
   if (!programs || programs.length === 0) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold">Programas no encontrados</h1>
-        <p className="mt-3 text-muted-foreground">
+        <h1 className="font-heading text-3xl font-light uppercase tracking-wide">
+          Programas no encontrados
+        </h1>
+        <p className="mt-3 font-sans font-light leading-relaxed text-muted-foreground">
           No se encontraron programas para esta categoría.
         </p>
-        <Link to="/" className="mt-6 inline-flex items-center text-sm font-medium text-primary hover:underline">
+        <Link
+          to="/"
+          className="mt-6 inline-flex font-sans text-xs uppercase tracking-widest text-primary hover:underline"
+        >
           Volver al inicio
         </Link>
       </div>
@@ -44,10 +49,10 @@ export default function ProgramList() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
           {title}
         </h1>
-        <p className="mt-3 text-lg text-muted-foreground">
+        <p className="mt-3 font-sans text-lg font-light leading-relaxed text-muted-foreground">
           Explora nuestros programas de {title.toLowerCase()} y encuentra el
           que mejor se adapte a tus objetivos profesionales.
         </p>
@@ -55,22 +60,28 @@ export default function ProgramList() {
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {programs.map((program) => (
           <Link key={program.slug} to={`/${tipo}/${program.slug}`}>
-            <Card className="h-full transition-shadow hover:shadow-md">
+            <Card className="h-full transition-shadow hover:shadow-sm">
               <div className="aspect-video w-full bg-muted" />
               <CardHeader>
-                <CardTitle className="text-lg">{program.title}</CardTitle>
+                <CardTitle className="font-heading text-lg font-light tracking-wide">
+                  {program.title}
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground line-clamp-2">
+                <p className="font-sans text-sm font-light leading-relaxed text-muted-foreground line-clamp-2">
                   {program.description}
                 </p>
                 <div className="mt-4 flex gap-2">
-                  <Badge variant="secondary">{program.duration}</Badge>
-                  <Badge variant="outline">{program.modality}</Badge>
+                  <Badge className="bg-muted/60 font-sans text-[10px] uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
+                    {program.duration}
+                  </Badge>
+                  <Badge variant="outline" className="font-sans text-[10px] uppercase tracking-widest">
+                    {program.modality}
+                  </Badge>
                 </div>
               </CardContent>
               <CardFooter>
-                <span className="flex items-center text-sm font-medium text-primary">
+                <span className="flex items-center font-sans text-xs uppercase tracking-widest text-primary">
                   Ver programa
                   <ArrowRight className="ml-1 h-3 w-3" />
                 </span>

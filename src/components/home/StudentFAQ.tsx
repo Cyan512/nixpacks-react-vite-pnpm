@@ -17,26 +17,28 @@ export function StudentFAQ() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="grid items-start gap-12 lg:grid-cols-2">
-        <div className="aspect-[4/3] overflow-hidden rounded-xl bg-muted lg:aspect-auto lg:h-full">
+        <div className="aspect-[4/3] overflow-hidden rounded-xl bg-muted/60 lg:aspect-auto lg:h-full dark:bg-muted/20">
           <div className="flex h-full min-h-[300px] items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10 text-muted-foreground">
-            <span className="text-sm">Imagen de servicios</span>
+            <span className="font-sans text-xs uppercase tracking-widest">
+              Imagen de servicios
+            </span>
           </div>
         </div>
         <div>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
             Servicios al Estudiante
           </h2>
-          <p className="mt-3 text-muted-foreground">
+          <p className="mt-3 font-sans text-base font-light leading-relaxed text-muted-foreground">
             Resolvemos tus dudas sobre los servicios académicos y
             administrativos.
           </p>
           <Accordion type="single" collapsible className="mt-8 w-full">
             {faqs.map((faq) => (
               <AccordionItem key={faq.id} value={faq.id}>
-                <AccordionTrigger className="text-left text-base font-medium">
+                <AccordionTrigger>
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">
+                <AccordionContent>
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

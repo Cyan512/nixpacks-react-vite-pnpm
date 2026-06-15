@@ -16,20 +16,23 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60 lg:from-background/95 lg:via-background/70 lg:to-background/30" />
       <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
         <div className="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl lg:text-6xl">
             Escuela de Posgrado
-            <span className="mt-2 block text-muted-foreground">
+            <span className="mt-3 block font-sans text-lg font-light leading-relaxed text-muted-foreground">
               Universidad Nacional de San Antonio Abad del Cusco
             </span>
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-6 font-sans text-lg font-light leading-relaxed text-muted-foreground">
             Formamos líderes e investigadores comprometidos con el desarrollo
             científico, tecnológico y humanístico de la región y el país, a
             través de programas académicos de excelencia.
           </p>
-          <div className="mt-8 flex justify-center gap-4 lg:justify-start">
+          <div className="mt-10 flex justify-center gap-4 lg:justify-start">
             <Button asChild size="lg">
-              <Link to="/comunicados">
+              <Link
+                to="/comunicados"
+                className="font-sans text-xs uppercase tracking-widest"
+              >
                 Ver comunicados
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

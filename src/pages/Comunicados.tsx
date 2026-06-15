@@ -16,10 +16,10 @@ export default function Comunicados() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
           Comunicados
         </h1>
-        <p className="mt-3 text-lg text-muted-foreground">
+        <p className="mt-3 font-sans text-lg font-light leading-relaxed text-muted-foreground">
           Mantente informado sobre las últimas noticias, anuncios y
           convocatorias de la Escuela de Posgrado.
         </p>
@@ -27,23 +27,23 @@ export default function Comunicados() {
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {comunicadosMock.map((comunicado) => (
           <Link key={comunicado.slug} to={`/comunicados/${comunicado.slug}`}>
-            <Card className="h-full transition-shadow hover:shadow-md">
+            <Card className="h-full transition-shadow hover:shadow-sm">
               <div className="aspect-[16/9] w-full bg-muted" />
               <CardHeader>
-                <Badge variant="secondary" className="w-fit text-xs">
+                <Badge className="w-fit bg-muted/60 font-sans text-[10px] uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
                   {comunicado.date}
                 </Badge>
-                <CardTitle className="text-lg leading-snug">
+                <CardTitle className="font-heading text-lg font-light tracking-wide">
                   {comunicado.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground line-clamp-3">
+                <p className="font-sans text-sm font-light leading-relaxed text-muted-foreground line-clamp-3">
                   {comunicado.summary}
                 </p>
               </CardContent>
               <CardFooter>
-                <span className="flex items-center text-sm font-medium text-primary">
+                <span className="flex items-center font-sans text-xs uppercase tracking-widest text-primary">
                   Leer más
                   <ArrowRight className="ml-1 h-3 w-3" />
                 </span>

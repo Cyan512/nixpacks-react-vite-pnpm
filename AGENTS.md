@@ -103,7 +103,41 @@ El sistema **NO** utiliza una página estática `/programas`. Los tipos de progr
 * **Lenguaje:** TypeScript
 * **Gestor de paquetes:** pnpm
 * **Estilos:** Tailwind CSS v4
-* **Componentes UI:** shadcn/ui
+* **Componentes UI:** shadcn/ui (radix-nova style)
+
+---
+
+## 🧩 Componentes shadcn/ui modificados
+
+Los siguientes componentes base de shadcn/ui han sido personalizados para heredar los tokens de diseño del sistema:
+
+### Accordion (`src/components/ui/accordion.tsx`)
+
+| Elemento | Cambio aplicado |
+| :--- | :--- |
+| `AccordionTrigger` | `font-heading text-sm tracking-wide`, hover con `bg-muted/50` (claro) / `dark:bg-muted/20` (oscuro), íconos `ChevronDownIcon` / `ChevronUpIcon` |
+| `AccordionContent` | `font-sans font-light leading-relaxed text-muted-foreground` |
+| `AccordionItem` | `not-last:border-b border-border` |
+
+**Regla de uso:** Al usar `<AccordionTrigger>` y `<AccordionContent>`, no es necesario agregar clases de tipografía manualmente. El componente ya hereda los tokens del sistema.
+
+### Card (`src/components/ui/card.tsx`)
+
+| Elemento | Cambio aplicado |
+| :--- | :--- |
+| `CardTitle` | `font-heading text-base leading-snug font-medium` |
+
+**Regla de uso:** Los títulos dentro de Cards ya utilizan `font-heading` por defecto. Si se necesita una variante (como `font-light tracking-wide uppercase`), aplicar clases adicionales mediante `className`.
+
+---
+
+## 📋 Convención para modificar componentes base shadcn/ui
+
+1. Los componentes en `src/components/ui/` pueden modificarse para heredar los tokens de diseño (tipografía, colores, dark mode).
+2. No eliminar props de accesibilidad (focus-visible, disabled, aria-*).
+3. Preferir `hover:bg-muted/50` y `dark:bg-muted/20` para estados hover sobre `hover:underline`.
+4. Mantener la estructura Radix UI original (Primitive.*).
+5. Documentar en AGENTS.md cualquier modificación significativa a los componentes base.
 
 ---
 

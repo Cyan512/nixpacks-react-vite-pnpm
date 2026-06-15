@@ -27,14 +27,14 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-sans text-sm font-bold text-primary-foreground">
                 EP
               </div>
-              <span className="text-lg font-semibold">
+              <span className="font-heading font-light tracking-wide">
                 Escuela de Posgrado UNSAAC
               </span>
             </Link>
-            <p className="mt-3 max-w-xs text-sm text-muted-foreground">
+            <p className="mt-3 max-w-xs font-sans text-sm font-light leading-relaxed text-muted-foreground">
               Formando profesionales de excelencia con programas académicos de
               alta calidad en la Universidad Nacional de San Antonio Abad del
               Cusco.
@@ -42,13 +42,15 @@ export function Footer() {
           </div>
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h3 className="mb-3 text-sm font-semibold">{group.title}</h3>
+              <h3 className="mb-3 font-heading text-xs font-light uppercase tracking-widest">
+                {group.title}
+              </h3>
               <ul className="space-y-2">
                 {group.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       to={link.href}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-sans text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {link.label}
                     </Link>
@@ -58,7 +60,7 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-10 border-t pt-6 text-center text-sm text-muted-foreground">
+        <div className="mt-10 border-t pt-6 text-center font-sans text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} Escuela de Posgrado UNSAAC. Todos
           los derechos reservados.
         </div>

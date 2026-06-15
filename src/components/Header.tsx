@@ -15,20 +15,20 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-sans text-sm font-bold text-primary-foreground">
             EP
           </div>
-          <span className="hidden text-lg font-semibold sm:inline">
+          <span className="hidden font-heading font-light tracking-wide sm:inline">
             Posgrado UNSAAC
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               to={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="font-sans text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </Link>
@@ -47,7 +47,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="text-lg font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="font-sans text-base uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </Link>

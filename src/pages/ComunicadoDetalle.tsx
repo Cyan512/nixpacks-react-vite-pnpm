@@ -19,12 +19,17 @@ export default function ComunicadoDetalle() {
   if (!comunicado) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold">Comunicado no encontrado</h1>
-        <p className="mt-3 text-muted-foreground">
+        <h1 className="font-heading text-3xl font-light uppercase tracking-wide">
+          Comunicado no encontrado
+        </h1>
+        <p className="mt-3 font-sans font-light leading-relaxed text-muted-foreground">
           El comunicado que buscas no existe o ha sido eliminado.
         </p>
         <Button asChild className="mt-6">
-          <Link to="/comunicados">
+          <Link
+            to="/comunicados"
+            className="font-sans text-xs uppercase tracking-widest"
+          >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver a comunicados
           </Link>
@@ -43,13 +48,15 @@ export default function ComunicadoDetalle() {
       </Button>
       <div className="aspect-[16/9] w-full rounded-xl bg-muted" />
       <div className="mt-8">
-        <Badge variant="secondary">{comunicado.date}</Badge>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+        <Badge className="bg-muted/60 font-sans text-[10px] uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
+          {comunicado.date}
+        </Badge>
+        <h1 className="mt-4 font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
           {comunicado.title}
         </h1>
         <Separator className="my-6" />
-        <div className="prose prose-neutral max-w-none">
-          <p className="leading-relaxed text-muted-foreground">
+        <div>
+          <p className="font-sans font-light leading-relaxed text-muted-foreground">
             {comunicado.content}
           </p>
         </div>
