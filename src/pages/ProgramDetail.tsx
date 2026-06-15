@@ -149,7 +149,7 @@ export default function ProgramDetail() {
           <main className="lg:col-span-9 lg:pl-8 border-t lg:border-t-0 lg:border-l border-border/40 pt-8 lg:pt-0">
             {/* 🖥️ DESKTOP - TABS */}
             <div className="hidden md:block">
-              <Tabs defaultValue="presentacion" className="w-full">
+              <Tabs defaultValue="presentacion" className="w-full gap-8">
                 <TabsList className="flex border-b border-border w-full bg-transparent p-0 gap-0 rounded-none">
                   <TabsTrigger value="presentacion" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Presentación</TabsTrigger>
                   <TabsTrigger value="malla" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Malla Curricular</TabsTrigger>
