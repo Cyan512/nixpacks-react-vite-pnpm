@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Inicio', href: '/' },
   { label: 'Maestrías', href: '/maestrias' },
   { label: 'Doctorados', href: '/doctorados' },
+  { label: 'Admisión', href: '/proceso-admision' },
   { label: 'Comunicados', href: '/comunicados' },
 ]
 
@@ -47,7 +48,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="font-sans text-base uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+                  className="font-sans text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </Link>

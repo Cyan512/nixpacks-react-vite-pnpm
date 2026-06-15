@@ -1,6 +1,6 @@
 import { HeroSection } from '@/components/home/HeroSection'
 import { RectorMessage } from '@/components/home/RectorMessage'
-import { AdmissionTimeline } from '@/components/home/AdmissionTimeline'
+import { AdmissionCTA } from '@/components/home/AdmissionCTA'
 import { LatestComunicados } from '@/components/home/LatestComunicados'
 import { FeaturedPrograms } from '@/components/home/FeaturedPrograms'
 import { StudentFAQ } from '@/components/home/StudentFAQ'
@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <HeroSection />
       <RectorMessage />
-      <AdmissionTimeline />
+      <AdmissionCTA />
       <LatestComunicados />
       <FeaturedPrograms />
       <StudentFAQ />

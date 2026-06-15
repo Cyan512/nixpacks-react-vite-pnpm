@@ -3,6 +3,7 @@ import { InstitutionalLayout } from '@/layouts/InstitutionalLayout'
 import Home from '@/pages/Home'
 import Comunicados from '@/pages/Comunicados'
 import ComunicadoDetalle from '@/pages/ComunicadoDetalle'
+import ProcesoAdmision from '@/pages/ProcesoAdmision'
 import ProgramList from '@/pages/ProgramList'
 import ProgramDetail from '@/pages/ProgramDetail'
 
@@ -13,6 +14,7 @@ function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/comunicados" element={<Comunicados />} />
         <Route path="/comunicados/:slug" element={<ComunicadoDetalle />} />
+        <Route path="/proceso-admision" element={<ProcesoAdmision />} />
         <Route path="/:tipo" element={<ProgramList />} />
         <Route path="/:tipo/:slug" element={<ProgramDetail />} />
       </Route>

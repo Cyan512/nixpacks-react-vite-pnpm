@@ -30,7 +30,7 @@ export default function ProgramList() {
   if (!programs || programs.length === 0) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="font-heading text-3xl font-light uppercase tracking-wide">
+        <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
           Programas no encontrados
         </h1>
         <p className="mt-3 font-sans font-light leading-relaxed text-muted-foreground">
@@ -38,7 +38,7 @@ export default function ProgramList() {
         </p>
         <Link
           to="/"
-          className="mt-6 inline-flex font-sans text-xs uppercase tracking-widest text-primary hover:underline"
+          className="mt-6 inline-flex font-sans text-xs uppercase tracking-widest text-primary hover:text-foreground"
         >
           Volver al inicio
         </Link>
@@ -72,10 +72,10 @@ export default function ProgramList() {
                   {program.description}
                 </p>
                 <div className="mt-4 flex gap-2">
-                  <Badge className="bg-muted/60 font-sans text-[10px] uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
+                  <Badge className="bg-muted/60 font-sans text-xs uppercase tracking-widest text-muted-foreground dark:bg-muted/20">
                     {program.duration}
                   </Badge>
-                  <Badge variant="outline" className="font-sans text-[10px] uppercase tracking-widest">
+                  <Badge variant="outline" className="font-sans text-xs uppercase tracking-widest">
                     {program.modality}
                   </Badge>
                 </div>

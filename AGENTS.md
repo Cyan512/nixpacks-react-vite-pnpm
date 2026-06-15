@@ -94,9 +94,9 @@ Ningún componente debe quedar "bloqueado" en un color claro. Si un elemento dec
   - Imagen del rector, nombre, cargo y mensaje institucional completo.
   - Diseño de sección dividida (imagen a la izquierda con arco decorativo de fondo + texto a la derecha).
 
-- **Ruta de admisión (Timeline)**
-  - Sección tipo línea de tiempo (step-by-step) clara y visual, ya sea vertical u horizontal.
-  - Explica el proceso de admisión: Registro ➔ Inscripción ➔ Pago ➔ Examen de admisión ➔ Resultados.
+- **Ruta de admisión (CTA)**
+  - Sección tipo CTA que invita a conocer el proceso de admisión completo.
+  - Botón: "Ver proceso completo" ➔ Redirige a `/proceso-admision`.
 
 - **Últimos comunicados (Carrusel)**
   - Muestra los 4 comunicados más recientes en formato carrusel horizontal.
@@ -117,6 +117,13 @@ Ningún componente debe quedar "bloqueado" en un color claro. Si un elemento dec
 ## 📢 Comunicados
 - `/comunicados` ➔ Listado dinámico de todos los comunicados ordenados por fecha o relevancia.
 - `/comunicados/:slug` ➔ Detalle extendido e individual de un comunicado específico accesible por slug.
+
+---
+
+## 📋 Proceso de Admisión
+- `/proceso-admision` ➔ Página estática que muestra el timeline completo del proceso de admisión (Registro ➔ Inscripción ➔ Pago ➔ Examen ➔ Resultados).
+- Incluye timeline zigzag en desktop y vertical en mobile.
+- Al final incluye CTA con botones a convocatorias y programas.
 
 ---
 

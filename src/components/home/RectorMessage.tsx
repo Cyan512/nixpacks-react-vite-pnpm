@@ -18,12 +18,12 @@ export function RectorMessage() {
           </div>
         </div>
         <div className="flex flex-col justify-center lg:col-span-7">
-          <h2 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
+          <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
             Mensaje del Rector
           </h2>
           <div className="relative mt-8">
             <Quote className="absolute -left-2 -top-3 h-8 w-8 text-muted" />
-            <blockquote className="space-y-6 pl-8 font-sans text-[15px] font-light leading-relaxed text-muted-foreground">
+            <blockquote className="space-y-6 pl-8 font-sans text-base font-light leading-relaxed text-muted-foreground">
               <p>
                 Bienvenidos a la Escuela de Posgrado de la Universidad
                 Nacional de San Antonio Abad del Cusco. Nuestra institución
