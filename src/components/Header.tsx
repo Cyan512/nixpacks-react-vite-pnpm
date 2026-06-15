@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Search } from 'lucide-react'
 
 const panel1Links = [
   { num: '01', label: 'Inicio', href: '/' },
@@ -62,6 +62,15 @@ export function Header() {
   return (
     <>
       <nav className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between border-b bg-background/95 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+          aria-expanded={open}
+          className="flex items-center"
+        >
+          {open ? <X className="h-5 w-5 text-foreground" /> : <Menu className="h-5 w-5 text-foreground" />}
+        </button>
+
         <Link to="/" className="flex items-center gap-2.5">
           <div className="flex h-8 w-8 items-center justify-center border border-primary font-sans text-xs font-light tracking-widest text-primary">
             EP
@@ -77,17 +86,10 @@ export function Header() {
         </Link>
 
         <button
-          onClick={() => setOpen(!open)}
-          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-          aria-expanded={open}
-          className="flex items-center gap-2.5"
+          aria-label="Buscar"
+          className="flex items-center"
         >
-          <span
-            className={`font-sans text-xs uppercase tracking-widest text-foreground transition-opacity duration-300 ${open ? 'opacity-0 w-0 overflow-hidden' : 'opacity-100'}`}
-          >
-            Menú
-          </span>
-          {open ? <X className="h-5 w-5 text-foreground" /> : <Menu className="h-5 w-5 text-foreground" />}
+          <Search className="h-5 w-5 text-foreground" />
         </button>
       </nav>
 
