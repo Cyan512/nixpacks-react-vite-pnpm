@@ -1,0 +1,115 @@
+import type { Comunicado } from '@/types'
+
+export const comunicados: Comunicado[] = [
+  {
+    slug: 'convocatoria-2026',
+    title: 'Convocatoria 2026',
+    date: '15 de junio, 2026',
+    description: 'Apertura de inscripciones para el semestre académico 2026 en todos los programas de posgrado. Conoce los requisitos, plazos y modalidades disponibles.',
+    content:
+      'La Escuela de Posgrado de la Universidad Nacional de San Antonio Abad del Cusco anuncia la apertura de inscripciones para el semestre académico 2026-I. Los interesados podrán presentar sus expedientes desde el 1 de julio hasta el 15 de agosto del presente año.\n\nLos programas disponibles incluyen maestrías en Gestión Pública, Educación, Derecho, Ingeniería, entre otros. Para mayor información, acercarse a la oficina de admisión de la Escuela de Posgrado o visitar nuestra plataforma virtual.\n\nSe recomienda a los postulantes revisar detenidamente los requisitos específicos de cada programa antes de iniciar su trámite de inscripción. Cualquier consulta puede ser dirigida al correo electrónico admision@posgrado.unsaac.edu.pe.',
+    image: '',
+    contentImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&h=675&fit=crop',
+    contentImageAlt: 'Estudiantes en ceremonia de graduación de posgrado',
+    contentImageCaption: 'Ceremonia de graduación de la promoción 2025 - Escuela de Posgrado UNSAAC',
+    category: 'Convocatoria',
+    author: 'Escuela de Posgrado UNSAAC',
+    tags: ['convocatoria', 'inscripcion', '2026'],
+  },
+  {
+    slug: 'resultados-admision',
+    title: 'Resultados de Admisión',
+    date: '10 de junio, 2026',
+    description: 'Publicación de resultados del último proceso de admisión.',
+    content:
+      'La Escuela de Posgrado de la UNSAAC comunica a todos los postulantes que los resultados del proceso de admisión 2026-I ya se encuentran disponibles.\n\nLos ingresantes podrán realizar su matrícula desde el 15 de julio hasta el 31 de julio en las instalaciones de la Escuela de Posgrado. Es indispensable presentar los documentos originales para la validación de su inscripción.\n\nFelicitamos a todos los nuevos miembros de nuestra comunidad académica y les deseamos éxitos en esta etapa de formación profesional.',
+    image: '',
+    category: 'Noticia',
+    author: 'Oficina de Admisión',
+    tags: ['resultados', 'admision'],
+  },
+  {
+    slug: 'seminario-investigacion',
+    title: 'Seminario de Investigación',
+    date: '5 de junio, 2026',
+    description: 'Invitación al seminario internacional de metodología de la investigación.',
+    content:
+      'La Escuela de Posgrado invita a toda la comunidad académica al Seminario Internacional de Metodología de la Investigación, que se llevará a cabo del 20 al 24 de julio del presente año.\n\nEl evento contará con la participación de ponentes internacionales de universidades de España, México y Argentina. Se abordarán temas como investigación cualitativa, cuantitativa y mixta, así como el uso de herramientas digitales para la investigación.\n\nLa participación es gratuita para estudiantes de la Escuela de Posgrado. Los interesados deben inscribirse a través del formulario disponible en nuestra página web.',
+    image: '',
+    category: 'Evento',
+    author: 'Dirección de Investigación',
+    tags: ['seminario', 'investigacion', 'internacional'],
+  },
+  {
+    slug: 'becas-posgrado',
+    title: 'Becas de Posgrado',
+    date: '1 de junio, 2026',
+    description: 'Programa de becas para estudiantes destacados 2026.',
+    content:
+      'La Escuela de Posgrado de la UNSAAC anuncia el lanzamiento del Programa de Becas 2026, dirigido a estudiantes con alto rendimiento académico que deseen cursar estudios de maestría o doctorado.\n\nLas becas cubren hasta el 50% del costo total del programa y están disponibles para todas las áreas de conocimiento. Los postulantes deben haber obtenido un promedio mínimo de 14 en sus estudios de pregrado.\n\nEl plazo de postulación vence el 31 de julio de 2026. Los resultados se publicarán en la primera semana de agosto.',
+    image: '',
+    category: 'Beca',
+    author: 'Oficina de Bienestar Universitario',
+    tags: ['becas', 'estudiantes', '2026'],
+  },
+  {
+    slug: 'defensa-tesis',
+    title: 'Defensa de Tesis',
+    date: '28 de mayo, 2026',
+    description: 'Cronograma de sustentaciones de tesis para el semestre.',
+    content:
+      'Se comunica a los estudiantes de los programas de maestría y doctorado el cronograma oficial de sustentaciones de tesis correspondiente al semestre 2026-I.\n\nLas sustentaciones se realizarán del 10 al 28 de agosto en el auditorio de la Escuela de Posgrado. Los estudiantes deben presentar su solicitud de sustentación con al menos 30 días de anticipación.\n\nPara mayor información sobre los requisitos y procedimientos, los interesados pueden acercarse a la Secretaría Académica o consultar el reglamento de grados y títulos.',
+    image: '',
+    category: 'Noticia',
+    author: 'Secretaría Académica',
+    tags: ['tesis', 'sustentacion', 'cronograma'],
+  },
+  {
+    slug: 'convenios-internacionales',
+    title: 'Convenios Internacionales',
+    date: '22 de mayo, 2026',
+    description: 'Nuevos convenios con universidades extranjeras para intercambio.',
+    content:
+      'La Escuela de Posgrado de la UNSAAC ha firmado nuevos convenios de cooperación académica con universidades de América Latina y Europa.\n\nEstos convenios permitirán a nuestros estudiantes realizar estancias de investigación, pasantías y cursos de especialización en el extranjero. Las universidades aliadas incluyen la Universidad de Barcelona, la Universidad Nacional Autónoma de México y la Universidad de Buenos Aires.\n\nLos interesados en participar en los programas de movilidad pueden solicitar información en la Oficina de Relaciones Internacionales.',
+    image: '',
+    category: 'Noticia',
+    author: 'Oficina de Relaciones Internacionales',
+    tags: ['convenios', 'internacional', 'movilidad'],
+  },
+  {
+    slug: 'talleres-investigacion',
+    title: 'Talleres de Investigación',
+    date: '15 de mayo, 2026',
+    description: 'Talleres gratuitos de metodología de investigación para estudiantes.',
+    content:
+      'La Dirección de Investigación de la Escuela de Posgrado ofrece talleres gratuitos de metodología de investigación dirigidos a estudiantes de todos los programas.\n\nLos talleres se realizarán los sábados del mes de julio y cubrirán temas como elaboración de proyectos de tesis, análisis estadístico con software especializado y redacción académica.\n\nLas inscripciones están abiertas hasta el 30 de junio. Los cupos son limitados, por lo que se recomienda a los interesados registrarse con anticipación.',
+    image: '',
+    category: 'Evento',
+    author: 'Dirección de Investigación',
+    tags: ['talleres', 'investigacion', 'gratuito'],
+  },
+  {
+    slug: 'ceremonia-graduacion',
+    title: 'Ceremonia de Graduación',
+    date: '8 de mayo, 2026',
+    description: 'Ceremonia de graduación de la promoción 2025 de posgrado.',
+    content:
+      'La Escuela de Posgrado de la UNSAAC celebrará la ceremonia de graduación de la promoción 2025 el próximo 15 de agosto en el Paraninfo Universitario.\n\nLos graduados deben confirmar su asistencia hasta el 31 de julio y recoger sus invitaciones en la oficina de la Escuela de Posgrado. La ceremonia contará con la presencia de autoridades universitarias y académicas.\n\nExtendemos nuestras felicitaciones a todos los graduados y les deseamos el mayor de los éxitos en su vida profesional.',
+    image: '',
+    category: 'Evento',
+    author: 'Escuela de Posgrado UNSAAC',
+    tags: ['graduacion', 'ceremonia', 'promocion'],
+  },
+  {
+    slug: 'curso-verano',
+    title: 'Curso de Verano 2026',
+    date: '30 de abril, 2026',
+    description: 'Cursos intensivos de verano en diversas áreas del conocimiento.',
+    content:
+      'La Escuela de Posgrado presenta su programa de Cursos de Verano 2026, con una oferta académica de cursos intensivos en diversas áreas del conocimiento.\n\nLos cursos se desarrollarán durante el mes de febrero de 2027 y están abiertos a estudiantes y profesionales externos. Las áreas disponibles incluyen gestión pública, derecho corporativo, educación virtual, ingeniería de software y ciencias de la salud.\n\nLos participantes recibirán un certificado digital al completar satisfactoriamente el curso. Las inscripciones ya se encuentran abiertas.',
+    image: '',
+    category: 'Convocatoria',
+    author: 'Dirección Académica',
+    tags: ['curso', 'verano', 'intensivo'],
+  },
+]

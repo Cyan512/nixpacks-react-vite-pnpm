@@ -4,31 +4,17 @@ import { Button } from '@/components/ui/button'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
 import { PageHero } from '@/components/shared/PageHero'
-
-const ultimoComunicado = {
-  slug: 'convocatoria-2026',
-  tag: 'Último Comunicado',
-  title: 'Convocatoria 2026',
-  description: 'Apertura de inscripciones para el semestre académico 2026 en todos los programas de posgrado. Conoce los requisitos, plazos y modalidades disponibles.',
-  date: '15 de junio, 2026',
-}
-const comunicadosAnteriores = [
-  { slug: 'resultados-admision', title: 'Resultados de Admisión', date: '10 de junio, 2026', description: 'Publicación de resultados del último proceso de admisión.' },
-  { slug: 'seminario-investigacion', title: 'Seminario de Investigación', date: '5 de junio, 2026', description: 'Invitación al seminario internacional de metodología de la investigación.' },
-  { slug: 'becas-posgrado', title: 'Becas de Posgrado', date: '1 de junio, 2026', description: 'Programa de becas para estudiantes destacados 2026.' },
-  { slug: 'defensa-tesis', title: 'Defensa de Tesis', date: '28 de mayo, 2026', description: 'Cronograma de sustentaciones de tesis para el semestre.' },
-  { slug: 'convenios-internacionales', title: 'Convenios Internacionales', date: '22 de mayo, 2026', description: 'Nuevos convenios con universidades extranjeras para intercambio.' },
-  { slug: 'talleres-investigacion', title: 'Talleres de Investigación', date: '15 de mayo, 2026', description: 'Talleres gratuitos de metodología de investigación para estudiantes.' },
-  { slug: 'ceremonia-graduacion', title: 'Ceremonia de Graduación', date: '8 de mayo, 2026', description: 'Ceremonia de graduación de la promoción 2025 de posgrado.' },
-  { slug: 'curso-verano', title: 'Curso de Verano 2026', date: '30 de abril, 2026', description: 'Cursos intensivos de verano en diversas áreas del conocimiento.' },
-]
+import { comunicados } from '@/data/comunicados'
 
 const INITIAL_VISIBLE = 5
 
 export default function Comunicados() {
   const [showAll, setShowAll] = useState(false)
-  const visibleComunicados = showAll ? comunicadosAnteriores : comunicadosAnteriores.slice(0, INITIAL_VISIBLE)
-  const hasMore = comunicadosAnteriores.length > INITIAL_VISIBLE
+  const destacado = comunicados[0]
+  const anteriores = comunicados.slice(1)
+  const visibleAnteriores = showAll ? anteriores : anteriores.slice(0, INITIAL_VISIBLE)
+  const hasMore = anteriores.length > INITIAL_VISIBLE
+
   return (
     <div className="min-h-screen">
       <PageHero
@@ -40,19 +26,19 @@ export default function Comunicados() {
         <section className="rounded-2xl border bg-card shadow-sm p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center">
           <div className="flex-1 space-y-4">
             <span className="inline-block font-sans text-xs uppercase tracking-widest text-muted-foreground">
-              {ultimoComunicado.tag}
+              Último Comunicado
             </span>
             <h3 className="font-heading text-lg font-light uppercase tracking-wide">
-              {ultimoComunicado.title}
+              {destacado.title}
             </h3>
             <p className="font-sans text-sm font-light leading-relaxed text-muted-foreground">
-              {ultimoComunicado.description}
+              {destacado.description}
             </p>
             <span className="block font-sans text-xs uppercase tracking-widest text-muted-foreground">
-              {ultimoComunicado.date}
+              {destacado.date}
             </span>
             <Button asChild size="lg" className="font-sans text-sm uppercase tracking-widest">
-              <Link to={`/comunicados/${ultimoComunicado.slug}`}>
+              <Link to={`/comunicados/${destacado.slug}`}>
                 Leer comunicado
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -76,7 +62,7 @@ export default function Comunicados() {
           </div>
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {visibleComunicados.map((comunicado) => (
+          {visibleAnteriores.map((comunicado) => (
             <Link key={comunicado.slug} to={`/comunicados/${comunicado.slug}`}>
               <Card className="group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md">
                 <div className="relative aspect-video w-full bg-muted" />

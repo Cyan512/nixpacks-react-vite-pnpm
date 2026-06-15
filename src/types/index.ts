@@ -1,11 +1,17 @@
 export interface Comunicado {
-  id: string
   slug: string
   title: string
   date: string
-  summary: string
+  description: string
   content: string
   image: string
+  contentImage?: string
+  contentImageAlt?: string
+  contentImageCaption?: string
+  category: string
+  author: string
+  authorImage?: string
+  tags?: string[]
 }
 
 export interface Programa {
