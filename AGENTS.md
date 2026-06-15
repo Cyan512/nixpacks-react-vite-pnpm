@@ -275,68 +275,62 @@ Los siguientes componentes base de shadcn/ui han sido personalizados para hereda
 
 ### Card Structure - Comunicados (`src/pages/Comunicados.tsx`)
 
-**Patrón de card para listado de comunicados (`/comunicados`):**
+**Patrón de page para listado de comunicados (`/comunicados`):**
 
-La página tiene un layout de grilla `lg:grid-cols-3`. Los comunicados ocupan `lg:col-span-2` y el sidebar de eventos la tercera columna.
-El comunicado destacado (primer elemento) se muestra más grande que los secundarios.
+La página tiene dos secciones principales:
 
-**Card destacado (principal, más grande):**
+**1. Card destacado (último comunicado — más grande, 100% width):**
 
 | Elemento | Clase exacta | Descripción |
 |---|---|---|
-| Card wrapper | `flex flex-col overflow-hidden rounded-xl border bg-card shadow-sm transition-shadow hover:shadow-md` | Card completo, envuelto en `<Link>` |
-| Imagen | `relative h-48 overflow-hidden bg-muted md:h-56` | Imagen grande con gradiente overlay |
-| Gradient overlay | `absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent` | Degradado sobre la imagen |
+| Wrapper | `rounded-2xl border bg-card shadow-sm p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center` | Contenedor general del card destacado |
+| Tag | `font-sans text-xs uppercase tracking-widest text-muted-foreground` | "Último Comunicado" |
 | Título (H3) | `font-heading text-lg font-light uppercase tracking-wide` | Título del comunicado |
+| Descripción | `font-sans text-sm font-light leading-relaxed text-muted-foreground` | Descripción breve |
 | Fecha | `font-sans text-xs uppercase tracking-widest text-muted-foreground` | Fecha del comunicado |
-| CTA | `inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground` | "Leer más" con flecha |
+| Botón CTA | `Button asChild size="lg"` + `font-sans text-sm uppercase tracking-widest` | "Leer comunicado" con ArrowRight |
+| Imagen placeholder | `w-full md:w-[45%] aspect-video rounded-xl bg-muted` | Placeholder de imagen destacada |
 
-**Card secundario (horizontal, más pequeño):**
+**2. Cards secundarios (grilla 3 columnas) — mismos que ProgramList:**
 
 | Elemento | Clase exacta | Descripción |
 |---|---|---|
-| Card wrapper | `flex overflow-hidden rounded-xl border bg-card shadow-sm transition-shadow hover:shadow-md` | Card horizontal, envuelto en `<Link>` |
-| Imagen | `w-1/3 shrink-0 bg-muted` | Imagen a la izquierda (33%) |
-| Contenedor texto | `flex w-2/3 flex-col justify-between p-3` | Texto a la derecha (66%) |
-| Fecha | `font-sans text-xs uppercase tracking-widest text-muted-foreground` | Fecha del comunicado |
-| Título (H4) | `font-heading text-xs font-light uppercase tracking-wide line-clamp-2` | Título del comunicado |
-| CTA | `mt-2 inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground` | "Leer más" con flecha |
-
-**Sidebar de eventos:**
-
-| Elemento | Clase exacta | Descripción |
-|---|---|---|
-| Sidebar wrapper | `flex flex-col justify-between rounded-2xl bg-primary p-6 shadow-sm` | Contenedor con fondo primary |
-| Título sección | `border-b border-primary-foreground/20 pb-3 font-heading text-lg font-light uppercase tracking-wide text-primary-foreground` | "Próximos eventos" |
-| Día del evento | `font-heading text-2xl font-light text-primary-foreground` | Número del día |
-| Mes del evento | `font-sans text-xs font-light text-primary-foreground/80` | Mes abreviado |
-| Nombre evento | `font-heading text-xs font-light uppercase tracking-wide text-primary-foreground` | Título del evento |
-| Metadata | `font-sans text-xs font-light text-primary-foreground/70` | Fecha y hora |
-| Lugar | `font-sans text-xs font-light text-primary-foreground/60` | Ubicación |
+| Card wrapper | `group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md` (shadcn `Card`) | Card completo, envuelto en `<Link>` |
+| Imagen placeholder | `relative aspect-video w-full bg-muted` | Área de imagen |
+| CardTitle | `font-heading text-lg font-light uppercase tracking-wide` | Título del comunicado |
+| CardDescription | `font-sans text-xs uppercase tracking-widest text-muted-foreground/80` | Fecha del comunicado |
+| CardFooter | `border-t border-border/40 bg-transparent transition-colors duration-300 group-hover:border-primary/30` | Borde animado en hover |
+| Línea izquierda | `h-px flex-1 origin-left scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100` | Crece desde el centro |
+| Texto CTA | `font-sans text-xs uppercase tracking-widest text-primary/60 transition-colors duration-300 group-hover:text-primary` | "Leer más" |
+| Línea derecha | `h-px flex-1 origin-right scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100` | Crece desde el centro |
 
 **Estructura de datos:**
 
 ```ts
-// Comunicado
+// Último comunicado (destacado)
 {
   slug: string
-  title: string    // Título del comunicado
-  date: string     // Fecha de publicación (ej: "15 de junio, 2026")
-  imagen: string   // URL de la imagen
-  destacada?: boolean // Si es el comunicado principal
+  tag: string       // "Último Comunicado"
+  title: string     // Título
+  description: string // Descripción
+  date: string      // Fecha (ej: "15 de junio, 2026")
 }
 
-// Evento
+// Comunicados anteriores
 {
-  id: number
-  dia: string      // Día numérico (ej: "15")
-  mes: string      // Mes abreviado (ej: "JUL")
-  titulo: string   // Título del evento
-  fechaCompleta: string // Fecha completa
-  hora: string     // Hora del evento
-  lugar: string    // Ubicación
+  slug: string
+  title: string     // Título
+  date: string      // Fecha
+  description: string // Resumen
 }
 ```
+
+**Reglas de la página `/comunicados`:**
+- No usa shadcn `Card` — usa `div` con `border bg-card shadow-sm rounded-2xl`
+- El primer comunicado es el destacado y ocupa todo el ancho con layout `flex md:flex-row`
+- Los 3 comunicados anteriores van en grilla `md:grid-cols-3` con fondos alternos
+- Los botones usan el componente `Button` de shadcn con `ArrowRight`
+- Tipografía sigue la escala: H1 page, H2 destacado, H3 secundario, descripciones en `font-sans text-sm`
 
 **Reglas de card para `/comunicados`:**
 - El primer comunicado del array debe tener `destacada: true` para mostrarse más grande
