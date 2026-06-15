@@ -7,6 +7,12 @@ import { PresentacionTab } from '@/components/shared/PresentacionTab'
 import { MallaCurricularTab } from '@/components/shared/MallaCurricularTab'
 import { InversionBecasTab } from '@/components/shared/InversionBecasTab'
 import { LineasInvestigacionTab } from '@/components/shared/LineasInvestigacionTab'
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 import type { Programa } from '@/types'
 
@@ -105,29 +111,6 @@ export default function ProgramDetail() {
     )
   }
 
-  const tabs = [
-    {
-      id: 'presentacion',
-      label: 'Presentación',
-      content: <PresentacionTab programa={program} />,
-    },
-    {
-      id: 'malla',
-      label: 'Malla Curricular',
-      content: program.cursos ? <MallaCurricularTab cursos={program.cursos} /> : null,
-    },
-    {
-      id: 'inversion',
-      label: 'Inversión y Becas',
-      content: program.cursos ? <InversionBecasTab cursos={program.cursos} modalidad={program.modality} /> : null,
-    },
-    {
-      id: 'lineas',
-      label: 'Líneas de Investigación',
-      content: program.lineas_investigacion ? <LineasInvestigacionTab programa={program} /> : null,
-    },
-  ].filter(tab => tab.content !== null)
-
   return (
     <>
       <PageHero
@@ -140,7 +123,7 @@ export default function ProgramDetail() {
       />
       <div className="w-full border-b border-border/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
+
           {/* COLUMNA IZQUIERDA (Sidebar de Navegación) - Ocupa 3/12 partes */}
           <aside className="lg:col-span-3 space-y-6 lg:sticky lg:top-24 h-fit">
             <Button variant="ghost" asChild className="group -ml-4 rounded-none hover:bg-transparent text-muted-foreground hover:text-foreground">
@@ -166,46 +149,80 @@ export default function ProgramDetail() {
 
           {/* COLUMNA DERECHA (El Contenido del Programa) - Ocupa 9/12 partes */}
           <main className="lg:col-span-9 lg:pl-8 border-t lg:border-t-0 lg:border-l border-border/40 pt-8 lg:pt-0">
-            <Tabs defaultValue="presentacion" className="w-full">
-              <TabsList variant="line" className="flex border-b border-border w-full bg-transparent p-0 gap-0">
-                <TabsTrigger 
-                  value="presentacion"
-                  className="px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent text-muted-foreground hover:text-foreground data-[state=active]:text-foreground"
-                >
-                  Presentación
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="malla"
-                  className="px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent text-muted-foreground hover:text-foreground data-[state=active]:text-foreground"
-                >
-                  Malla Curricular
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="inversion"
-                  className="px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent text-muted-foreground hover:text-foreground data-[state=active]:text-foreground"
-                >
-                  Inversión y Becas
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="lineas"
-                  className="px-6 py-3 text-sm font-medium transition-colors border-b-2 border-transparent text-muted-foreground hover:text-foreground data-[state=active]:text-foreground"
-                >
-                  Líneas de Investigación
-                </TabsTrigger>
-              </TabsList>
-              <TabsContent value="presentacion" className="mt-6">
-                <PresentacionTab programa={program} />
-              </TabsContent>
-              <TabsContent value="malla" className="mt-6">
-                {program.cursos ? <MallaCurricularTab cursos={program.cursos} /> : null}
-              </TabsContent>
-              <TabsContent value="inversion" className="mt-6">
-                {program.cursos ? <InversionBecasTab cursos={program.cursos} modalidad={program.modality} /> : null}
-              </TabsContent>
-              <TabsContent value="lineas" className="mt-6">
-                {program.lineas_investigacion ? <LineasInvestigacionTab programa={program} /> : null}
-              </TabsContent>
-            </Tabs>
+            {/* 🖥️ DESKTOP - TABS */}
+            <div className="hidden md:block">
+              <Tabs defaultValue="presentacion" className="w-full">
+                <TabsList className="flex border-b border-border w-full bg-transparent p-0 gap-0 rounded-none">
+                  <TabsTrigger value="presentacion" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Presentación</TabsTrigger>
+                  <TabsTrigger value="malla" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Malla Curricular</TabsTrigger>
+                  <TabsTrigger value="inversion" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Inversión y Becas</TabsTrigger>
+                  <TabsTrigger value="lineas" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Líneas de Investigación</TabsTrigger>
+                </TabsList>
+
+                <TabsContent value="presentacion">
+                  <PresentacionTab programa={program} />
+                </TabsContent>
+
+                <TabsContent value="malla">
+                  {program.cursos && <MallaCurricularTab cursos={program.cursos} />}
+                </TabsContent>
+
+                <TabsContent value="inversion">
+                  {program.cursos && (
+                    <InversionBecasTab
+                      cursos={program.cursos}
+                      modalidad={program.modality}
+                    />
+                  )}
+                </TabsContent>
+
+                <TabsContent value="lineas">
+                  {program.lineas_investigacion && (
+                    <LineasInvestigacionTab programa={program} />
+                  )}
+                </TabsContent>
+              </Tabs>
+            </div>
+
+            {/* 📱 MOBILE - ACCORDION */}
+            <div className="block md:hidden">
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="presentacion">
+                  <AccordionTrigger>Presentación</AccordionTrigger>
+                  <AccordionContent>
+                    <PresentacionTab programa={program} />
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="malla">
+                  <AccordionTrigger>Malla Curricular</AccordionTrigger>
+                  <AccordionContent>
+                    {program.cursos && <MallaCurricularTab cursos={program.cursos} />}
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="inversion">
+                  <AccordionTrigger>Inversión y Becas</AccordionTrigger>
+                  <AccordionContent>
+                    {program.cursos && (
+                      <InversionBecasTab
+                        cursos={program.cursos}
+                        modalidad={program.modality}
+                      />
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="lineas">
+                  <AccordionTrigger>Líneas de Investigación</AccordionTrigger>
+                  <AccordionContent>
+                    {program.lineas_investigacion && (
+                      <LineasInvestigacionTab programa={program} />
+                    )}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
           </main>
         </div>
       </div>
