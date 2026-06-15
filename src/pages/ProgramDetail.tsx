@@ -124,7 +124,6 @@ export default function ProgramDetail() {
       <div className="w-full border-b border-border/40">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
 
-          {/* COLUMNA IZQUIERDA (Sidebar de Navegación) - Ocupa 3/12 partes */}
           <aside className="lg:col-span-3 space-y-6 lg:sticky lg:top-24 h-fit">
             <Button variant="ghost" asChild className="group -ml-4 rounded-none hover:bg-transparent text-muted-foreground hover:text-foreground">
               <Link to={`/${tipo}`} className="inline-flex items-center gap-2">
@@ -147,7 +146,6 @@ export default function ProgramDetail() {
             </div>
           </aside>
 
-          {/* COLUMNA DERECHA (El Contenido del Programa) - Ocupa 9/12 partes */}
           <main className="lg:col-span-9 lg:pl-8 border-t lg:border-t-0 lg:border-l border-border/40 pt-8 lg:pt-0">
             {/* 🖥️ DESKTOP - TABS */}
             <div className="hidden md:block">
