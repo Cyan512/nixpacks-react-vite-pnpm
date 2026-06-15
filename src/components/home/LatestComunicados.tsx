@@ -18,7 +18,7 @@ const noticias = [
     imagen: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=150&auto=format&fit=crop',
   },
   {
-    id: 3,git
+    id: 3,
     titulo: 'Seminario de Investigación',
     fecha: '5 de junio, 2026',
     resumen: 'Invitación al seminario internacional de metodología de la investigación.',
