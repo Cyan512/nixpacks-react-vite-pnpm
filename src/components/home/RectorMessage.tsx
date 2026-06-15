@@ -22,7 +22,9 @@ export function RectorMessage() {
             Mensaje del Rector
           </h2>
           <div className="relative mt-8">
-            <Quote className="absolute -left-2 -top-3 h-8 w-8 text-muted" />
+            {/* Comilla de apertura: se mantiene absoluta a la izquierda */}
+            <Quote className="absolute -left-2 top-0 h-8 w-8 text-muted" />
+            
             <blockquote className="space-y-6 pl-8 font-sans text-base font-light leading-relaxed text-muted-foreground">
               <p>
                 Bienvenidos a la Escuela de Posgrado de la Universidad
@@ -31,11 +33,15 @@ export function RectorMessage() {
                 estándares académicos, capaces de liderar procesos de
                 transformación en sus respectivas áreas del conocimiento.
               </p>
-              <p>
+              {/* Añadimos 'relative' al párrafo para ajustar finamente la comilla si fuera necesario */}
+              <p className="relative">
                 Los programas de posgrado que ofrecemos están diseñados para
                 responder a las exigencias de un mundo globalizado,
                 combinando rigurosidad académica con una visión humanista
                 del desarrollo.
+                
+                {/* Comilla de cierre: Ahora fluye de forma natural con el texto */}
+                <Quote className="inline-block h-8 w-8 rotate-180 text-muted align-middle ml-1 -mt-2" />
               </p>
             </blockquote>
           </div>
