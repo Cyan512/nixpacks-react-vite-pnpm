@@ -1,7 +1,9 @@
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { PageHero } from '@/components/shared/PageHero'
+import { FilterBar, type FilterState } from '@/components/shared/FilterBar'
 
 const programsByType: Record<string, Array<{ slug: string; title: string; facultad: string; duration: string; modality: string; description: string; enConvocatoria: boolean }>> = {
   maestrias: [
@@ -26,6 +28,45 @@ export default function ProgramList() {
   const { tipo } = useParams<{ tipo: string }>()
   const programs = tipo ? programsByType[tipo] : []
   const title = tipo ? tipoTitles[tipo] || tipo.charAt(0).toUpperCase() + tipo.slice(1) : 'Programas'
+
+  const [appliedFilters, setAppliedFilters] = useState<FilterState>({
+    search: '',
+    facultad: '',
+    modalidad: '',
+    convocatoria: '',
+  })
+
+  const facultades = [...new Set(programs.map((p) => p.facultad))]
+
+  const filteredPrograms = programs.filter((program) => {
+    const matchSearch =
+      !appliedFilters.search ||
+      program.title.toLowerCase().includes(appliedFilters.search.toLowerCase()) ||
+      program.description.toLowerCase().includes(appliedFilters.search.toLowerCase())
+    const matchFacultad =
+      !appliedFilters.facultad || appliedFilters.facultad === 'all' ||
+      program.facultad === appliedFilters.facultad
+    const matchModalidad =
+      !appliedFilters.modalidad || appliedFilters.modalidad === 'all' ||
+      program.modality === appliedFilters.modalidad
+    const matchConvocatoria =
+      !appliedFilters.convocatoria || appliedFilters.convocatoria === 'all' ||
+      String(program.enConvocatoria) === appliedFilters.convocatoria
+    return matchSearch && matchFacultad && matchModalidad && matchConvocatoria
+  })
+
+  const handleApplyFilters = (filters: FilterState) => {
+    setAppliedFilters(filters)
+  }
+
+  const handleClearFilters = () => {
+    setAppliedFilters({
+      search: '',
+      facultad: '',
+      modalidad: '',
+      convocatoria: '',
+    })
+  }
 
   if (!programs || programs.length === 0) {
     return (
@@ -52,39 +93,65 @@ export default function ProgramList() {
         title={title}
         subtitle={`Explora nuestros programas de ${title.toLowerCase()} y encuentra el que mejor se adapte a tus objetivos profesionales.`}
       />
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mt-0 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {programs.map((program) => (
-          <Link key={program.slug} to={`/${tipo}/${program.slug}`}>
-            <Card className="group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md">
-              <div className="relative aspect-video w-full bg-muted">
-                {program.enConvocatoria && (
-                  <Badge className="absolute left-1/2 top-3 z-10 -translate-x-1/2 bg-primary font-sans text-xs uppercase tracking-widest text-primary-foreground hover:bg-primary">
-                    En convocatoria
-                  </Badge>
-                )}
-              </div>
-              <CardHeader>
-                <CardTitle className="font-heading text-lg font-light uppercase tracking-wide">
-                  {program.title}
-                </CardTitle>
-                <CardDescription className="font-sans text-xs uppercase tracking-widest text-muted-foreground/80">
-                  {program.facultad}
-                </CardDescription>
-              </CardHeader>
-              <CardFooter className="border-t border-border/40 bg-transparent transition-colors duration-300 group-hover:border-primary/30">
-                <div className="flex w-full items-center gap-3">
-                  <span className="h-px flex-1 origin-left scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
-                  <span className="flex shrink-0 items-center gap-1.5 font-sans text-xs uppercase tracking-widest text-primary/60 transition-colors duration-300 group-hover:text-primary">
-                    Ver programa
-                  </span>
-                  <span className="h-px flex-1 origin-right scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
-                </div>
-              </CardFooter>
-            </Card>
-          </Link>
-        ))}
-      </div>
+      <div className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6 sm:pt-8 lg:px-8">
+        <FilterBar
+          facultades={facultades}
+          onApply={handleApplyFilters}
+          onClear={handleClearFilters}
+        />
+
+        <p className="mt-6 font-sans text-sm text-muted-foreground">
+          {filteredPrograms.length === programs.length
+            ? `${programs.length} programas disponibles`
+            : `Mostrando ${filteredPrograms.length} de ${programs.length} programas`}
+        </p>
+
+        {filteredPrograms.length > 0 ? (
+          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredPrograms.map((program) => (
+              <Link key={program.slug} to={`/${tipo}/${program.slug}`}>
+                <Card className="group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md">
+                  <div className="relative aspect-video w-full bg-muted">
+                    {program.enConvocatoria && (
+                      <Badge className="absolute left-1/2 top-3 z-10 -translate-x-1/2 bg-primary font-sans text-xs uppercase tracking-widest text-primary-foreground">
+                        En convocatoria
+                      </Badge>
+                    )}
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="font-heading text-lg font-light uppercase tracking-wide">
+                      {program.title}
+                    </CardTitle>
+                    <CardDescription className="font-sans text-xs uppercase tracking-widest text-muted-foreground/80">
+                      {program.facultad}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardFooter className="border-t border-border/40 bg-transparent transition-colors duration-300 group-hover:border-primary/30">
+                    <div className="flex w-full items-center gap-3">
+                      <span className="h-px flex-1 origin-left scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                      <span className="flex shrink-0 items-center gap-1.5 font-sans text-xs uppercase tracking-widest text-primary/60 transition-colors duration-300 group-hover:text-primary">
+                        Ver programa
+                      </span>
+                      <span className="h-px flex-1 origin-right scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                    </div>
+                  </CardFooter>
+                </Card>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-12 text-center">
+            <p className="font-sans text-base font-light leading-relaxed text-muted-foreground">
+              No se encontraron programas con los filtros seleccionados.
+            </p>
+            <button
+              onClick={handleClearFilters}
+              className="mt-3 font-sans text-xs uppercase tracking-widest text-primary hover:text-foreground"
+            >
+              Limpiar filtros
+            </button>
+          </div>
+        )}
     </div>
     </>
   )

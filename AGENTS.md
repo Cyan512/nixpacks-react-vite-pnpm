@@ -235,6 +235,31 @@ Los siguientes componentes base de shadcn/ui han sido personalizados para hereda
 
 **Regla de uso:** Los títulos dentro de Cards ya utilizan `font-heading` por defecto. Si se necesita una variante (como `font-light tracking-wide uppercase`), aplicar clases adicionales mediante `className`.
 
+### FilterBar (`src/components/shared/FilterBar.tsx`)
+
+Componente de filtros reutilizable para listados de programas:
+
+| Elemento | Clase / Componente | Descripción |
+|---|---|---|
+| Wrapper | `rounded-xl border bg-card p-4 shadow-sm` | Contenedor de la barra de filtros |
+| Buscador | shadcn `Input` con icono `Search` | Búsqueda por título y descripción |
+| Select facultad | shadcn `Select` | Filtra por facultad (opciones dinámicas desde los datos) |
+| Select modalidad | shadcn `Select` | Presencial / Semipresencial / Todas |
+| Select convocatoria | shadcn `Select` | En convocatoria / Sin convocatoria / Todas |
+| Botón aplicar | `Button` default + `font-sans text-sm uppercase tracking-widest` | Aplica los filtros seleccionados |
+| Botón limpiar | `Button` variant="ghost" size="icon" con icono `X` | Solo visible si hay filtros activos |
+
+**Layout:** `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4`
+
+**Props:**
+```ts
+interface FilterBarProps {
+  facultades: string[]
+  onApply: (filters: FilterState) => void
+  onClear: () => void
+}
+```
+
 ### Card Structure - ProgramList (`src/pages/ProgramList.tsx`)
 
 **Patrón de card para listado de programas (`/:tipo`):**
