@@ -20,19 +20,19 @@ export function FeaturedPrograms() {
             programa ideal para tu desarrollo profesional.
           </p>
         </div>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:flex sm:h-[450px] sm:flex-row sm:items-stretch sm:gap-2">
           {programs.map((program) => (
             <Link
               key={program.tipo}
               to={`/${program.tipo}`}
-              className="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-xl bg-muted"
+              className="group relative aspect-[3/4] overflow-hidden rounded-xl bg-gradient-to-t from-primary/90 via-primary/40 to-transparent transition-all delay-75 duration-700 ease-in-out sm:aspect-auto sm:flex-1 sm:hover:flex-[3]"
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent transition-transform group-hover:scale-105" />
-              <div className="relative z-10 p-6">
-                <h3 className="font-heading text-2xl font-light uppercase tracking-wide text-primary-foreground">
+              <div className="flex h-full w-full flex-col items-start justify-end p-4 sm:p-6">
+                <h3 className="font-heading text-sm font-light uppercase tracking-wide text-primary-foreground transition-all delay-75 duration-700 ease-in-out sm:[writing-mode:vertical-lr] sm:group-hover:[writing-mode:horizontal-tb] sm:text-xl sm:group-hover:text-2xl">
                   {program.title}
                 </h3>
-                <p className="mt-2 font-sans text-sm font-light text-primary-foreground/80">
+                <p className="mt-1 font-sans text-xs font-light text-primary-foreground/80 sm:mt-2 sm:text-sm sm:opacity-0 sm:group-hover:opacity-100 sm:transition-all sm:delay-75 sm:duration-700 sm:ease-in-out">
                   {program.count} programas disponibles
                 </p>
               </div>
