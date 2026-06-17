@@ -35,11 +35,11 @@ export function MallaCurricularTab({ cursos }: MallaCurricularTabProps) {
       {semestres.map((sem) => (
         <section key={sem} className="group">
           <div className="mb-4 pb-2 border-b-2 border-primary/20">
-            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-8 after:h-0.5 after:bg-secondary after:mt-1">
               {sem} Semestre
             </h2>
           </div>
-          <div className="overflow-x-auto border border-border/40">
+          <div className="overflow-x-auto border border-primary/10">
             <table className="w-full">
               <thead className="border-b border-border bg-primary/5">
                 <tr>
@@ -69,7 +69,7 @@ export function MallaCurricularTab({ cursos }: MallaCurricularTabProps) {
                     <td className="px-6 py-4 font-sans text-sm font-light text-muted-foreground">
                       {curso.creditos}
                     </td>
-                    <td className="px-6 py-4 font-sans text-sm font-light text-muted-foreground">
+                    <td className={`px-6 py-4 font-sans text-sm font-light ${curso.categoria === 'Obligatorio' ? 'text-primary' : 'text-secondary'}`}>
                       {curso.categoria}
                     </td>
                   </tr>

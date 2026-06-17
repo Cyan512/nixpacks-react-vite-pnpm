@@ -42,10 +42,10 @@ export function LatestComunicados() {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <div>
-            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-12 after:h-0.5 after:bg-secondary after:mt-3">
               Noticias
             </h2>
-            <p className="mt-2 font-sans text-base font-light leading-relaxed text-muted-foreground">
+            <p className="mt-5 font-sans text-base font-light leading-relaxed text-muted-foreground">
               Mantente informado sobre las últimas novedades de la Escuela de
               Posgrado.
             </p>
@@ -72,8 +72,8 @@ export function LatestComunicados() {
                     <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                       {destacada.date}
                     </span>
-                    <span className="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground">
-                      Leer más <ArrowRight className="h-3 w-3" />
+                    <span className="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground group">
+                      Leer más <ArrowRight className="h-3 w-3 transition-colors group-hover:text-secondary" />
                     </span>
                   </div>
                 </div>
@@ -102,8 +102,8 @@ export function LatestComunicados() {
                         {noticia.title}
                       </h4>
                     </div>
-                    <span className="mt-2 inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground">
-                      Leer más <ArrowRight className="h-3 w-3" />
+                    <span className="mt-2 inline-flex items-center gap-1 font-sans text-xs uppercase tracking-widest text-primary transition-colors hover:text-foreground group">
+                      Leer más <ArrowRight className="h-3 w-3 transition-colors group-hover:text-secondary" />
                     </span>
                   </div>
                 </Link>
@@ -124,7 +124,7 @@ export function LatestComunicados() {
                   className="flex items-start gap-4 py-4 first:pt-3 last:pb-0"
                 >
                   <div className="flex min-w-[50px] flex-col items-center border-r border-primary-foreground/20 pr-3 text-center leading-none text-primary-foreground">
-                    <span className="font-heading text-2xl font-light">
+                    <span className="font-heading text-2xl font-light text-secondary">
                       {evento.dia}
                     </span>
                     <span className="mt-0.5 font-sans text-xs font-light tracking-widest text-primary-foreground/80">
@@ -155,7 +155,7 @@ export function LatestComunicados() {
             asChild>
               <Link to="/comunicados">
                 Ver todos los eventos
-                <ArrowRight className="ml-1 h-3 w-3" /></Link>
+                <ArrowRight className="ml-1 h-3 w-3 text-secondary" /></Link>
             </Button>
           </div>
         </div>

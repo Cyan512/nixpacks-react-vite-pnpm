@@ -32,7 +32,7 @@ export default function ProcesoAdmision() {
             >
               <Link to="/comunicados">
                 Ver convocatorias
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
               </Link>
             </Button>
             <Button
@@ -43,7 +43,7 @@ export default function ProcesoAdmision() {
             >
               <Link to="/maestrias">
                 Explorar programas
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
               </Link>
             </Button>
           </div>

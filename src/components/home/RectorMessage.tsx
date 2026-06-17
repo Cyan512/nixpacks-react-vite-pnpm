@@ -8,7 +8,7 @@ export function RectorMessage() {
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="grid items-center gap-12 lg:grid-cols-12">
         <div className="relative flex justify-center lg:col-span-5 lg:justify-start">
-          <div className="absolute bottom-0 right-0 top-12 w-3/4 rounded-t-full bg-muted opacity-60 z-0 lg:right-4 dark:opacity-20" />
+          <div className="absolute bottom-0 right-0 top-12 w-3/4 rounded-t-full bg-primary/10 opacity-60 z-0 lg:right-4 dark:opacity-20" />
           <div className="relative z-10 aspect-3/4 w-full max-w-sm overflow-hidden shadow-sm">
             <img
               src={rectorImage}
@@ -23,7 +23,7 @@ export function RectorMessage() {
           </h2>
           <div className="relative mt-8">
             {/* Comilla de apertura: se mantiene absoluta a la izquierda */}
-            <Quote className="absolute -left-2 top-0 h-8 w-8 text-muted" />
+            <Quote className="absolute -left-2 top-0 h-8 w-8 text-primary/20" />
             
             <blockquote className="space-y-6 pl-8 font-sans text-base font-light leading-relaxed text-muted-foreground">
               <p>
@@ -41,11 +41,11 @@ export function RectorMessage() {
                 del desarrollo.
                 
                 {/* Comilla de cierre: Ahora fluye de forma natural con el texto */}
-                <Quote className="inline-block h-8 w-8 rotate-180 text-muted align-middle ml-1 -mt-2" />
+                <Quote className="inline-block h-8 w-8 rotate-180 text-primary/20 align-middle ml-1 -mt-2" />
               </p>
             </blockquote>
           </div>
-          <div className="mt-8 border-l border-muted pl-8">
+          <div className="mt-8 border-l-2 border-primary/20 pl-8">
             <div className="font-heading text-lg font-light text-foreground">
               Dr. Eleazar Crucinta Ugarte
             </div>

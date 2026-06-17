@@ -38,13 +38,13 @@ export function PageHero({
   const bgImage = image || defaultImage
 
   return (
-    <section className="relative flex min-h-[50vh] flex-col justify-center overflow-hidden border-b py-24 sm:py-32">
+    <section className="relative flex min-h-[50vh] flex-col justify-center overflow-hidden border-b border-primary/10 py-24 sm:py-32">
       <img
         src={bgImage}
         alt={alt ?? ''}
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60 lg:from-background/95 lg:via-background/70 lg:to-background/30" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60 lg:from-background/95 lg:via-primary/[0.04] lg:to-background/30" />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-3xl text-center lg:text-left">
           {badges && badges.length > 0 && (
@@ -84,7 +84,7 @@ export function PageHero({
                   to={action.to}
                 >
                   {action.label}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
                 </Link>
               </Button>
             </div>

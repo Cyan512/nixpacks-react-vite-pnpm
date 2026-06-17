@@ -27,8 +27,8 @@ export function InversionBecasTab({ cursos, modalidad }: InversionBecasTabProps)
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      <div className="mb-4 pb-2 border-b-2 border-primary/20">
-        <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+          <div className="mb-4 pb-2 border-b-2 border-primary/20">
+        <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-8 after:h-0.5 after:bg-secondary after:mt-1">
           Inversión del Programa
         </h2>
       </div>
@@ -42,8 +42,8 @@ export function InversionBecasTab({ cursos, modalidad }: InversionBecasTabProps)
             {formatCurrency(inversionTotal)}
           </p>
         </div>
-        <div className="inline-flex items-center gap-1.5 bg-primary/10 text-primary border border-primary/20 px-3 py-1.5 text-xs">
-          <CheckCircle2 className="w-4 h-4 text-primary" />
+        <div className="inline-flex items-center gap-1.5 bg-secondary/10 text-secondary border border-secondary/20 px-3 py-1.5 text-xs">
+          <CheckCircle2 className="w-4 h-4 text-secondary" />
           <span className="font-sans text-xs font-light">Valor Garantizado 2026</span>
         </div>
       </div>
@@ -51,7 +51,7 @@ export function InversionBecasTab({ cursos, modalidad }: InversionBecasTabProps)
         <div className="border border-border/40 bg-card p-6 flex flex-col justify-between space-y-4 hover:shadow-md transition-all duration-200">
           <div className="space-y-3">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-muted border border-border/40 text-foreground/80">
+              <div className="p-3 bg-primary/5 border border-primary/10 text-primary">
                 <Wallet className="w-6 h-6" />
               </div>
               <div>
@@ -76,7 +76,7 @@ export function InversionBecasTab({ cursos, modalidad }: InversionBecasTabProps)
         <div className="border border-border/40 bg-card p-6 flex flex-col justify-between space-y-4 hover:shadow-md transition-all duration-200">
           <div className="space-y-3">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-muted border border-border/40 text-foreground/80">
+              <div className="p-3 bg-secondary/10 border border-secondary/10 text-secondary">
                 <Calendar className="w-6 h-6" />
               </div>
               <div>

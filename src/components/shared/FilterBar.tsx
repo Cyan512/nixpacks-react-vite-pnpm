@@ -43,10 +43,10 @@ export function FilterBar({ facultades, onApply, onClear }: FilterBarProps) {
   }
 
   return (
-    <div className="rounded-xl border bg-card p-4 shadow-sm">
+    <div className="rounded-xl border border-primary/10 bg-card p-4 shadow-sm">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <div className="relative">
-          <Search className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+          <Search className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-primary/50" />
           <Input
             placeholder="Buscar programa..."
             className="pl-8"

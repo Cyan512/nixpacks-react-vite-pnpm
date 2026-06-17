@@ -156,45 +156,46 @@ Definidos en `src/index.css` con `@theme inline {}`.
 
 | Variable | Valor oklch | Significado |
 |---|---|---|
-| `--background` | `0.985 0.012 70` | Fondo página (crema) |
-| `--foreground` | `0.195 0.006 50` | Texto principal (negro orgánico) |
-| `--primary` | `0.765 0.052 38` | Color CTA (terracota) |
-| `--primary-foreground` | `0.97 0.008 70` | Texto sobre primary (crema) |
-| `--muted` | `0.87 0.025 45` | Fondos decorativos, badges |
-| `--muted-foreground` | `0.375 0.01 50` | Texto secundario |
-| `--border` | `0.82 0.015 45` | Bordes |
+| `--background` | `0.985 0.005 55` | Fondo cálido sofisticado (Blanco con matiz cremoso) |
+| `--foreground` | `0.147 0.012 20` | Texto principal (Casi negro con tinte guinda sutil) |
+| `--primary` | `0.27 0.16 20` | Color institucional principal (Guinda Granate Profundo) |
+| `--primary-foreground` | `0.97 0.004 55` | Texto sobre fondo primary (Blanco cálido armonioso) |
+| `--secondary` | `0.62 0.18 72` | Color de acento UI (Dorado Elegante contenido) |
+| `--secondary-foreground` | `0.12 0.01 20` | Texto sobre fondo dorado (Casi negro) |
+| `--muted` | `0.92 0.006 55` | Fondos alternos con calidez, secciones secundarias |
+| `--muted-foreground` | `0.38 0.018 24` | Texto secundario, párrafos y metadatos (Gris con carácter) |
+| `--border` | `0.84 0.008 55` | Bordes de componentes y líneas divisorias cálidos |
 | `--radius` | `0.625rem` | Radio base |
 | `--font-sans` | `'Geist Variable', sans-serif` | Tipografía sans |
-| `--font-heading` | `var(--font-serif)` | Tipografía serif |
+| `--font-heading` | `'DM Serif Display', serif` | Tipografía serif (DM Serif Display) |
 
 Modo oscuro activado con clase `.dark` en ancestro.
 
 ## Mapeo semántico de colores
 
 | Elemento de diseño | Token |
-|---|---|
-| Fondos principales (crema #FDF9F5) | `bg-background` o `bg-card` |
-| Títulos (negro orgánico #2D2B2A) | `text-foreground` |
-| Textos y párrafos (gris tierra #5A5451) | `text-muted-foreground` |
-| Detalles decorativos (rosa viejo #EAD7CF) | `bg-muted`, `bg-secondary`, `bg-primary/10` |
-| Botones CTA (terracota #D9B4A7) | `bg-primary` + `hover:bg-primary/90` |
-| Líneas y bordes (#EAD7CF) | `border-border` o `border-primary/20` |
+|---|---|---|
+| Fondos principales (Blanco Lienzo con calidez) | `bg-background` o `bg-card` |
+| Títulos (Gris oscuro profundo) | `text-foreground` |
+| Textos y párrafos (Gris mitigado con carácter) | `text-muted-foreground` |
+| Detalles decorativos (Tinte guinda/gris suave) | `bg-muted`, `bg-primary/10` |
+| Estructuras, Banners y Headers (Guinda #6B1426) | `bg-primary` |
+| Botones destacados / Acciones (Dorado #C98A1F) | `bg-secondary` + `hover:bg-secondary/90` |
+| Líneas y bordes corporativos | `border-border` o `border-primary/20` |
 
 ## Reglas de color
 
 | Token | Usar para | NO usar para |
 |---|---|---|
 | `bg-foreground` | ❌ | PROHIBIDO como fondo |
-| `text-foreground` | Títulos | Texto sobre `bg-primary` |
-| `text-muted-foreground` | Párrafos, descripciones | Títulos |
-| `text-primary` | Botones invertidos, enlaces | Párrafos largos |
-| `bg-primary` | Secciones CTA, botones primarios | Decoración |
-| `bg-muted/30` | Secciones fondo suave alterno | — |
-| `bg-muted/50` | Footer, hover states | — |
-| `bg-muted/60` | Badges metadata, placeholders | — |
-
----
-
+| `text-foreground` | Títulos, texto sobre `bg-secondary` | Texto sobre `bg-primary` |
+| `text-muted-foreground` | Párrafos, descripciones de sección | Títulos |
+| `text-primary` | Enlaces aislados, acentos de texto guinda | Párrafos largos |
+| `bg-primary` | Banners institucionales, Headers, CTAs | Fondo general de la aplicación |
+| `bg-secondary` | Botones destacados (Descargar, Postular, Admisión) | Párrafos o bloques de texto |
+| `bg-muted/30` | Secciones con fondo suave alterno | — |
+| `bg-muted/50` | Footer institucional, hover states | — |
+| `bg-muted/60` | Badges informativos, metadata, placeholders | — |
 ## 📌 Sistema de Tipografía
 
 ### Reglas generales

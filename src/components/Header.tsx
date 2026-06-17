@@ -68,7 +68,7 @@ export function Header() {
           aria-expanded={open}
           className="flex items-center"
         >
-          {open ? <X className="h-5 w-5 text-foreground" /> : <Menu className="h-5 w-5 text-foreground" />}
+          {open ? <X className="h-5 w-5 text-primary" /> : <Menu className="h-5 w-5 text-primary" />}
         </button>
 
         <Link to="/" className="flex items-center gap-2.5">
@@ -80,7 +80,7 @@ export function Header() {
               Posgrado UNSAAC
             </p>
             <p className="font-sans text-xs text-muted-foreground">
-              UNSAAC · Cusco, Perú
+              UNSAAC <span className="text-secondary">·</span> Cusco, Perú
             </p>
           </div>
         </Link>
@@ -89,7 +89,7 @@ export function Header() {
           aria-label="Buscar"
           className="flex items-center"
         >
-          <Search className="h-5 w-5 text-foreground" />
+          <Search className="h-5 w-5 text-primary" />
         </button>
       </nav>
 
@@ -145,7 +145,7 @@ export function Header() {
             className="mt-4 flex w-full items-center justify-between bg-primary-foreground px-4 py-3.5 font-sans text-xs uppercase tracking-widest text-primary transition-colors md:hidden"
           >
             <span>Proceso de Admisión</span>
-            <span>→</span>
+            <span className="text-secondary">→</span>
           </Link>
 
           <p className="mt-6 hidden font-sans text-xs text-primary-foreground/20 md:block">
@@ -166,7 +166,7 @@ export function Header() {
               <span className="italic">&amp; Admisión</span>
             </h2>
           </div>
-          <div className="h-px bg-primary-foreground/10" />
+          <div className="h-px bg-secondary/20" />
           <ul>
             {panel2Links.map((link) => (
               <NavLink key={link.href} {...link} onClick={close} />
@@ -186,7 +186,7 @@ export function Header() {
                 posgrado@unsaac.edu.pe
               </p>
             </div>
-            <div className="h-px bg-primary-foreground/10" />
+            <div className="h-px bg-secondary/20" />
             <div>
               <p className="mb-1 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
                 Teléfono
@@ -195,7 +195,7 @@ export function Header() {
                 +51 84 227841
               </p>
             </div>
-            <div className="h-px bg-primary-foreground/10" />
+            <div className="h-px bg-secondary/20" />
             <div>
               <p className="mb-1 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
                 Dirección
@@ -207,14 +207,14 @@ export function Header() {
               </p>
             </div>
           </div>
-          <div className="h-px bg-primary-foreground/10" />
+          <div className="h-px bg-secondary/20" />
           <Link
             to="/proceso-admision"
             onClick={close}
             className="mt-4 flex w-full items-center justify-between bg-primary px-4 py-3.5 font-sans text-xs uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
           >
             <span>Proceso de Admisión</span>
-            <span>→</span>
+            <span className="text-secondary">→</span>
           </Link>
         </div>
       </div>

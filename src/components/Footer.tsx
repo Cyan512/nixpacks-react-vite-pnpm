@@ -34,7 +34,7 @@ export function Footer() {
                 Escuela de Posgrado UNSAAC
               </span>
             </Link>
-            <p className="mt-3 max-w-xs font-sans text-sm font-light leading-relaxed text-muted-foreground">
+            <p className="mt-3 max-w-xs border-l-2 border-primary/10 pl-4 font-sans text-sm font-light leading-relaxed text-muted-foreground">
               Formando profesionales de excelencia con programas académicos de
               alta calidad en la Universidad Nacional de San Antonio Abad del
               Cusco.
@@ -42,7 +42,7 @@ export function Footer() {
           </div>
           {footerLinks.map((group) => (
             <div key={group.title}>
-              <h3 className="mb-3 font-heading text-xs font-light uppercase tracking-widest text-foreground">
+              <h3 className="mb-3 font-heading text-xs font-light uppercase tracking-widest text-foreground after:block after:w-6 after:h-0.5 after:bg-secondary after:mt-1">
                 {group.title}
               </h3>
               <ul className="space-y-2">
@@ -50,7 +50,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       to={link.href}
-                      className="font-sans text-sm font-normal text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-sans text-sm font-normal text-muted-foreground transition-colors hover:text-primary"
                     >
                       {link.label}
                     </Link>
@@ -60,7 +60,7 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-10 border-t pt-6 text-center font-sans text-xs font-normal text-muted-foreground">
+        <div className="mt-10 border-t border-primary/10 pt-6 text-center font-sans text-xs font-normal text-muted-foreground">
           &copy; {new Date().getFullYear()} Escuela de Posgrado UNSAAC. Todos
           los derechos reservados.
         </div>

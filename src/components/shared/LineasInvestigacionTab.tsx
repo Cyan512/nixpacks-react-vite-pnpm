@@ -6,14 +6,18 @@ interface LineasInvestigacionTabProps {
 
 export function LineasInvestigacionTab({ programa }: LineasInvestigacionTabProps) {
   if (!programa.lineas_investigacion) {
-    return <p className="font-sans text-sm font-light leading-relaxed text-muted-foreground">Próximamente.</p>
+    return (
+      <div className="border border-dashed border-primary/10 rounded-lg p-6 text-center">
+        <p className="font-sans text-sm font-light leading-relaxed text-muted-foreground">Próximamente.</p>
+      </div>
+    )
   }
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <section className="group">
         <div className="mb-4 pb-2 border-b-2 border-primary/20">
-        <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+        <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-8 after:h-0.5 after:bg-secondary after:mt-1">
           Líneas de Investigación
         </h2>
         </div>

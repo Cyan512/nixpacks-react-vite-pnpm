@@ -26,13 +26,13 @@ export function AdmissionCTA() {
             >
               <Link to="/proceso-admision">
                 Inscribirme ahora
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm font-normal uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/comunicados">
                 Ver comunicados
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
               </Link>
             </Button>
           </div>

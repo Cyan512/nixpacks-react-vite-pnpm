@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { PageHero } from '@/components/shared/PageHero'
-import { ArrowLeft, Share2, Printer } from 'lucide-react'
+import { ArrowLeft, Share2, Printer, FileQuestion } from 'lucide-react'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { PresentacionTab } from '@/components/shared/PresentacionTab'
 import { MallaCurricularTab } from '@/components/shared/MallaCurricularTab'
@@ -92,7 +92,8 @@ export default function ProgramDetail() {
   if (!program) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
+        <FileQuestion className="mx-auto h-16 w-16 text-muted/40" />
+        <h1 className="mt-4 font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
           Programa no encontrado
         </h1>
         <p className="mt-3 font-sans text-sm font-light leading-relaxed text-muted-foreground">
@@ -134,23 +135,23 @@ export default function ProgramDetail() {
               </Link>
             </Button>
 
-            <div className="h-px bg-border/40" />
+            <div className="h-px bg-primary/10" />
 
             <div className="flex flex-col gap-3 pt-2">
-              <button className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
-                <Share2 className="h-4 w-4" /> Compartir programa
+              <button className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors group">
+                <Share2 className="h-4 w-4 transition-colors group-hover:text-secondary" /> Compartir programa
               </button>
-              <button onClick={() => window.print()} className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
-                <Printer className="h-4 w-4" /> Imprimir programa
+              <button onClick={() => window.print()} className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors group">
+                <Printer className="h-4 w-4 transition-colors group-hover:text-secondary" /> Imprimir programa
               </button>
             </div>
           </aside>
 
-          <main className="lg:col-span-9 lg:pl-8 border-t lg:border-t-0 lg:border-l border-border/40 pt-8 lg:pt-0">
+          <main className="lg:col-span-9 lg:pl-8 border-t lg:border-t-0 lg:border-l border-primary/10 pt-8 lg:pt-0">
             {/* 🖥️ DESKTOP - TABS */}
             <div className="hidden md:block">
               <Tabs defaultValue="presentacion" className="w-full gap-8">
-                <TabsList className="flex border-b border-border w-full bg-transparent p-0 gap-0 rounded-none">
+                <TabsList className="flex border-b border-primary/10 w-full bg-transparent p-0 gap-0 rounded-none">
                   <TabsTrigger value="presentacion" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Presentación</TabsTrigger>
                   <TabsTrigger value="malla" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Malla Curricular</TabsTrigger>
                   <TabsTrigger value="inversion" className='group-data-[variant=default]/tabs-list:data-active:shadow-none'>Inversión y Becas</TabsTrigger>

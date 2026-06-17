@@ -65,7 +65,7 @@ export function HeroSection() {
           />
         </div>
       ))}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-background/95 via-background/80 to-background/60 lg:from-background/95 lg:via-background/70 lg:to-background/30" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-background/95 via-background/80 to-background/60 lg:from-background/95 lg:via-primary/[0.04] lg:to-background/30" />
       <div className="relative z-20 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32 w-full">
         <div className="relative mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
           {slides.map((slide, index) => (
@@ -93,7 +93,7 @@ export function HeroSection() {
                     className="font-sans text-sm font-normal uppercase tracking-widest"
                   >
                     {slide.botonTexto}
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
                   </Link>
                 </Button>
               </div>
@@ -109,7 +109,7 @@ export function HeroSection() {
             className={`h-2 rounded-full transition-all duration-500 ${
               i === activeIndex
                 ? 'w-6 bg-primary'
-                : 'w-2 bg-primary-foreground/50 hover:bg-primary-foreground/80'
+                : 'w-2 bg-secondary/50 hover:bg-secondary/80'
             }`}
             aria-label={`Slide ${i + 1}`}
           />

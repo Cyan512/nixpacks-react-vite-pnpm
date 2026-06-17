@@ -6,35 +6,35 @@ const items = [
     titulo: 'Reglamentos y Normas',
     descripcion:
       'Accede a la normativa vigente que regula los procesos académicos y administrativos de la Escuela de Posgrado.',
-    icono: <ClipboardList className="h-9 w-9 text-muted-foreground" />,
+    icono: <ClipboardList className="h-9 w-9 text-primary" />,
   },
   {
     id: 2,
     titulo: 'Trámites Académicos',
     descripcion:
       'Conoce los procedimientos para solicitudes de matrícula, convalidaciones, licencias y certificaciones académicas.',
-    icono: <Network className="h-9 w-9 text-muted-foreground" />,
+    icono: <Network className="h-9 w-9 text-secondary" />,
   },
   {
     id: 3,
     titulo: 'Calendario Académico y de Pagos',
     descripcion:
       'Mantente al día con las fechas importantes del semestre: matrículas, evaluaciones, feriados y cronograma de pagos.',
-    icono: <CalendarDays className="h-9 w-9 text-muted-foreground" />,
+    icono: <CalendarDays className="h-9 w-9 text-primary" />,
   },
   {
     id: 4,
     titulo: 'Ruta del Graduado',
     descripcion:
       'Descubre los pasos y requisitos para la obtención del grado académico, desde la sustentación hasta la titulación.',
-    icono: <Signpost className="h-9 w-9 text-muted-foreground" />,
+    icono: <Signpost className="h-9 w-9 text-secondary" />,
   },
   {
     id: 5,
     titulo: 'Acreditación del Idioma',
     descripcion:
-      'Información sobre los exámenes de suficiencia y programas de idiomas requeridos para la titulación y el posgrado.',
-    icono: <Languages className="h-9 w-9 text-muted-foreground" />,
+      'Información sobre los exámenes de suficiencia y módulos de idiomas requeridos para la titulación y el posgrado.',
+    icono: <Languages className="h-9 w-9 text-primary" />,
   }
 ]
 
@@ -42,7 +42,7 @@ export function StudentFAQ() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="relative mb-8">
-        <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+        <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-16 after:h-0.5 after:bg-secondary after:mt-3">
           Información para el Estudiante
         </h2>
       </div>
@@ -68,9 +68,9 @@ export function StudentFAQ() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="group flex items-start gap-4"
+                className="group flex items-start gap-4 rounded-lg transition-colors hover:bg-primary/5 -mx-2 px-2 py-1"
               >
-                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md bg-muted">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md bg-primary/5 dark:bg-primary/10">
                   {item.icono}
                 </div>
                 <div className="pt-0.5">

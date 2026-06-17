@@ -1,8 +1,10 @@
 import { useParams, Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { ArrowLeft, ArrowRight, ChevronRight, Share2, Printer } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ChevronRight, Share2, Printer, FileQuestion } from 'lucide-react'
 import { comunicados } from '@/data/comunicados'
+
+const CLOUDINARY_IMG = 'https://res.cloudinary.com/ds0tjwccs/image/upload/v1779898731/large_Whats_App_Image_2024_01_24_at_10_38_22_AM_13_1_p3eu3c_569c0d75fb.png'
 
 export default function ComunicadoDetalle() {
   const { slug } = useParams<{ slug: string }>()
@@ -11,7 +13,8 @@ export default function ComunicadoDetalle() {
   if (!comunicado) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
+        <FileQuestion className="mx-auto h-16 w-16 text-muted/40" />
+        <h1 className="mt-4 font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
           Comunicado no encontrado
         </h1>
         <p className="mt-3 font-sans text-sm font-light leading-relaxed text-muted-foreground">
@@ -51,14 +54,14 @@ export default function ComunicadoDetalle() {
               </Link>
             </Button>
 
-            <div className="h-px bg-border/40" />
+            <div className="h-px bg-primary/10" />
 
             <div className="flex flex-col gap-3 pt-2">
-              <button className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
-                <Share2 className="h-4 w-4" /> Compartir enlace
+              <button className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors group">
+                <Share2 className="h-4 w-4 transition-colors group-hover:text-secondary" /> Compartir enlace
               </button>
-              <button onClick={() => window.print()} className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
-                <Printer className="h-4 w-4" /> Imprimir comunicado
+              <button onClick={() => window.print()} className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors group">
+                <Printer className="h-4 w-4 transition-colors group-hover:text-secondary" /> Imprimir comunicado
               </button>
             </div>
           </aside>
@@ -171,7 +174,7 @@ export default function ComunicadoDetalle() {
                   <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                     Ver todos
                   </span>
-                  <ChevronRight className="ml-1 h-4 w-4" />
+                  <ChevronRight className="ml-1 h-4 w-4 text-secondary" />
                 </Link>
               </Button>
             </div>
@@ -180,7 +183,13 @@ export default function ComunicadoDetalle() {
               {relacionados.map((c) => (
                 <Link key={c.slug} to={`/comunicados/${c.slug}`}>
                   <Card className="group h-full overflow-hidden pt-0! transition-shadow hover:shadow-md">
-                    <div className="relative aspect-video w-full bg-muted" />
+                    <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-primary/[0.03] to-secondary/[0.03]">
+                      <img
+                        src={CLOUDINARY_IMG}
+                        alt=""
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
                     <CardHeader>
                       <CardTitle className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
                         {c.title}
@@ -228,7 +237,7 @@ export default function ComunicadoDetalle() {
             <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm font-normal uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
               <Link to="/proceso-admision">
                 Ver proceso de admisión
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm font-normal uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">

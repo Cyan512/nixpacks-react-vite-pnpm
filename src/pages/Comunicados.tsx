@@ -6,6 +6,8 @@ import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react'
 import { PageHero } from '@/components/shared/PageHero'
 import { comunicados } from '@/data/comunicados'
 
+const CLOUDINARY_IMG = 'https://res.cloudinary.com/ds0tjwccs/image/upload/v1779898731/large_Whats_App_Image_2024_01_24_at_10_38_22_AM_13_1_p3eu3c_569c0d75fb.png'
+
 const INITIAL_VISIBLE = 5
 
 export default function Comunicados() {
@@ -26,7 +28,7 @@ export default function Comunicados() {
 
         <section className="rounded-2xl border bg-card shadow-sm p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center">
           <div className="flex-1 space-y-4">
-            <span className="inline-block font-sans text-xs uppercase tracking-widest text-muted-foreground">
+            <span className="inline-block font-sans text-xs uppercase tracking-widest text-secondary">
               Último Comunicado
             </span>
             <h3 className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
@@ -41,14 +43,16 @@ export default function Comunicados() {
             <Button asChild size="lg" className="font-sans text-sm font-normal uppercase tracking-widest">
               <Link to={`/comunicados/${destacado.slug}`}>
                 Leer comunicado
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
               </Link>
             </Button>
           </div>
-          <div className="w-full md:w-[45%] aspect-video rounded-xl bg-muted flex items-center justify-center">
-            <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground/60">
-              Imagen destacada
-            </span>
+          <div className="w-full md:w-[45%] aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-primary/[0.03] to-secondary/[0.03] border border-primary/5">
+            <img
+              src={CLOUDINARY_IMG}
+              alt=""
+              className="h-full w-full object-cover"
+            />
           </div>
         </section>
 
@@ -66,7 +70,13 @@ export default function Comunicados() {
           {visibleAnteriores.map((comunicado) => (
             <Link key={comunicado.slug} to={`/comunicados/${comunicado.slug}`}>
               <Card className="group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md">
-                <div className="relative aspect-video w-full bg-muted" />
+                <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-primary/[0.03] to-secondary/[0.03]">
+                  <img
+                    src={CLOUDINARY_IMG}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                </div>
                 <CardHeader>
                   <CardTitle className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
                     {comunicado.title}
@@ -123,13 +133,13 @@ export default function Comunicados() {
             <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm font-normal uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
               <Link to="/proceso-admision">
                 Ver proceso de admisión
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm font-normal uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/maestrias">
                 Explorar programas
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 text-secondary" />
               </Link>
             </Button>
           </div>

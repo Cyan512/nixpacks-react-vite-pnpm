@@ -22,11 +22,11 @@ function MobileTimeline({ steps }: { steps: TimelineStep[] }) {
       {steps.map((step, index) => (
         <div key={step.step} className="relative flex gap-3 pb-5 last:pb-0">
           <div className="flex flex-col items-center">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-background font-heading text-xs font-light text-foreground dark:bg-card">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-background font-heading text-xs font-light text-secondary dark:bg-card">
               {step.step}
             </div>
             {index < steps.length - 1 && (
-              <div className="mt-0.5 w-px flex-1 bg-border" />
+              <div className="mt-0.5 w-px flex-1 bg-primary/30" />
             )}
           </div>
           <div className="flex-1 min-w-0 pt-0.5">
@@ -48,7 +48,7 @@ export function AdmissionTimeline() {
     <section className="border-y bg-muted/30">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+          <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-12 after:h-0.5 after:bg-secondary after:mx-auto after:mt-3">
             Ruta de Admisión
           </h2>
           <p className="mt-3 font-sans text-base font-light leading-relaxed text-muted-foreground">
@@ -69,8 +69,8 @@ export function AdmissionTimeline() {
                   <div className={`flex flex-row ${isEven ? '' : 'flex-row-reverse'}`}>
                     <div className="flex flex-col items-center">
                       <div className={`w-32 py-5 border border-border rounded-lg uppercase flex flex-col items-center justify-center bg-card ${isEven ? 'mr-4' : 'ml-4'}`}>
-                        <div className="font-heading text-3xl font-light text-muted-foreground">
-                          Paso {step.step}
+                        <div className="font-heading text-3xl font-light text-primary">
+                          {step.step}
                         </div>
                         <div className="font-heading text-sm font-light uppercase tracking-wide text-foreground mt-1">
                           {step.title}
@@ -78,7 +78,7 @@ export function AdmissionTimeline() {
                       </div>
                       {index < steps.length - 1 && (
                         <div className="h-full border-l-4 border-transparent">
-                          <div className={`border-l-4 h-full border-dashed border-border ${isEven ? 'mr-4' : 'ml-4'}`} />
+                          <div className={`border-l-4 h-full border-dashed border-primary/20 ${isEven ? 'mr-4' : 'ml-4'}`} />
                         </div>
                       )}
                     </div>
@@ -108,22 +108,22 @@ export function AdmissionTimeline() {
                     isEven ? (
                       <div className="flex items-start flex-row">
                         <div className="border-t-4 border-r-4 border-transparent">
-                          <div className="w-16 ml-16 h-16 border-l-4 border-dashed border-b-4 rounded-bl-full border-border" />
+                          <div className="w-16 ml-16 h-16 border-l-4 border-dashed border-b-4 rounded-bl-full border-primary/20" />
                         </div>
                         <div className="border-t-4 border-transparent flex-auto">
-                          <div className="h-16 border-b-4 border-dashed border-border" />
+                          <div className="h-16 border-b-4 border-dashed border-primary/20" />
                         </div>
-                        <div className="w-16 mt-16 mr-16 h-16 border-r-4 border-dashed border-t-4 rounded-tr-full border-border" />
+                        <div className="w-16 mt-16 mr-16 h-16 border-r-4 border-dashed border-t-4 rounded-tr-full border-primary/20" />
                       </div>
                     ) : (
                       <div className="flex items-start flex-row-reverse">
                         <div className="border-t-4 border-l-4 border-transparent">
-                          <div className="w-16 mr-16 h-16 border-r-4 border-dashed border-b-4 rounded-br-full border-border" />
+                          <div className="w-16 mr-16 h-16 border-r-4 border-dashed border-b-4 rounded-br-full border-primary/20" />
                         </div>
                         <div className="border-t-4 border-transparent flex-auto">
-                          <div className="h-16 border-b-4 border-dashed border-border" />
+                          <div className="h-16 border-b-4 border-dashed border-primary/20" />
                         </div>
-                        <div className="w-16 mt-16 ml-16 h-16 border-l-4 border-dashed border-t-4 rounded-tl-full border-border" />
+                        <div className="w-16 mt-16 ml-16 h-16 border-l-4 border-dashed border-t-4 rounded-tl-full border-primary/20" />
                       </div>
                     )
                   )}

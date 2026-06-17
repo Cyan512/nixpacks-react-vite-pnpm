@@ -10,7 +10,7 @@ export function PresentacionTab({ programa }: PresentacionTabProps) {
       {programa.objetivo_general && (
         <section className="group">
           <div className="mb-4 pb-2 border-b-2 border-primary/20">
-            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-8 after:h-0.5 after:bg-secondary after:mt-1">
               Objetivo General
             </h2>
           </div>
@@ -23,7 +23,7 @@ export function PresentacionTab({ programa }: PresentacionTabProps) {
       {programa.objetivos_especificos && (
         <section className="group">
           <div className="mb-4 pb-2 border-b-2 border-primary/20">
-            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-8 after:h-0.5 after:bg-secondary after:mt-1">
               Objetivos Específicos
             </h2>
           </div>
@@ -42,11 +42,11 @@ export function PresentacionTab({ programa }: PresentacionTabProps) {
       {programa.perfil_egresado && (
         <section className="group">
           <div className="mb-4 pb-2 border-b-2 border-primary/20">
-            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
+            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl after:block after:w-8 after:h-0.5 after:bg-secondary after:mt-1">
               Perfil del Graduado
             </h2>
           </div>
-          <div className="bg-linear-to-r from-primary/5 to-transparent border-l-2 border-primary pl-6 py-4">
+          <div className="bg-linear-to-r from-secondary/5 to-transparent border-l-2 border-secondary pl-6 py-4">
             <p className="font-sans text-base font-light leading-relaxed text-muted-foreground">
               {programa.perfil_egresado}
             </p>

@@ -4,6 +4,9 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/comp
 import { Badge } from '@/components/ui/badge'
 import { PageHero } from '@/components/shared/PageHero'
 import { FilterBar, type FilterState } from '@/components/shared/FilterBar'
+import { SearchX, BookX } from 'lucide-react'
+
+const CLOUDINARY_IMG = 'https://res.cloudinary.com/ds0tjwccs/image/upload/v1779898731/large_Whats_App_Image_2024_01_24_at_10_38_22_AM_13_1_p3eu3c_569c0d75fb.png'
 
 const programsByType: Record<string, Array<{ slug: string; title: string; facultad: string; duration: string; modality: string; description: string; enConvocatoria: boolean }>> = {
   maestrias: [
@@ -71,7 +74,8 @@ export default function ProgramList() {
   if (!programs || programs.length === 0) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
+        <BookX className="mx-auto h-16 w-16 text-muted/40" />
+        <h1 className="mt-4 font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
           Programas no encontrados
         </h1>
         <p className="mt-3 font-sans text-sm font-light leading-relaxed text-muted-foreground">
@@ -102,8 +106,8 @@ export default function ProgramList() {
 
         <p className="mt-6 font-sans text-sm font-light text-muted-foreground">
           {filteredPrograms.length === programs.length
-            ? `${programs.length} programas disponibles`
-            : `Mostrando ${filteredPrograms.length} de ${programs.length} programas`}
+            ? <><strong className="text-primary">{programs.length}</strong> programas disponibles</>
+            : <>Mostrando <strong className="text-primary">{filteredPrograms.length}</strong> de {programs.length} programas</>}
         </p>
 
         {filteredPrograms.length > 0 ? (
@@ -111,7 +115,12 @@ export default function ProgramList() {
             {filteredPrograms.map((program) => (
               <Link key={program.slug} to={`/${tipo}/${program.slug}`}>
                 <Card className="group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md">
-                  <div className="relative aspect-video w-full bg-muted">
+                  <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-primary/[0.03] to-secondary/[0.03]">
+                    <img
+                      src={CLOUDINARY_IMG}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
                     {program.enConvocatoria && (
                       <Badge className="absolute left-1/2 top-3 z-10 -translate-x-1/2 bg-primary font-sans text-xs uppercase tracking-widest text-primary-foreground">
                         En convocatoria
@@ -141,6 +150,7 @@ export default function ProgramList() {
           </div>
         ) : (
           <div className="mt-12 text-center">
+            <SearchX className="mx-auto mb-4 h-12 w-12 text-muted/30" />
             <p className="font-sans text-base font-light leading-relaxed text-muted-foreground">
               No se encontraron programas con los filtros seleccionados.
             </p>
