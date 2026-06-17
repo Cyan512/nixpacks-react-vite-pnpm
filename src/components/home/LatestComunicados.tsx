@@ -42,7 +42,7 @@ export function LatestComunicados() {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <div>
-            <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
+            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
               Noticias
             </h2>
             <p className="mt-2 font-sans text-base font-light leading-relaxed text-muted-foreground">
@@ -65,7 +65,7 @@ export function LatestComunicados() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
                 </div>
                 <div className="flex flex-1 flex-col justify-between p-5">
-                  <h3 className="font-heading text-lg font-light uppercase tracking-wide">
+                  <h3 className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
                     {destacada.title}
                   </h3>
                   <div className="mt-4 flex items-center justify-between">
@@ -98,7 +98,7 @@ export function LatestComunicados() {
                       <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                         {noticia.date}
                       </span>
-                      <h4 className="mt-1 font-heading text-xs font-light uppercase tracking-wide line-clamp-2">
+                      <h4 className="mt-1 font-heading text-xs font-light uppercase tracking-wide text-foreground line-clamp-2">
                         {noticia.title}
                       </h4>
                     </div>
@@ -127,7 +127,7 @@ export function LatestComunicados() {
                     <span className="font-heading text-2xl font-light">
                       {evento.dia}
                     </span>
-                    <span className="mt-0.5 font-sans text-xs font-light tracking-wider opacity-80">
+                    <span className="mt-0.5 font-sans text-xs font-light tracking-widest text-primary-foreground/80">
                       {evento.mes}
                     </span>
                   </div>
@@ -151,7 +151,7 @@ export function LatestComunicados() {
             <Button
               variant="outline"
               size="default"
-              className="bg-transparent border-primary-foreground/30 font-sans text-sm uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10"
+              className="bg-transparent border-primary-foreground/30 font-sans text-sm font-normal uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10"
             asChild>
               <Link to="/comunicados">
                 Ver todos los eventos

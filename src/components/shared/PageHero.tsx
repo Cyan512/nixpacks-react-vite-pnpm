@@ -64,11 +64,11 @@ export function PageHero({
               ))}
             </div>
           )}
-          <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
-            {title}
-          </h1>
+        <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
+          {title}
+        </h1>
           {subtitle && (
-            <p className="mt-3 font-sans text-lg font-light leading-relaxed text-muted-foreground">
+            <p className="mt-3 font-sans text-base font-light leading-relaxed text-muted-foreground">
               {subtitle}
             </p>
           )}
@@ -79,10 +79,9 @@ export function PageHero({
           )}
           {action && (
             <div className="mt-8 flex justify-center gap-4 lg:justify-start">
-              <Button asChild size="lg">
+              <Button asChild size="lg" className="font-sans text-sm font-normal uppercase tracking-widest">
                 <Link
                   to={action.to}
-                  className="font-sans text-sm uppercase tracking-widest"
                 >
                   {action.label}
                   <ArrowRight className="ml-2 h-4 w-4" />

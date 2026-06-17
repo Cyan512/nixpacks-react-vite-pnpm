@@ -5,44 +5,44 @@ const items = [
     id: 1,
     titulo: 'Reglamentos y Normas',
     descripcion:
-      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
-    icono: <ClipboardList className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+      'Accede a la normativa vigente que regula los procesos académicos y administrativos de la Escuela de Posgrado.',
+    icono: <ClipboardList className="h-9 w-9 text-muted-foreground" />,
   },
   {
     id: 2,
     titulo: 'Trámites Académicos',
     descripcion:
-      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
-    icono: <Network className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+      'Conoce los procedimientos para solicitudes de matrícula, convalidaciones, licencias y certificaciones académicas.',
+    icono: <Network className="h-9 w-9 text-muted-foreground" />,
   },
   {
     id: 3,
     titulo: 'Calendario Académico y de Pagos',
     descripcion:
-      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
-    icono: <CalendarDays className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+      'Mantente al día con las fechas importantes del semestre: matrículas, evaluaciones, feriados y cronograma de pagos.',
+    icono: <CalendarDays className="h-9 w-9 text-muted-foreground" />,
   },
   {
     id: 4,
     titulo: 'Ruta del Graduado',
     descripcion:
-      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
-    icono: <Signpost className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+      'Descubre los pasos y requisitos para la obtención del grado académico, desde la sustentación hasta la titulación.',
+    icono: <Signpost className="h-9 w-9 text-muted-foreground" />,
   },
   {
     id: 5,
     titulo: 'Acreditación del Idioma',
     descripcion:
-      'Conoce las disposiciones y lineamientos que rigen la vida académica y garantizan una convivencia respetuosa y ordenada.',
-    icono: <Languages className="h-9 w-9 text-muted-foreground stroke-[1.15]" />,
+      'Información sobre los exámenes de suficiencia y programas de idiomas requeridos para la titulación y el posgrado.',
+    icono: <Languages className="h-9 w-9 text-muted-foreground" />,
   }
 ]
 
 export function StudentFAQ() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <div className="relative mb-10">
-        <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
+      <div className="relative mb-8">
+        <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
           Información para el Estudiante
         </h2>
       </div>
@@ -56,25 +56,25 @@ export function StudentFAQ() {
           />
         </div>
 
-        <div className="z-10 w-full rounded-lg border border-border bg-card p-6 shadow-xl sm:p-8 lg:relative lg:-ml-24 lg:mt-16 lg:w-[53%] lg:p-10">
-          <p className="mb-10 font-sans text-sm font-light leading-relaxed text-muted-foreground">
+        <div className="z-10 w-full rounded-lg border border-border bg-card p-6 shadow-sm sm:p-8 lg:relative lg:-ml-24 lg:mt-16 lg:w-[53%] lg:p-10">
+          <p className="mb-8 font-sans text-base font-light leading-relaxed text-muted-foreground">
             En esta sección encontrarás toda la información esencial para
             organizar y gestionar tu vida académica. Te recomendamos revisarla
             con frecuencia para estar al tanto de fechas importantes y procesos
             administrativos.
           </p>
 
-          <div className="space-y-7">
+          <div className="space-y-6">
             {items.map((item) => (
               <div
                 key={item.id}
-                className="group flex items-start gap-5 transition-transform duration-200"
+                className="group flex items-start gap-4"
               >
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-md bg-muted">
                   {item.icono}
                 </div>
                 <div className="pt-0.5">
-                  <h3 className="font-heading text-lg font-light uppercase tracking-wide">
+                  <h3 className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
                     {item.titulo}
                   </h3>
                   <p className="mt-1 font-sans text-sm font-light leading-relaxed text-muted-foreground">

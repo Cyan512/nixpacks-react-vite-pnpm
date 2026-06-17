@@ -111,7 +111,7 @@ export function FilterBar({ facultades, onApply, onClear }: FilterBarProps) {
         <div className="flex gap-2">
           <Button
             onClick={handleApply}
-            className="flex-1 font-sans text-sm uppercase tracking-widest"
+            className="flex-1 font-sans text-sm font-normal uppercase tracking-widest"
           >
             Aplicar filtros
           </Button>

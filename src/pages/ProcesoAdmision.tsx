@@ -28,7 +28,7 @@ export default function ProcesoAdmision() {
             <Button
               asChild
               size="lg"
-              className="bg-primary-foreground font-sans text-sm uppercase tracking-widest text-primary hover:bg-primary-foreground/90"
+              className="bg-primary-foreground font-sans text-sm font-normal uppercase tracking-widest text-primary hover:bg-primary-foreground/90"
             >
               <Link to="/comunicados">
                 Ver convocatorias
@@ -39,7 +39,7 @@ export default function ProcesoAdmision() {
               asChild
               variant="outline"
               size="lg"
-              className="bg-transparent border-primary-foreground/30 font-sans text-sm uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10"
+              className="bg-transparent border-primary-foreground/30 font-sans text-sm font-normal uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10"
             >
               <Link to="/maestrias">
                 Explorar programas

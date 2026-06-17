@@ -71,10 +71,10 @@ export default function ProgramList() {
   if (!programs || programs.length === 0) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
+        <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
           Programas no encontrados
         </h1>
-        <p className="mt-3 font-sans font-light leading-relaxed text-muted-foreground">
+        <p className="mt-3 font-sans text-sm font-light leading-relaxed text-muted-foreground">
           No se encontraron programas para esta categoría.
         </p>
         <Link
@@ -100,7 +100,7 @@ export default function ProgramList() {
           onClear={handleClearFilters}
         />
 
-        <p className="mt-6 font-sans text-sm text-muted-foreground">
+        <p className="mt-6 font-sans text-sm font-light text-muted-foreground">
           {filteredPrograms.length === programs.length
             ? `${programs.length} programas disponibles`
             : `Mostrando ${filteredPrograms.length} de ${programs.length} programas`}
@@ -119,7 +119,7 @@ export default function ProgramList() {
                     )}
                   </div>
                   <CardHeader>
-                    <CardTitle className="font-heading text-lg font-light uppercase tracking-wide">
+                    <CardTitle className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
                       {program.title}
                     </CardTitle>
                     <CardDescription className="font-sans text-xs uppercase tracking-widest text-muted-foreground/80">

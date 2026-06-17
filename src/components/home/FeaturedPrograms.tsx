@@ -12,7 +12,7 @@ export function FeaturedPrograms() {
     <section className="border-y bg-muted/30">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
+          <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
             Programas Destacados
           </h2>
           <p className="mt-3 font-sans text-base font-light leading-relaxed text-muted-foreground">

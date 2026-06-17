@@ -103,7 +103,7 @@ export function Header() {
             <p className="mb-2 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
               Universidad Nacional de San Antonio Abad del Cusco
             </p>
-            <h2 className="font-heading text-4xl font-light italic leading-[1.1] tracking-tight text-primary-foreground">
+            <h2 className="font-heading text-4xl font-light italic leading-tight tracking-wide text-primary-foreground">
               Escuela de
               <br />
               <span className="not-italic">Posgrado</span>
@@ -160,7 +160,7 @@ export function Header() {
             <p className="mb-2 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
               Formación académica
             </p>
-            <h2 className="font-heading text-4xl font-light leading-[1.1] tracking-tight text-primary-foreground">
+            <h2 className="font-heading text-4xl font-light leading-tight tracking-wide text-primary-foreground">
               Programas
               <br />
               <span className="italic">&amp; Admisión</span>
@@ -175,7 +175,7 @@ export function Header() {
         </div>
 
         <div
-          className={`hidden flex-col justify-end bg-foreground px-8 pb-8 pt-20 transition-transform duration-[550ms] ease-[cubic-bezier(0.77,0,0.18,1)] delay-[120ms] md:flex ${open ? 'translate-y-0' : '-translate-y-full'}`}
+          className={`hidden flex-col justify-end bg-muted px-8 pb-8 pt-20 transition-transform duration-[550ms] ease-[cubic-bezier(0.77,0,0.18,1)] delay-[120ms] md:flex ${open ? 'translate-y-0' : '-translate-y-full'}`}
         >
           <div className="mb-6 space-y-4">
             <div>

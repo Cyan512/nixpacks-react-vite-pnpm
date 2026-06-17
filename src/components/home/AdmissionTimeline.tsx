@@ -30,7 +30,7 @@ function MobileTimeline({ steps }: { steps: TimelineStep[] }) {
             )}
           </div>
           <div className="flex-1 min-w-0 pt-0.5">
-            <h3 className="font-heading text-sm font-light uppercase tracking-wide">
+            <h3 className="font-heading text-sm font-light uppercase tracking-wide text-foreground">
               {step.title}
             </h3>
             <p className="mt-1 font-sans text-sm font-light leading-relaxed text-muted-foreground">
@@ -48,7 +48,7 @@ export function AdmissionTimeline() {
     <section className="border-y bg-muted/30">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
+          <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
             Ruta de Admisión
           </h2>
           <p className="mt-3 font-sans text-base font-light leading-relaxed text-muted-foreground">
@@ -57,7 +57,7 @@ export function AdmissionTimeline() {
           </p>
         </div>
 
-        <div className="mt-14">
+        <div className="mt-12">
           <MobileTimeline steps={steps} />
 
           <div className="hidden md:block">
@@ -72,7 +72,7 @@ export function AdmissionTimeline() {
                         <div className="font-heading text-3xl font-light text-muted-foreground">
                           Paso {step.step}
                         </div>
-                        <div className="font-sans text-xs font-light text-muted-foreground mt-1">
+                        <div className="font-heading text-sm font-light uppercase tracking-wide text-foreground mt-1">
                           {step.title}
                         </div>
                       </div>
@@ -86,7 +86,7 @@ export function AdmissionTimeline() {
                     <div className="flex-auto border border-border rounded-lg bg-card">
                       <div className="flex flex-row items-center">
                         <div className="flex-auto">
-                          <div className="p-3 font-heading text-3xl font-light uppercase tracking-wide text-foreground">
+                          <div className="p-3 font-heading text-sm font-light uppercase tracking-wide text-foreground">
                             {step.title}
                           </div>
                           <div className="px-3 pb-6 font-sans text-sm font-light leading-relaxed text-muted-foreground">

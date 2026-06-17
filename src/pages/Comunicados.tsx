@@ -11,6 +11,7 @@ const INITIAL_VISIBLE = 5
 export default function Comunicados() {
   const [showAll, setShowAll] = useState(false)
   const destacado = comunicados[0]
+  if (!destacado) return null
   const anteriores = comunicados.slice(1)
   const visibleAnteriores = showAll ? anteriores : anteriores.slice(0, INITIAL_VISIBLE)
   const hasMore = anteriores.length > INITIAL_VISIBLE
@@ -28,7 +29,7 @@ export default function Comunicados() {
             <span className="inline-block font-sans text-xs uppercase tracking-widest text-muted-foreground">
               Último Comunicado
             </span>
-            <h3 className="font-heading text-lg font-light uppercase tracking-wide">
+            <h3 className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
               {destacado.title}
             </h3>
             <p className="font-sans text-sm font-light leading-relaxed text-muted-foreground">
@@ -37,7 +38,7 @@ export default function Comunicados() {
             <span className="block font-sans text-xs uppercase tracking-widest text-muted-foreground">
               {destacado.date}
             </span>
-            <Button asChild size="lg" className="font-sans text-sm uppercase tracking-widest">
+            <Button asChild size="lg" className="font-sans text-sm font-normal uppercase tracking-widest">
               <Link to={`/comunicados/${destacado.slug}`}>
                 Leer comunicado
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -53,7 +54,7 @@ export default function Comunicados() {
 
         <div className="space-y-8">
           <div>
-            <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
+            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
               Comunicados anteriores
             </h2>
             <p className="mt-2 font-sans text-base font-light leading-relaxed text-muted-foreground">
@@ -61,13 +62,13 @@ export default function Comunicados() {
             </p>
           </div>
 
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {visibleAnteriores.map((comunicado) => (
             <Link key={comunicado.slug} to={`/comunicados/${comunicado.slug}`}>
               <Card className="group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md">
                 <div className="relative aspect-video w-full bg-muted" />
                 <CardHeader>
-                  <CardTitle className="font-heading text-lg font-light uppercase tracking-wide">
+                  <CardTitle className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
                     {comunicado.title}
                   </CardTitle>
                   <CardDescription className="font-sans text-xs uppercase tracking-widest text-muted-foreground/80">
@@ -94,7 +95,7 @@ export default function Comunicados() {
               variant="outline"
               size="lg"
               onClick={() => setShowAll(!showAll)}
-              className="font-sans text-sm uppercase tracking-widest"
+              className="font-sans text-sm font-normal uppercase tracking-widest"
             >
               {showAll ? 'Ver menos comunicados' : 'Ver más comunicados'}
               {showAll ? (
@@ -119,13 +120,13 @@ export default function Comunicados() {
             académica de la UNSAAC.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
+            <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm font-normal uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
               <Link to="/proceso-admision">
                 Ver proceso de admisión
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
+            <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm font-normal uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/maestrias">
                 Explorar programas
                 <ArrowRight className="ml-2 h-4 w-4" />

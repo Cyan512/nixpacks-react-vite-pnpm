@@ -1,185 +1,377 @@
 ﻿# Proyecto: Escuela de Posgrado UNSAAC
 
 ## Objetivo del sistema
-Desarrollar un sitio web institucional moderno para la Escuela de Posgrado UNSAAC, enfocado en informar, comunicar y mostrar programas académicos de forma clara y profesional.
+Sitio web institucional moderno para la Escuela de Posgrado UNSAAC, enfocado en informar, comunicar y mostrar programas académicos de forma clara y profesional.
 
 ---
 
-# 🎨 Sistema de Diseño: Tipografía y Paleta de Colores "Editorial Warm"
+## Stack tecnológico
 
-El proyecto utiliza una combinación tipográfica híbrida y sofisticada junto con un enfoque estricto en tokens semánticos basados en `oklch` (Tailwind CSS v4). Queda estrictamente prohibido hardcodear valores hexadecimales directos en los componentes (como `bg-[#FDF9F5]`). En su lugar, se deben usar los tokens de interfaz o clases de opacidad sobre los colores base para mantener la coherencia y el soporte nativo de modo oscuro (`dark:`).
-
-## 📌 Reglas de Fuentes y Textos
-
-- **Títulos e Institucionales (H1, H2, H3):**
-  - Utilizar obligatoriamente la clase `font-heading` (mapeada en el CSS a la fuente **Serif** del sistema: `var(--font-serif)`).
-  - Combinar con pesos ligeros, mayúsculas sostenidas y tracking según la escala tipográfica obligatoria abajo.
-
-- **Párrafos, Citas y Contenido General:**
-  - Utilizar obligatoriamente la clase `font-sans` (mapeada a **'Geist Variable', sans-serif**).
-  - Peso `font-light` combinado con `leading-relaxed` para máxima legibilidad.
-
-- **Botones, Tags y Elementos de Interfaz (CTA):**
-  - Utilizar `font-sans`, texto en mayúsculas (`uppercase`), tamaño `text-xs` y tracking `tracking-widest`.
-
----
-
-## 📏 Escala tipográfica obligatoria
-
-Cada tipo de elemento TIENE UN TAMAÑO FIJO. No se permite variar tamaños entre componentes del mismo tipo.
-
-| Elemento | Clase exacta | Dónde se usa |
+| Tecnología | Versión | Uso |
 |---|---|---|
-| H1 página (hero) | `font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl` | Comunicados, ProcesoAdmision, ProgramList |
-| H1 hero institucional | `font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl lg:text-6xl` | HeroSection (única excepción) |
-| H1 error/empty state | `font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl` | "Comunicado no encontrado", "Programa no encontrado" |
-| H2 sección Home | `font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl` | RectorMessage, AdmissionCTA, LatestComunicados, FeaturedPrograms, StudentFAQ, ProcesoAdmision CTA |
-| H3 card título | `font-heading text-lg font-light uppercase tracking-wide` | Card de noticia destacada, Card en Comunicados/ProgramList |
-| H3 step título | `font-heading text-sm font-light uppercase tracking-wide` | Timeline step title |
-| H4 card secundario | `font-heading text-xs font-light uppercase tracking-wide` | Noticia secundaria, eventos |
-| Subtítulo sección (debajo H2) | `font-sans text-base font-light leading-relaxed text-muted-foreground` | Descripción debajo de H2 en secciones |
-| Subtítulo hero (debajo H1) | `font-sans text-lg font-light leading-relaxed text-muted-foreground` | Debajo de H1 en HeroSection |
-| Párrafo largo | `font-sans text-sm font-light leading-relaxed text-muted-foreground` | Cuerpo de texto, cards |
-| Párrafo quote | `font-sans text-base font-light leading-relaxed text-muted-foreground` | Cita del rector, descripciones |
-| Nombre autoridad | `font-heading text-lg` | "Dr. Eleazar Crucinta Ugarte" |
-| Cargo autoridad | `font-sans text-xs uppercase tracking-widest text-muted-foreground/80` | "Rector de la UNSAAC" |
-| Badge metadata | `font-sans text-xs uppercase tracking-widest` | Fechas, duración, modalidad |
-| Nav link | `font-sans text-xs uppercase tracking-widest` | Desktop nav + mobile nav |
-| Footer título sección | `font-heading text-xs font-light uppercase tracking-widest` | "Programas", "Información" |
-| Footer link | `font-sans text-sm` | Links de programas/información |
-| Footer copyright | `font-sans text-xs` | © año... |
-| Step pill | `font-heading text-xs font-light` | Números de paso en timeline mobile |
-| Nombre programa (card home) | `font-heading text-sm font-light uppercase tracking-wide` " `sm:text-xl sm:group-hover:text-2xl` | FeaturedPrograms mobile→desktop |
-| Count programas | `font-sans text-xs font-light` " `sm:text-sm` | "12 programas disponibles" |
-| Events date day | `font-heading text-2xl font-light` | Día numérico en sidebar eventos |
-| Events date month | `font-sans text-xs font-light` | "JUL", "AGO" en sidebar eventos |
+| React | 19 | UI framework |
+| Vite | 8 | Build tool |
+| TypeScript | 6 | Lenguaje |
+| Tailwind CSS | 4 | Estilos (vía `@tailwindcss/vite`) |
+| shadcn/ui | 4 (radix-nova) | Componentes UI base |
+| React Router DOM | 7 | Enrutamiento |
+| Lucide React | 1 | Iconos |
+| Geist Variable | 5 | Tipografía sans (**Geist Variable**) |
+| CVA + clsx + tailwind-merge | — | Utilidades de clases |
+| tw-animate-css | 1 | Animaciones |
+| radix-ui | 1 | Primitivas de accesibilidad |
+
+**Scripts:**
+- `pnpm run dev` — Inicia servidor de desarrollo
+- `pnpm run build` — `tsc -b && vite build`
+- `pnpm run lint` — ESLint
+- `pnpm run preview` — Vista previa del build
 
 ---
 
-## 🚫 Prohibiciones de texto hardcodeado
+## Arquitectura del proyecto
 
-- Prohibido usar `text-[10px]`, `text-[15px]`, `text-[0.8rem]` o cualquier `text-[X]` arbitrario.
-- Solo usar tokens estándar: `text-xs` (12px), `text-sm` (14px), `text-base` (16px), `text-lg` (18px), `text-xl` (20px), `text-2xl` (24px), `text-3xl` (30px), `text-4xl` (36px), `text-5xl` (48px), `text-6xl` (60px).
-- Si el diseño requiere un tamaño intermedio, ajustar al token más cercano.
+```
+src/
+├── main.tsx                       # Entry point (StrictMode + index.css)
+├── App.tsx                        # Router con todas las rutas
+├── index.css                      # Tailwind v4 CSS-first + tokens oklch
+├── assets/                        # Static assets (hero.png, svgs)
+├── components/
+│   ├── ui/                        # 10 componentes shadcn/ui base
+│   │   ├── accordion.tsx
+│   │   ├── badge.tsx
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── input.tsx
+│   │   ├── label.tsx
+│   │   ├── select.tsx
+│   │   ├── separator.tsx
+│   │   ├── sheet.tsx
+│   │   └── tabs.tsx
+│   ├── home/                      # 7 secciones del Home
+│   │   ├── HeroSection.tsx
+│   │   ├── RectorMessage.tsx
+│   │   ├── AdmissionCTA.tsx
+│   │   ├── LatestComunicados.tsx
+│   │   ├── FeaturedPrograms.tsx
+│   │   ├── StudentFAQ.tsx
+│   │   └── AdmissionTimeline.tsx
+│   ├── shared/                    # 7 componentes reutilizables
+│   │   ├── PageHero.tsx
+│   │   ├── FilterBar.tsx
+│   │   ├── Tabs.tsx
+│   │   ├── PresentacionTab.tsx
+│   │   ├── MallaCurricularTab.tsx
+│   │   ├── InversionBecasTab.tsx
+│   │   └── LineasInvestigacionTab.tsx
+│   ├── Header.tsx                 # Navbar con panel mobile
+│   └── Footer.tsx                 # Footer institucional
+├── pages/                         # 6 páginas del sistema
+│   ├── Home.tsx
+│   ├── Comunicados.tsx
+│   ├── ComunicadoDetalle.tsx
+│   ├── ProcesoAdmision.tsx
+│   ├── ProgramList.tsx
+│   └── ProgramDetail.tsx
+├── layouts/
+│   └── InstitutionalLayout.tsx    # Wrapper Header + Outlet + Footer
+├── data/
+│   └── comunicados.ts             # Datos estáticos de comunicados
+├── types/
+│   └── index.ts                   # Interfaces TypeScript globales
+├── services/
+│   └── api.ts                     # Placeholder para API externa
+├── lib/
+│   └── utils.ts                   # Función cn() (clsx + tailwind-merge)
+└── hooks/                         # Directorio vacío (disponible)
+```
 
 ---
 
-## 🎨 Mapeo Semántico de la Paleta de Colores (Cálidos / Terracota)
+## Configuración técnica
 
-Para recrear la estética minimalista, cálida y editorial del diseño guía, se deben utilizar las variables del tema de la siguiente manera:
+### vite.config.ts
+- Plugin `@tailwindcss/vite` (no PostCSS)
+- Plugin `@vitejs/plugin-react`
+- Alias `@` → `./src`
 
-| Elemento de Diseño | Equivalente Semántico en Código (Modo Claro) |
-| :--- | :--- |
-| **Fondos Principales** *(Fondo crema / #FDF9F5)* | `bg-background` o `bg-card` (para contenedores tipo tarjeta). |
-| **Títulos Principales** *(Negro orgánico / #2D2B2A)* | `text-foreground` (utilizando la fuente `font-heading`) |
-| **Textos y Párrafos** *(Gris tierra / #5A5451)* | `text-muted-foreground` (utilizando la fuente `font-sans`) |
-| **Detalles y Arcos Decorativos** *(Rosa viejo / #EAD7CF)* | `bg-muted` o `bg-secondary` con opacidad sutil (Ej: `bg-muted/60` o `bg-primary/10`). |
-| **Botones Principales (CTA)** *(Terracota suave / #D9B4A7)* | `bg-primary` con estados de hover controlados por opacidad (`hover:bg-primary/90`). |
-| **Líneas y Bordes de Acento** *(Borde sutil / #EAD7CF)* | `border-border` o `border-primary/20` |
+### TypeScript
+- `tsconfig.json` con project references: `tsconfig.app.json` + `tsconfig.node.json`
+- Target: ES2023, JSX: react-jsx
+- Path alias: `@/*` → `./src/*`
+- Strict mode: `noUnusedLocals`, `noUnusedParameters`, `verbatimModuleSyntax`
+
+### components.json (shadcn/ui)
+- Style: `radix-nova`
+- Base color: `neutral`
+- CSS variables: enabled
+- Icon library: `lucide`
+
+### lib/utils.ts
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```
 
 ---
 
-## 🔴 Reglas de color — usos y prohibiciones
+## Sistema de rutas
+
+| Ruta | Componente | Descripción |
+|---|---|---|
+| `/` | `Home` | Landing page con 6 secciones |
+| `/comunicados` | `Comunicados` | Listado de comunicados |
+| `/comunicados/:slug` | `ComunicadoDetalle` | Detalle de comunicado |
+| `/proceso-admision` | `ProcesoAdmision` | Timeline de admisión |
+| `/:tipo` | `ProgramList` | Listado de programas por tipo |
+| `/:tipo/:slug` | `ProgramDetail` | Detalle de programa |
+
+Todas las rutas usan `InstitutionalLayout` en `App.tsx`:
+```tsx
+<Route element={<InstitutionalLayout />}>
+  {/* rutas aquí */}
+</Route>
+```
+
+### InstitutionalLayout
+```tsx
+<div className="flex min-h-screen flex-col">
+  <Header />
+  <main className="flex-1"><Outlet /></main>
+  <Footer />
+</div>
+```
+
+---
+
+# 🎨 Sistema de Diseño: Tokens CSS (oklch - Tailwind v4)
+
+Definidos en `src/index.css` con `@theme inline {}`.
+
+## Modo Claro
+
+| Variable | Valor oklch | Significado |
+|---|---|---|
+| `--background` | `0.985 0.012 70` | Fondo página (crema) |
+| `--foreground` | `0.195 0.006 50` | Texto principal (negro orgánico) |
+| `--primary` | `0.765 0.052 38` | Color CTA (terracota) |
+| `--primary-foreground` | `0.97 0.008 70` | Texto sobre primary (crema) |
+| `--muted` | `0.87 0.025 45` | Fondos decorativos, badges |
+| `--muted-foreground` | `0.375 0.01 50` | Texto secundario |
+| `--border` | `0.82 0.015 45` | Bordes |
+| `--radius` | `0.625rem` | Radio base |
+| `--font-sans` | `'Geist Variable', sans-serif` | Tipografía sans |
+| `--font-heading` | `var(--font-serif)` | Tipografía serif |
+
+Modo oscuro activado con clase `.dark` en ancestro.
+
+## Mapeo semántico de colores
+
+| Elemento de diseño | Token |
+|---|---|
+| Fondos principales (crema #FDF9F5) | `bg-background` o `bg-card` |
+| Títulos (negro orgánico #2D2B2A) | `text-foreground` |
+| Textos y párrafos (gris tierra #5A5451) | `text-muted-foreground` |
+| Detalles decorativos (rosa viejo #EAD7CF) | `bg-muted`, `bg-secondary`, `bg-primary/10` |
+| Botones CTA (terracota #D9B4A7) | `bg-primary` + `hover:bg-primary/90` |
+| Líneas y bordes (#EAD7CF) | `border-border` o `border-primary/20` |
+
+## Reglas de color
 
 | Token | Usar para | NO usar para |
 |---|---|---|
-| `bg-foreground` | ❌ | PROHIBIDO como fondo de cualquier elemento (card, sección, contenedor) |
-| `text-foreground` | Texto de títulos, `font-heading` contenido | Texto secundario, texto sobre `bg-primary` |
-| `text-muted-foreground` | Párrafos, descripciones, metadata | Títulos principales |
-| `text-primary` | Texto de botones invertidos, enlaces "Leer más" | Párrafos largos |
-| `bg-background` | Fondo de página, contenedores sin card | Fondos decorativos |
-| `bg-card` | Fondos de cards (se hereda de shadcn Card) | Secciones CTA |
-| `bg-primary` | Secciones CTA completas, botones primarios | Texto, fondos decorativos |
-| `bg-primary-foreground` | Botones invertidos sobre `bg-primary` (color blanco/crema) | Fondos de sección |
-| `bg-muted` | Fondos decorativos con opacidad | Fondos de botones primarios |
-| `bg-muted/30` | Secciones con fondo suave alterno (FeaturedPrograms, AdmissionTimeline) | — |
-| `bg-muted/50` | Footer, hover states de triggers | — |
-| `bg-muted/60` | Badges de metadata, fondos placeholder | — |
+| `bg-foreground` | ❌ | PROHIBIDO como fondo |
+| `text-foreground` | Títulos | Texto sobre `bg-primary` |
+| `text-muted-foreground` | Párrafos, descripciones | Títulos |
+| `text-primary` | Botones invertidos, enlaces | Párrafos largos |
+| `bg-primary` | Secciones CTA, botones primarios | Decoración |
+| `bg-muted/30` | Secciones fondo suave alterno | — |
+| `bg-muted/50` | Footer, hover states | — |
+| `bg-muted/60` | Badges metadata, placeholders | — |
 
 ---
 
-## 🌓 Regla de Oro para el Modo Oscuro
-Ningún componente debe quedar "bloqueado" en un color claro. Si un elemento decorativo (como el arco de fondo del rector) utiliza un tono cálido, en modo oscuro debe atenuarse usando clases de opacidad (`opacity-40 dark:opacity-10`) o mutar hacia el color de tarjeta (`bg-card`), asegurando una transición suave que no fatigue la vista del usuario y respete la estética limpia estilo *Notion / Vercel*.
+## 📌 Sistema de Tipografía
+
+### Reglas generales
+- **Títulos (H1-H4):** `font-heading` + `font-light` + `uppercase` + `tracking-wide`. Prohibido `font-bold`, `font-semibold`, `font-medium`, `tracking-tight`, `capitalize`, `normal-case`.
+- **Contenido:** `font-sans` + `font-light` + `leading-relaxed`.
+- **Botones, nav y UI:** `font-sans` + `uppercase` + `tracking-widest`.
+- **`font-normal` permitido solo en:** Nav links, botones CTA, footer links, footer copyright.
+- **`font-light` obligatorio** en: títulos (H1-H4), contenido, badges, nombres autoridad, cargos, step pill, count.
+
+### 🚫 Prohibiciones
+- Prohibido `text-[X]` arbitrario, `text-md` (no existe en Tailwind)
+- Prohibido `font-semibold`, `font-bold`, `font-medium` en títulos
+- Prohibido `tracking-tight`, `capitalize`, `normal-case` en títulos
+- Solo tokens estándar: `text-xs`(12px), `text-sm`(14px), `text-base`(16px), `text-lg`(18px), `text-xl`(20px), `text-2xl`(24px), `text-3xl`(30px), `text-4xl`(36px), `text-5xl`(48px), `text-6xl`(60px)
+
+### Tabla completa de estilos tipográficos
+
+| Elemento | Font | Size | Weight | Case | Tracking | Color | Dónde se usa |
+|---|---|---|---|---|---|---|---|
+| **HEADINGS** | | | | | | | |
+| H1 página | `font-heading` | `text-4xl sm:text-5xl` | `font-light` | `uppercase` | `tracking-wide` | `text-foreground` | PageHero, Comunicados, ProgramList, ProgramDetail |
+| H1 hero institucional | `font-heading` | `text-4xl sm:text-5xl lg:text-6xl` | `font-light` | `uppercase` | `tracking-wide` | `text-foreground` | HeroSection (única excepción) |
+| H1 error/empty state | `font-heading` | `text-4xl sm:text-5xl` | `font-light` | `uppercase` | `tracking-wide` | `text-foreground` | ComunicadoDetalle, ProgramDetail, ProgramList |
+| H2 sección | `font-heading` | `text-3xl sm:text-4xl` | `font-light` | `uppercase` | `tracking-wide` | `text-foreground` | RectorMessage, FeaturedPrograms, StudentFAQ, AdmissionTimeline, LatestComunicados, Comunicados, tabs de detalle |
+| H2 sección en CTA | `font-heading` | `text-3xl sm:text-4xl` | `font-light` | `uppercase` | `tracking-wide` | `text-primary-foreground` | AdmissionCTA, ProcesoAdmision, CTA en Comunicados/ComunicadoDetalle |
+| H3 card título | `font-heading` | `text-lg` | `font-light` | `uppercase` | `tracking-wide` | `text-foreground` | Card destacado Comunicados, cards ProgramList, StudentFAQ items, Inversión cards, LatestComunicados destacada |
+| H3 card en CTA | `font-heading` | `text-lg` | `font-light` | `uppercase` | `tracking-wide` | `text-primary-foreground` | Sidebar eventos header (LatestComunicados) |
+| H3 step título | `font-heading` | `text-sm` | `font-light` | `uppercase` | `tracking-wide` | `text-foreground` | AdmissionTimeline (mobile y desktop card) |
+| H3 panel nav título | `font-heading` | `text-4xl` | `font-light` | `—` | `tracking-wide` | `text-primary-foreground` | Header panel |
+| H4 card secundario | `font-heading` | `text-xs` | `font-light` | `uppercase` | `tracking-wide` | `text-foreground` | Noticia secundaria (LatestComunicados), modalidad (InversionBecasTab) |
+| H4 en CTA sidebar | `font-heading` | `text-xs` | `font-light` | `uppercase` | `tracking-wide` | `text-primary-foreground` | Evento title en sidebar (LatestComunicados) |
+| Step pill número (mobile) | `font-heading` | `text-xs` | `font-light` | `—` | `—` | `text-foreground` | AdmissionTimeline mobile |
+| Step pill número (desktop) | `font-heading` | `text-3xl` | `font-light` | `—` | `—` | `text-muted-foreground` | AdmissionTimeline desktop |
+| Header brand | `font-heading` | `text-sm` | `font-light` | `—` | `—` | — | "Posgrado UNSAAC" |
+| Footer brand | `font-heading` | `text-base` | `font-light` | `—` | `tracking-wide` | — | "Escuela de Posgrado UNSAAC" |
+| Footer título sección | `font-heading` | `text-xs` | `font-light` | `uppercase` | `tracking-widest` | `text-foreground` | "Programas", "Información" |
+| Accordion trigger | `font-heading` | `text-sm` | `—` | `—` | `tracking-wide` | — | Accordion base |
+| Sheet título | `font-heading` | `text-base` | `font-medium` | `—` | `—` | `text-foreground` | Sheet title |
+| **SUBTÍTULOS & DESCRIPCIONES** | | | | | | | |
+| Subtítulo hero | `font-sans` | `text-base` | `font-light` | `—` | `—` | `text-muted-foreground` | Debajo H1 en HeroSection, PageHero |
+| Subtítulo sección | `font-sans` | `text-base` | `font-light` | `—` | `—` | `text-muted-foreground` | Debajo H2 en secciones normales |
+| Subtítulo en CTA | `font-sans` | `text-base` | `font-light` | `—` | `—` | `text-primary-foreground/80` | Debajo H2 en bg-primary |
+| Descripción card (override) | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-muted-foreground/80` | Facultad en ProgramList, fecha en Comunicados |
+| Cita / blockquote | `font-sans` | `text-base` | `font-light` | `—` | `—` | `text-muted-foreground` | Cita del rector |
+| Sheet descripción | `font-sans` | `text-sm` | `—` | `—` | `—` | `text-muted-foreground` | Sheet base |
+| Accordion contenido | `font-sans` | `—` | `font-light` | `—` | `—` | `text-muted-foreground` | Accordion content |
+| **PÁRRAFOS & TEXTO** | | | | | | | |
+| Párrafo largo | `font-sans` | `text-sm` | `font-light` | `—` | `—` | `text-muted-foreground` | Cards, empty states, descripciones |
+| Párrafo lead (artículo) | `font-sans` | `text-base` | `font-light` | `—` | `—` | `text-muted-foreground` | Primer párrafo extendido en ComunicadoDetalle |
+| Párrafo contenido (base) | `font-sans` | `text-base` | `font-light` | `—` | `—` | `text-muted-foreground` | Párrafos subsiguientes |
+| Párrafo lead pull-quote | `font-sans` | `text-base` | `font-light` | `—` | `—` | `text-foreground` | Primer párrafo destacado (+ italic, border-left) |
+| Nombre autoridad | `font-heading` | `text-lg` | `font-light` | `—` | `—` | `text-foreground` | RectorMessage |
+| Cargo autoridad | `font-sans` | `text-xs` | `font-light` | `uppercase` | `tracking-widest` | `text-muted-foreground/80` | RectorMessage |
+| Imagen caption | `font-sans` | `text-xs` | `—` | `—` | `—` | `text-muted-foreground` | ComunicadoDetalle |
+| Disclaimer | `font-sans` | `text-xs` | `font-light` | `—` | `—` | `text-muted-foreground` | Nota legal (+ italic) |
+| Nombre programa (card home) | `font-heading` | `text-sm sm:text-xl sm:group-hover:text-2xl` | `font-light` | `uppercase` | `tracking-wide` | `text-primary-foreground` | FeaturedPrograms |
+| Count programas | `font-sans` | `text-xs sm:text-sm` | `font-light` | `—` | `—` | `text-primary-foreground/80` | "12 programas disponibles" |
+| Monto inversión total | `font-heading` | `text-3xl md:text-5xl` | `font-light` | `—` | `tracking-wide` | `text-primary-foreground` | InversionBecasTab |
+| Monto card inversión | `font-sans` | `text-xl` | `font-light` | `—` | `—` | `text-foreground` | Cards de Inversión |
+| **BADGES & METADATA** | | | | | | | |
+| Badge metadata (default) | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-muted-foreground` | Fechas, duración, modalidad |
+| Badge metadata (bg-muted/60) | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-muted-foreground` | Badge estándar en PageHero |
+| Badge convocatoria | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-primary-foreground` | "En convocatoria" encima de card |
+| Badge categoría | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-primary` | Tag de categoría en ComunicadoDetalle |
+| Badge author name | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-foreground` | Autor en ComunicadoDetalle |
+| Badge outline | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | — | Badge outline en PageHero |
+| Badge inversión label | `font-sans` | `text-xs` | `font-light` | `uppercase` | `tracking-widest` | `text-primary-foreground/80` | "Inversión Total del Programa" |
+| Badge inversión tag | `font-sans` | `text-xs` | `font-light` | `—` | `—` | — | "Valor Garantizado 2026" |
+| **NAVEGACIÓN (HEADER)** | | | | | | | |
+| Nav link | `font-sans` | `text-xs` | `font-normal` | `uppercase` | `tracking-widest` | — | Desktop nav links |
+| Nav link panel mobile | `font-heading` | `text-lg` | `font-light` | `—` | `—` | `text-primary-foreground` | Links en panel mobile |
+| Nav link número | `font-sans` | `text-xs` | `—` | `—` | `—` | `text-primary-foreground/30` | "01", "02" |
+| Nav section label | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-primary-foreground/30` | Labels en panel |
+| Header badge/logo | `font-sans` | `text-xs` | `font-light` | `—` | `tracking-widest` | `text-primary` | "EP" en Header |
+| Header subtitle | `font-sans` | `text-xs` | `—` | `—` | `—` | `text-muted-foreground` | "UNSAAC . Cusco, Perú" |
+| Header contact value | `font-sans` | `text-sm` | `font-light` | `—` | `—` | `text-primary-foreground/50` | Email, teléfono, dirección |
+| Header CTA (mobile) | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-primary` | "Proceso de Admisión" en panel mobile |
+| Header CTA (desktop) | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-primary-foreground` | "Proceso de Admisión" en panel desktop |
+| Header copyright | `font-sans` | `text-xs` | `—` | `—` | `—` | `text-primary-foreground/20` | "UNSAAC . 2026" |
+| **BOTONES** | | | | | | | |
+| Botón CTA (default) | `font-sans` | `text-sm` | `font-normal` | `uppercase` | `tracking-widest` | — | Botones primario/outline en fondos claros |
+| Botón primario en CTA | `font-sans` | `text-sm` | `font-normal` | `uppercase` | `tracking-widest` | `text-primary` | Botón sobre bg-primary con bg-primary-foreground |
+| Botón outline en CTA | `font-sans` | `text-sm` | `font-normal` | `uppercase` | `tracking-widest` | `text-primary-foreground` | Botón outline sobre bg-primary con bg-transparent |
+| Nav inline CTA | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-primary` | "Leer más", "Ver programa", "Volver al inicio" |
+| Sidebar action | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-muted-foreground` | "Compartir", "Imprimir", "Volver" en sidebar |
+| Card footer CTA | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-primary/60` | "Ver programa" / "Leer más" en card footer |
+| **FOOTER** | | | | | | | |
+| Footer link | `font-sans` | `text-sm` | `font-normal` | `—` | `—` | `text-muted-foreground` | Links de programas/información |
+| Footer copyright | `font-sans` | `text-xs` | `font-normal` | `—` | `—` | `text-muted-foreground` | © año |
+| Footer icon initials | `font-sans` | `text-sm` | `font-medium` | `—` | `—` | `text-primary-foreground` | "EP" en bg-primary |
+| **EVENTOS (SIDEBAR)** | | | | | | | |
+| Evento día | `font-heading` | `text-2xl` | `font-light` | `—` | `—` | `text-primary-foreground` | "15", "22" |
+| Evento mes | `font-sans` | `text-xs` | `font-light` | `—` | `tracking-widest` | `text-primary-foreground` | "JUL", "AGO" |
+| Evento fecha/hora | `font-sans` | `text-xs` | `font-light` | `—` | `—` | `text-primary-foreground/70` | Fecha y hora |
+| Evento ubicación | `font-sans` | `text-xs` | `font-light` | `—` | `—` | `text-primary-foreground/60` | Ubicación |
+| **TABLAS** | | | | | | | |
+| Table header | `font-sans` | `text-xs` | `—` | `uppercase` | `tracking-widest` | `text-primary` | Cabeceras en MallaCurricular |
+| Table cell | `font-sans` | `text-sm` | `font-light` | `—` | `—` | `text-muted-foreground` | Celdas de cuerpo |
 
 ---
 
-## 🖼️ Regla de Imágenes Institucionales
-- Usar `<img>` tag, nunca `background-image` CSS.
-- El atributo `alt` es obligatorio y debe describir el contenido de la imagen.
-- Para imágenes decorativas sin valor semántico, usar `alt=""`.
+## 📐 Reglas de espaciado
+
+- **Padding sección estándar:** `py-16`
+- **Padding hero:** `py-24 sm:py-32`
+- **Padding sección CTA:** `py-16` (prohibido `py-20`, `py-24`)
+- **Padding horizontal contenedor:** `px-4 sm:px-6 lg:px-8`
+- **Max width contenedor:** `max-w-7xl`
+- **Margen título → descripción en CTAs:** `mt-3`
+- **Margen descripción → botones en CTAs:** `mt-8`
+- **Shadow cards:** `shadow-sm`, `hover:shadow-md` (prohibido `shadow-xl`)
+- **Grid cards listado:** `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6`
+- **Layout detalle (sidebar + contenido):** `lg:grid-cols-12 gap-12`, sidebar `lg:col-span-3`, contenido `lg:col-span-9`, padding `py-8`
+- **Valores permitidos:** Múltiplos de 4 (`0,1,2,3,4,5,6,8,10,12,14,16,20,24,...`)
+- **Gaps permitidos:** `gap-2`, `gap-3`, `gap-4`, `gap-6`, `gap-8`, `gap-12` (prohibido `gap-5`, `gap-7`)
+- **Space-y permitidos:** `space-y-2`, `space-y-4`, `space-y-6`, `space-y-8`, `space-y-12`
 
 ---
 
-## 🎯 Regla de Hover States
+## 🎯 Reglas de hover states
 
-Nunca usar `hover:underline` como hover state principal. Cada contexto tiene su clase específica:
+| Contexto | Clase |
+|---|---|
+| Links de texto (nav, footer, "Leer más") | `hover:text-foreground` |
+| Botón CTA primario (`bg-primary`) | `hover:bg-primary/90` (nunca `/80`) |
+| Botón CTA invertido (`bg-primary-foreground`) | `hover:bg-primary-foreground/90` |
+| Botón outline sobre bg-primary | `hover:bg-primary-foreground/10` |
+| Botón outline default | `hover:bg-muted` |
+| Accordion trigger, nav triggers | `hover:bg-muted/50` / `dark:hover:bg-muted/20` |
+| Link variant (button/badge) | `hover:bg-muted` (no `hover:underline`) |
+| Card hover (elevación) | `hover:shadow-sm` o `hover:shadow-md` |
 
-| Contexto | Clase correcta | Ejemplo |
+---
+
+## 🖱️ Reglas de botones CTA
+
+- **Tamaño mínimo texto:** `text-sm` (14px) en `size="lg"`, `size="default"`, `size="sm"`. `text-xs` solo en `size="icon"` o badges.
+- **Outline sobre `bg-primary`:** siempre agregar `bg-transparent` al className.
+- **Resumen:**
+
+| Contexto | Texto | Fondo botón |
 |---|---|---|
-| Links de texto (nav, footer, "Leer más", "Volver") | `hover:text-foreground` | Header nav links, Footer links, "Ver programa" |
-| Botón CTA primario (`bg-primary`) | `hover:bg-primary/90` | Botón primario por defecto (shadcn heredado) |
-| Botón CTA invertido (`bg-primary-foreground`) | `hover:bg-primary-foreground/90` | Botón primario sobre fondo `bg-primary` |
-| Botón outline sobre fondo primary | `hover:bg-primary-foreground/10` | Botón secundario en secciones CTA |
-| Botón outline default | `hover:bg-muted` | Botón outline estándar (shadcn heredado) |
-| Accordion trigger, nav triggers | `hover:bg-muted/50` / `dark:hover:bg-muted/20` | Accordion, Sheet trigger |
-| Link variant (button, badge) | `hover:bg-muted` (NO `hover:underline`) | button variant="link", badge variant="link" |
-| Card hover (elevación) | `hover:shadow-sm` o `hover:shadow-md` | Cards en Comunicados, ProgramList |
+| Primario sobre bg-primary | `text-primary` | `bg-primary-foreground` |
+| Outline sobre bg-primary | `text-primary-foreground` | `bg-transparent` + `border-primary-foreground/30` |
+| Outline default | `text-foreground` | `bg-background` (heredado) |
 
 ---
 
-## 🖱️ Regla de Botones CTA
+## 🧩 Componentes shadcn/ui modificados
 
-### Tamaño de texto obligatorio
-- **Botones CTA** (`size="lg"`, `size="default"`, `size="sm"`): usar **`text-sm`** (14px) como mínimo.
-- **`text-xs`** (12px) solo se permite en botones `size="icon"`, `size="icon-sm"` o badges/etiquetas.
-- `text-xs` sobre un botón CTA genera texto desproporcionadamente pequeño e ilegible.
+### Accordion
+- `AccordionTrigger`: `font-heading text-sm tracking-wide`, hover `bg-muted/50` / `dark:bg-muted/20`, iconos ChevronDownIcon/ChevronUpIcon
+- `AccordionContent`: `font-sans font-light leading-relaxed text-muted-foreground`
+- `AccordionItem`: `not-last:border-b border-border`
 
-### Outline buttons sobre `bg-primary`
-Cuando un `variant="outline"` se coloca dentro de una sección con fondo `bg-primary` (terracota, CTA sections), **siempre** agregar `bg-transparent` al className. Sin esto, el outline hereda `bg-background` (crema) del variant y el texto `text-primary-foreground` (crema) queda invisible sobre fondo crema.
+### Card
+- `CardTitle`: `font-heading text-base leading-snug font-medium`
+- `CardDescription`: `text-sm text-muted-foreground`
 
-```
-// ❌ MAL — texto invisible (crema sobre crema)
-<Button variant="outline" className="border-primary-foreground/30 text-primary-foreground ...">
+### Button
+- `link` variant: `hover:bg-muted` (cambiado de `hover:underline`)
+- `sm` size: `text-xs` (cambiado de `text-[0.8rem]`)
 
-// ✅ BIEN — fondo transparente, texto crema visible sobre bg-primary del padre
-<Button variant="outline" className="bg-transparent border-primary-foreground/30 text-primary-foreground ...">
-```
+### Badge
+- `link` variant: `hover:bg-muted` (cambiado de `hover:underline`)
 
-### Resumen rápido
-
-| Contexto | Clase de texto | Clase de fondo del botón |
-|---|---|---|
-| Botón primario sobre `bg-primary` | `text-primary` | `bg-primary-foreground` |
-| Botón outline sobre `bg-primary` | `text-primary-foreground` | **`bg-transparent`** + `border-primary-foreground/30` |
-| Botón outline default (fondo claro) | `text-foreground` | `bg-background` (heredado del variant) |
-
----
-
-## 📐 Regla de Layout Split (Secciones Divididas)
-- Secciones con imagen + texto (RectorMessage, FAQ) usar grid `lg:grid-cols-12`.
-- Distribución estándar: imagen 5 columnas (`lg:col-span-5`), texto 7 columnas (`lg:col-span-7`).
-- En mobile ambas columnas apilan (la imagen arriba por defecto).
-
----
-
-## 🎭 Regla de Elementos Decorativos
-- Arcos, elipses, shapes decorativos de fondo: usar `bg-muted` con opacidad controlada.
-- Modo claro: `opacity-60`.
-- Modo oscuro: `dark:opacity-20` (nunca dejar opacidad fija que brille en oscuro).
-
----
-
-## 👤 Regla de Nombres Propios Institucionales
-- Nombres, cargos y firmas de autoridades (rector, directores, decanos): usar `font-heading`.
-- El cargo debajo del nombre: `font-sans text-xs uppercase tracking-widest text-muted-foreground/80`.
+### Sheet
+- `SheetTitle`: `font-heading text-base font-medium text-foreground`
+- `SheetDescription`: `font-sans text-sm text-muted-foreground`
 
 ---
 
 ## 📋 Patrón de sección CTA (obligatorio)
 
-Toda sección CTA en el sitio debe seguir este patrón exacto:
+Toda sección CTA sigue este patrón exacto:
 
-```
+```tsx
 <section className="bg-primary">
   <div className="mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8">
     <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-primary-foreground sm:text-4xl">
@@ -189,10 +381,10 @@ Toda sección CTA en el sitio debe seguir este patrón exacto:
       DESCRIPCIÓN
     </p>
     <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
+      <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm font-normal uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
         <Link to="...">BOTÓN PRIMARIO</Link>
       </Button>
-      <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
+      <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm font-normal uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
         <Link to="...">BOTÓN SECUNDARIO</Link>
       </Button>
     </div>
@@ -200,325 +392,285 @@ Toda sección CTA en el sitio debe seguir este patrón exacto:
 </section>
 ```
 
-Implementaciones actuales: `AdmissionCTA.tsx`, `ProcesoAdmision.tsx` (CTA final).
+Implementado en: `AdmissionCTA.tsx`, `Comunicados.tsx` (CTA final), `ComunicadoDetalle.tsx` (CTA final), `ProcesoAdmision.tsx` (CTA final).
 
 ---
 
 ## 📛 Patrón de Badge
 
-- Badge de fecha/metadata: `bg-muted/60 font-sans text-xs uppercase tracking-widest text-muted-foreground dark:bg-muted/20`
-- Badge outline: `font-sans text-xs uppercase tracking-widest`
-- Prohibido usar `text-[10px]` — siempre `text-xs`
+- **Badge metadata:** `bg-muted/60 font-sans text-xs uppercase tracking-widest text-muted-foreground dark:bg-muted/20`
+- **Badge categoría:** `rounded-full bg-primary/10 px-3 py-1 font-sans text-xs uppercase tracking-widest text-primary` (solo en ComunicadoDetalle)
+- **Badge convocatoria:** `absolute left-1/2 top-3 -translate-x-1/2 bg-primary font-sans text-xs uppercase tracking-widest text-primary-foreground` (solo sobre card en ProgramList)
+- **Badge outline:** `font-sans text-xs uppercase tracking-widest` (usar variant="outline")
 
 ---
 
-## 🧩 Componentes shadcn/ui modificados
+## 🖼️ Regla de imágenes institucionales
+- Usar `<img>` tag, nunca `background-image` CSS
+- `alt` obligatorio. Imágenes decorativas: `alt=""`
 
-Los siguientes componentes base de shadcn/ui han sido personalizados para heredar los tokens de diseño del sistema:
+---
 
-### Accordion (`src/components/ui/accordion.tsx`)
+## 🌓 Regla de modo oscuro
+- Elementos decorativos en bg-muted con opacidad: `opacity-60 dark:opacity-20`
+- Ningún componente debe quedar bloqueado en un color claro
 
-| Elemento | Cambio aplicado |
-| :--- | :--- |
-| `AccordionTrigger` | `font-heading text-sm tracking-wide`, hover con `bg-muted/50` (claro) / `dark:bg-muted/20` (oscuro), íconos `ChevronDownIcon` / `ChevronUpIcon` |
-| `AccordionContent` | `font-sans font-light leading-relaxed text-muted-foreground` |
-| `AccordionItem` | `not-last:border-b border-border` |
+---
 
-**Regla de uso:** No es necesario agregar clases de tipografía manualmente al usar estos componentes.
+## Componentes del proyecto
 
-### Card (`src/components/ui/card.tsx`)
+### Header (`src/components/Header.tsx`)
+- Navbar fija (`fixed inset-x-0 top-0 z-50 h-16`)
+- Panel mobile de 3 columnas estilo navegación completa
+- Logo "EP" + "Posgrado UNSAAC" + "UNSAAC · Cusco, Perú"
+- Botón hamburguesa toggle
+- Panel izquierdo: bg-primary con links (Inicio, Maestrías, Doctorados, Admisión, Comunicados)
+- Panel central: bg-primary/90 con "Programas & Admisión"
+- Panel derecho: bg-muted con datos de contacto
+- CTA mobile: `bg-primary-foreground text-primary font-sans text-xs uppercase tracking-widest`
+- CTA desktop: `bg-primary text-primary-foreground font-sans text-xs uppercase tracking-widest`
 
-| Elemento | Cambio aplicado |
-| :--- | :--- |
-| `CardTitle` | `font-heading text-base leading-snug font-medium` |
-| `CardDescription` | `text-sm text-muted-foreground` |
+### Footer (`src/components/Footer.tsx`)
+- `border-t bg-muted/50`
+- Grid `sm:grid-cols-2 lg:grid-cols-4`
+- Brand: logo "EP" en `bg-primary font-sans text-sm font-medium text-primary-foreground` + "Escuela de Posgrado UNSAAC" en `font-heading text-base font-light tracking-wide`
+- Descripción: `font-sans text-sm font-light leading-relaxed text-muted-foreground` (max-w-xs)
+- Secciones: título `font-heading text-xs font-light uppercase tracking-widest text-foreground`, links `font-sans text-sm font-normal text-muted-foreground hover:text-foreground`
+- Copyright: `font-sans text-xs font-normal text-muted-foreground`
 
-**Regla de uso:** Los títulos dentro de Cards ya utilizan `font-heading` por defecto. Si se necesita una variante (como `font-light tracking-wide uppercase`), aplicar clases adicionales mediante `className`.
+### PageHero (`src/components/shared/PageHero.tsx`)
+- Imagen full-width + gradiente overlay
+- `relative flex min-h-[50vh] flex-col justify-center overflow-hidden border-b py-24 sm:py-32`
+- H1 + subtitle `text-base` + description `text-base` + badges + action Button
+- Gradiente: `bg-gradient-to-r from-background/95 via-background/80 to-background/60`
 
 ### FilterBar (`src/components/shared/FilterBar.tsx`)
+- `rounded-xl border bg-card p-4 shadow-sm`
+- Grid `grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4`
+- Input search con icono Search + 3 Selects (facultad, modalidad, convocatoria) + Button aplicar + Button ghost limpiar
+- Props: `facultades: string[]`, `onApply: (filters: FilterState) => void`, `onClear: () => void`
 
-Componente de filtros reutilizable para listados de programas:
+### PresentacionTab (`src/components/shared/PresentacionTab.tsx`)
+- Muestra objetivo_general, objetivos_especificos, perfil_egresado del programa
+- H2 sección + párrafos en `font-sans text-base font-light leading-relaxed text-muted-foreground`
+- Objetivos específicos: items con `bg-linear-to-r from-primary/5 to-transparent border-l-2 border-primary`
 
-| Elemento | Clase / Componente | Descripción |
-|---|---|---|
-| Wrapper | `rounded-xl border bg-card p-4 shadow-sm` | Contenedor de la barra de filtros |
-| Buscador | shadcn `Input` con icono `Search` | Búsqueda por título y descripción |
-| Select facultad | shadcn `Select` | Filtra por facultad (opciones dinámicas desde los datos) |
-| Select modalidad | shadcn `Select` | Presencial / Semipresencial / Todas |
-| Select convocatoria | shadcn `Select` | En convocatoria / Sin convocatoria / Todas |
-| Botón aplicar | `Button` default + `font-sans text-sm uppercase tracking-widest` | Aplica los filtros seleccionados |
-| Botón limpiar | `Button` variant="ghost" size="icon" con icono `X` | Solo visible si hay filtros activos |
+### MallaCurricularTab (`src/components/shared/MallaCurricularTab.tsx`)
+- Tabla con semestres agrupados
+- `<th>`: `font-sans text-xs uppercase tracking-widest text-primary text-left`
+- `<td>`: `font-sans text-sm font-light text-muted-foreground`
+- Bordes: `border border-border/40`, `bg-primary/5` en header
 
-**Layout:** `grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4`
+### InversionBecasTab (`src/components/shared/InversionBecasTab.tsx`)
+- Sección `bg-primary` con monto total: `font-heading text-3xl md:text-5xl font-light tracking-wide text-primary-foreground`
+- Cards de matrícula y financiamiento: `border border-border/40 bg-card`, título H3, monto `font-sans text-xl font-light text-foreground`
+- Modalidad: H4 `font-heading text-xs font-light uppercase tracking-wide text-muted-foreground`, valor `font-sans text-base font-light text-foreground`
+- Disclaimer: `font-sans text-xs font-light italic leading-relaxed text-muted-foreground`
 
-**Props:**
-```ts
-interface FilterBarProps {
-  facultades: string[]
-  onApply: (filters: FilterState) => void
-  onClear: () => void
-}
-```
+### LineasInvestigacionTab (`src/components/shared/LineasInvestigacionTab.tsx`)
+- Items con `bg-linear-to-r from-primary/5 to-transparent border-l-2 border-primary`
 
-### Card Structure - ProgramList (`src/pages/ProgramList.tsx`)
+### Tabs (`src/components/shared/Tabs.tsx`)
+- Componente custom con tabs nativas (no shadcn)
+- Tab activa: `border-primary text-foreground`
+- Tab inactiva: `border-transparent text-muted-foreground hover:text-foreground hover:border-border`
 
-**Patrón de card para listado de programas (`/:tipo`):**
+---
 
-| Elemento | Clase exacta | Descripción |
-|---|---|---|
-| Card wrapper | `group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md` | Card completo, envuelto en `<Link>` |
-| Imagen placeholder | `relative aspect-video w-full bg-muted` | Área de imagen con position relative |
-| Badge convocatoria | `absolute left-1/2 top-3 z-10 -translate-x-1/2 bg-primary font-sans text-xs uppercase tracking-widest text-primary-foreground` | Solo si `enConvocatoria === true` |
-| CardTitle | `font-heading text-lg font-light uppercase tracking-wide` | Nombre del programa |
-| CardDescription | `font-sans text-xs uppercase tracking-widest text-muted-foreground/80` | Nombre de la facultad |
-| CardFooter | `border-t border-border/40 bg-transparent transition-colors duration-300 group-hover:border-primary/30` | Borde animado en hover |
-| Línea izquierda | `h-px flex-1 origin-left scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100` | Crece desde el centro |
-| Texto CTA | `font-sans text-xs uppercase tracking-widest text-primary/60 transition-colors duration-300 group-hover:text-primary` | "Ver programa" |
-| Línea derecha | `h-px flex-1 origin-right scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100` | Crece desde el centro |
+## Páginas del proyecto
 
-**Estructura de datos:**
+### Home (`src/pages/Home.tsx`)
+- 6 secciones en orden: HeroSection → RectorMessage → AdmissionCTA → LatestComunicados → FeaturedPrograms → StudentFAQ
+- Sin fondos extras, cada sección maneja su propio fondo
 
-```ts
-{
-  slug: string
-  title: string           // Nombre del programa
-  facultad: string        // Nombre de la facultad
-  duration: string        // Duración (ej: "2 años")
-  modality: string        // Modalidad (ej: "Presencial")
-  description: string     // Descripción breve
-  enConvocatoria: boolean // Si está en convocatoria activa
-}
-```
+### Comunicados (`src/pages/Comunicados.tsx`)
+- PageHero con title="Comunicados" + subtitle
+- Card destacado (rounded-2xl border bg-card, flex md:flex-row): tag "Último Comunicado" + H3 + descripción `text-sm` + fecha + Button "Leer comunicado" + imagen placeholder
+- Sección "Comunicados anteriores": H2 + descripción + grid de cards (shadcn Card) con hover animation (líneas scale-x)
+- Botón "Ver más comunicados" / "Ver menos comunicados" con ChevronUp/Down
+- CTA final bg-primary
 
-**Reglas de card para `/:tipo`:**
-- Badge "En convocatoria": solo se muestra si `enConvocatoria === true`, centrado sobre la imagen con `absolute left-1/2 top-3 -translate-x-1/2`
-- `CardTitle`: `font-heading text-lg font-light uppercase tracking-wide`
-- `CardDescription` (facultad): `font-sans text-xs uppercase tracking-widest text-muted-foreground/80`
-- `CardFooter`: animación de líneas que crecen desde el centro en hover (`scale-x-0 → scale-x-100`)
-- El card completo debe ser clickeable (envuelto en `<Link>`)
-- Hover state: `hover:shadow-md` (elevación)
+### ComunicadoDetalle (`src/pages/ComunicadoDetalle.tsx`)
+- Empty state: H1 error + p + Button "Volver a comunicados"
+- Layout: grid lg:grid-cols-12 gap-12
+- Sidebar (lg:col-span-3): "Volver" link + divider + "Compartir" + "Imprimir"
+- Contenido (lg:col-span-9): artículo con metadata (badge categoría + fecha) + H1 + descripción `text-base` + autor + imagen + párrafos
+- Primer párrafo: pull-quote (italic, border-left-4, bg-muted/30, text-foreground)
+- Párrafos subsiguientes: `font-sans text-base font-light leading-relaxed text-muted-foreground`
+- Comunicados relacionados: grid cards con misma estructura que Comunicados
+- CTA final bg-primary
 
-### Card Structure - Comunicados (`src/pages/Comunicados.tsx`)
+### ProcesoAdmision (`src/pages/ProcesoAdmision.tsx`)
+- PageHero con title + subtitle
+- AdmissionTimeline (componente reutilizado del home)
+- CTA final bg-primary con botones "Ver convocatorias" y "Explorar programas"
 
-**Patrón de page para listado de comunicados (`/comunicados`):**
+### ProgramList (`src/pages/ProgramList.tsx`)
+- PageHero con title dinámico (según tipo)
+- FilterBar + contador de programas
+- Grid de cards: imagen placeholder + Badge "En convocatoria" (condicional) + CardTitle + CardDescription (facultad) + CardFooter con líneas animadas
+- Empty state con "Limpiar filtros"
+- Error state: H1 "Programas no encontrados" + link "Volver al inicio"
 
-La página tiene dos secciones principales:
+### ProgramDetail (`src/pages/ProgramDetail.tsx`)
+- PageHero con title + description + badges (duración y modalidad)
+- Layout: lg:grid-cols-12 gap-12
+- Sidebar: "Volver a programas" + "Compartir" + "Imprimir"
+- Desktop: Tabs shadcn (Presentación, Malla Curricular, Inversión y Becas, Líneas de Investigación)
+- Mobile: Accordion (mismos tabs)
+- TabsTrigger: sin shadow en active (override con `group-data-[variant=default]/tabs-list:data-active:shadow-none`)
+- Error state: H1 "Programa no encontrado" + Button "Volver a programas"
 
-**1. Card destacado (último comunicado — más grande, 100% width):**
+---
 
-| Elemento | Clase exacta | Descripción |
-|---|---|---|
-| Wrapper | `rounded-2xl border bg-card shadow-sm p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center` | Contenedor general del card destacado |
-| Tag | `font-sans text-xs uppercase tracking-widest text-muted-foreground` | "Último Comunicado" |
-| Título (H3) | `font-heading text-lg font-light uppercase tracking-wide` | Título del comunicado |
-| Descripción | `font-sans text-sm font-light leading-relaxed text-muted-foreground` | Descripción breve |
-| Fecha | `font-sans text-xs uppercase tracking-widest text-muted-foreground` | Fecha del comunicado |
-| Botón CTA | `Button asChild size="lg"` + `font-sans text-sm uppercase tracking-widest` | "Leer comunicado" con ArrowRight |
-| Imagen placeholder | `w-full md:w-[45%] aspect-video rounded-xl bg-muted` | Placeholder de imagen destacada |
-
-**2. Cards secundarios (grilla 3 columnas) — mismos que ProgramList:**
-
-| Elemento | Clase exacta | Descripción |
-|---|---|---|
-| Card wrapper | `group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md` (shadcn `Card`) | Card completo, envuelto en `<Link>` |
-| Imagen placeholder | `relative aspect-video w-full bg-muted` | Área de imagen |
-| CardTitle | `font-heading text-lg font-light uppercase tracking-wide` | Título del comunicado |
-| CardDescription | `font-sans text-xs uppercase tracking-widest text-muted-foreground/80` | Fecha del comunicado |
-| CardFooter | `border-t border-border/40 bg-transparent transition-colors duration-300 group-hover:border-primary/30` | Borde animado en hover |
-| Línea izquierda | `h-px flex-1 origin-left scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100` | Crece desde el centro |
-| Texto CTA | `font-sans text-xs uppercase tracking-widest text-primary/60 transition-colors duration-300 group-hover:text-primary` | "Leer más" |
-| Línea derecha | `h-px flex-1 origin-right scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100` | Crece desde el centro |
-
-**Estructura de datos:**
+## Tipos TypeScript (`src/types/index.ts`)
 
 ```ts
-// Último comunicado (destacado)
-{
+interface Comunicado {
   slug: string
-  tag: string       // "Último Comunicado"
-  title: string     // Título
-  description: string // Descripción
-  date: string      // Fecha (ej: "15 de junio, 2026")
+  title: string
+  date: string
+  description: string
+  content: string        // Texto completo separado por \n\n
+  image: string          // URL imagen principal
+  contentImage?: string  // Imagen adicional en cuerpo
+  contentImageAlt?: string
+  contentImageCaption?: string
+  category: string
+  author: string
+  authorImage?: string
+  tags?: string[]
+  destacada?: boolean    // true = aparece como destacado
 }
 
-// Comunicados anteriores
-{
+interface ProgramaCurso {
+  semestre: string       // "I", "II", etc.
+  costo_matricula: number
+  numero_matriculas: number
+  costo_cuota: number
+  numero_cuotas: number
+}
+
+interface CursoConRelacion {
+  nombre: string
+  creditos: number
+  categoria: string      // "Obligatorio" | "Optativo"
+  programaCurso: ProgramaCurso
+}
+
+interface Programa {
   slug: string
-  title: string     // Título
-  date: string      // Fecha
-  description: string // Resumen
+  title: string
+  facultad: string
+  duration: string       // "2 años"
+  modality: string       // "Presencial" | "Semipresencial"
+  description: string
+  enConvocatoria: boolean
+  image?: string
+  objetivo_general?: string
+  objetivos_especificos?: string  // Separado por \n
+  perfil_egresado?: string
+  cursos?: CursoConRelacion[]
+  lineas_investigacion?: string   // Separado por \n
+  content?: string
+}
+
+interface TimelineStep {
+  step: number
+  title: string
+  description: string
+}
+
+interface FAQItem {
+  id: string
+  question: string
+  answer: string
 }
 ```
 
-**Reglas de la página `/comunicados`:**
-- No usa shadcn `Card` — usa `div` con `border bg-card shadow-sm rounded-2xl`
-- El primer comunicado es el destacado y ocupa todo el ancho con layout `flex md:flex-row`
-- Los 3 comunicados anteriores van en grilla `md:grid-cols-3` con fondos alternos
-- Los botones usan el componente `Button` de shadcn con `ArrowRight`
-- Tipografía sigue la escala: H1 page, H2 destacado, H3 secundario, descripciones en `font-sans text-sm`
+---
 
-**Reglas de card para `/comunicados`:**
-- El primer comunicado del array debe tener `destacada: true` para mostrarse más grande
-- Los comunicados secundarios usan layout horizontal (imagen 1/3, texto 2/3) y se apilan verticalmente
-- El sidebar de eventos usa `bg-primary` con textos en `text-primary-foreground`
-- Fechas en `font-sans text-xs uppercase tracking-widest`
-- Títulos siguen la escala tipográfica obligatoria (H3 destacado, H4 secundarios)
+## Datos estáticos
 
-### Button (`src/components/ui/button.tsx`)
+### comunicados.ts (`src/data/comunicados.ts`)
+Array de 9 comunicados con slug, title, date, description, content, image, category, author, tags. El primero tiene `destacada: true`. Categories disponibles: "Convocatoria", "Noticia", "Evento", "Beca".
 
-| Elemento | Cambio aplicado |
-| :--- | :--- |
-| `link` variant | `hover:bg-muted` (cambiado de `hover:underline`) |
-| `sm` size | `text-xs` (cambiado de `text-[0.8rem]`) |
+### Programas en ProgramList.tsx
+Datos hardcodeados por tipo (`maestrias`, `doctorados`), con slug, title, facultad, duration, modality, description, enConvocatoria.
 
-### Badge (`src/components/ui/badge.tsx`)
-
-| Elemento | Cambio aplicado |
-| :--- | :--- |
-| `link` variant | `hover:bg-muted` (cambiado de `hover:underline`) |
-
-### Sheet (`src/components/ui/sheet.tsx`)
-
-| Elemento | Cambio aplicado |
-| :--- | :--- |
-| `SheetTitle` | `font-heading text-base font-medium text-foreground` |
-| `SheetDescription` | `text-sm text-muted-foreground` |
+### Programas en ProgramDetail.tsx
+Datos hardcodeados con estructura completa: `maestrias.gestion-publica` con cursos (4 materias), lineas_investigacion, objetivo_general, etc.
 
 ---
 
-## 📋 Convención para modificar componentes base shadcn/ui
+## Secciones del Home — orden y fondos
 
-1. Los componentes en `src/components/ui/` pueden modificarse para heredar los tokens de diseño (tipografía, colores, dark mode).
-2. No eliminar props de accesibilidad (focus-visible, disabled, aria-*).
-3. Preferir `hover:bg-muted/50` y `dark:bg-muted/20` para estados hover sobre `hover:underline`.
-4. Mantener la estructura Radix UI original (Primitive.*).
-5. Documentar en AGENTS.md cualquier modificación significativa a los componentes base.
-
----
-
-## 🏠 Secciones del Home — orden y fondos
-
-Orden exacto de secciones en `Home.tsx` y su fondo correspondiente:
-
-| Sección | Fondo | Archivo |
+| Sección | Fondo | Componente |
 |---|---|---|
-| HeroSection | `relative overflow-hidden border-b` (imagen + gradiente overlay, sin bg extra) | `HeroSection.tsx` |
-| RectorMessage | `bg-background` (sin clase de fondo en section) | `RectorMessage.tsx` |
-| AdmissionCTA | `bg-primary` | `AdmissionCTA.tsx` |
-| LatestComunicados | `bg-background` (sin clase de fondo en section) | `LatestComunicados.tsx` |
-| FeaturedPrograms | `border-y bg-muted/30` | `FeaturedPrograms.tsx` |
-| StudentFAQ | `bg-background` (sin clase de fondo en section) | `StudentFAQ.tsx` |
+| Hero institucional | `relative overflow-hidden border-b` (imagen + gradiente) | `HeroSection.tsx` |
+| Mensaje del Rector | `bg-background` | `RectorMessage.tsx` |
+| Ruta de Admisión (CTA) | `bg-primary` | `AdmissionCTA.tsx` |
+| Últimos Comunicados | `bg-background` | `LatestComunicados.tsx` |
+| Programas Destacados | `border-y bg-muted/30` | `FeaturedPrograms.tsx` |
+| Información al Estudiante | `bg-background` | `StudentFAQ.tsx` |
 
-Patrón de layout de sección estándar:
+---
+
+## Patrones de componente reutilizables
+
+### Card pattern (ProgramList + Comunicados)
+```tsx
+<Link to={...}>
+  <Card className="group h-full overflow-hidden !pt-0 transition-shadow hover:shadow-md">
+    <div className="relative aspect-video w-full bg-muted">
+      {enConvocatoria && <Badge className="absolute left-1/2 top-3 z-10 -translate-x-1/2 bg-primary font-sans text-xs uppercase tracking-widest text-primary-foreground">En convocatoria</Badge>}
+    </div>
+    <CardHeader>
+      <CardTitle className="font-heading text-lg font-light uppercase tracking-wide text-foreground">...</CardTitle>
+      <CardDescription className="font-sans text-xs uppercase tracking-widest text-muted-foreground/80">...</CardDescription>
+    </CardHeader>
+    <CardFooter className="border-t border-border/40 bg-transparent transition-colors duration-300 group-hover:border-primary/30">
+      <div className="flex w-full items-center gap-3">
+        <span className="h-px flex-1 origin-left scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+        <span className="flex shrink-0 items-center gap-1.5 font-sans text-xs uppercase tracking-widest text-primary/60 transition-colors duration-300 group-hover:text-primary">Ver programa</span>
+        <span className="h-px flex-1 origin-right scale-x-0 bg-primary/40 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+      </div>
+    </CardFooter>
+  </Card>
+</Link>
 ```
-<section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+
+### Sidebar detail pattern (ComunicadoDetalle + ProgramDetail)
+```tsx
+<aside className="lg:col-span-3 space-y-6 lg:sticky lg:top-24 h-fit">
+  <Button variant="ghost" asChild className="group -ml-4 rounded-none hover:bg-transparent text-muted-foreground hover:text-foreground">
+    <Link to="..." className="inline-flex items-center gap-2">
+      <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+      <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">Volver</span>
+    </Link>
+  </Button>
+  <div className="h-px bg-border/40" />
+  <div className="flex flex-col gap-3 pt-2">
+    <button className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
+      <Share2 className="h-4 w-4" /> Compartir
+    </button>
+    <button onClick={() => window.print()} className="flex items-center gap-2 text-left font-sans text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors">
+      <Printer className="h-4 w-4" /> Imprimir
+    </button>
+  </div>
+</aside>
 ```
 
-Padding: `py-16` siempre en secciones normales (hero usa `py-24 sm:py-32`).
-
----
-
-# 🧭 Estructura de rutas del sistema
-
-## 🏠 Inicio
-- `/`
-- Página principal del sistema institucional. Presenta información general, accesos rápidos y contenido destacado.
-
-### Secciones:
-
-- **Hero institucional**
-  - Título principal de la Escuela de Posgrado UNSAAC.
-  - Descripción breve institucional.
-  - 1 botón principal (CTA): "Ver comunicados" ➔ Redirige a `/comunicados`.
-
-- **Mensaje del Rector**
-  - Imagen del rector, nombre, cargo y mensaje institucional completo.
-  - Diseño de sección dividida (imagen a la izquierda con arco decorativo de fondo + texto a la derecha).
-
-- **Ruta de admisión (CTA)**
-  - Sección tipo CTA que invita a conocer el proceso de admisión completo.
-  - Botón: "Inscribirme ahora" ➔ Redirige a `/proceso-admision`.
-
-- **Últimos comunicados (Grid + Sidebar)**
-  - Muestra los comunicados más recientes: card destacada + grid de secundarios + sidebar de eventos.
-  - Layout: 2/3 contenido (noticias) + 1/3 sidebar (eventos próximos) en desktop.
-  - Card destacada: imagen grande + título H3 + fecha + "Leer más".
-  - Cards secundarios: layout horizontal (imagen 1/3 + texto 2/3) con título H4.
-  - Sidebar de eventos: fondo `bg-primary`, fechas en formato día/mes, título, hora y lugar.
-  - Botón final en sidebar: "Ver todos los eventos" ➔ Redirige a `/comunicados`.
-
-- **Programas destacados**
-  - Sección con 4 cards principales: Maestrías, Doctorados, Residentado médico, Segundas especialidades.
-  - Cada card incluye: Imagen de fondo completa (cover), nombre del tipo de programa y cantidad disponible.
-  - Interacción: Click en card ➔ redirige a `/:tipo`.
-
-- **Servicios al estudiante (Información)**
-  - Imagen principal decorativa a la izquierda + tarjetas con iconos a la derecha (card overlay).
-  - Cada tarjeta incluye: icono, título H3 y descripción breve.
-  - Temas: Reglamentos y Normas, Trámites Académicos, Calendario Académico y de Pagos, Ruta del Graduado, Acreditación del Idioma.
-
----
-
-## 📢 Comunicados
-- `/comunicados` ➔ Listado dinámico de todos los comunicados ordenados por fecha o relevancia.
-- `/comunicados/:slug` ➔ Detalle extendido e individual de un comunicado específico accesible por slug.
-
----
-
-## 📋 Proceso de Admisión
-- `/proceso-admision` ➔ Página estática que muestra el timeline completo del proceso de admisión (Registro ➔ Inscripción ➔ Pago ➔ Examen ➔ Resultados).
-- Incluye timeline zigzag en desktop y vertical en mobile.
-- Al final incluye CTA con botones a convocatorias y programas.
-
----
-
-## 🎓 Tipos de programas (rutas dinámicas)
-El sistema **NO** utiliza una página estática `/programas`. Los tipos de programas son rutas dinámicas de primer nivel:
-- `/:tipo` ➔ Listado de programas según el tipo seleccionado.
-- Ejemplos válidos según categorías destacadas en la Home: `/maestrias`, `/doctorados`, `/residentado-medico`, `/segundas-especialidades`.
-
----
-
-## 📄 Detalle de programa
-- `/:tipo/:slug` ➔ Muestra el detalle completo, dinámico, escalable y reutilizable de un programa específico dependiendo de su categoría y su slug único.
-
----
-
-## Stack tecnológico
-* **Framework:** React + Vite
-* **Lenguaje:** TypeScript
-* **Gestor de paquetes:** pnpm
-* **Estilos:** Tailwind CSS v4
-* **Componentes UI:** shadcn/ui (radix-nova style)
-
----
-
-## Estilo del sitio
-* Diseño institucional moderno inspirado en SaaS limpios (estilo Vercel / Notion).
-* Interfaz minimalista, ordenada y sin distracciones con alta legibilidad.
-* Diseño 100% responsive (*mobile-first*).
-* Uso de espacios amplios, márgenes limpios y jerarquía visual tipográfica clara.
+### Tabs/Accordion responsive pattern (ProgramDetail)
+- Desktop (`hidden md:block`): Tabs shadcn con `TabsList` variant="line" (sin bg, con línea inferior animada)
+- Mobile (`block md:hidden`): Accordion con mismas secciones
+- TabsTrigger: override de shadow con `group-data-[variant=default]/tabs-list:data-active:shadow-none`
 
 ---
 
 ## Reglas generales de desarrollo
-* **Tipado estricto:** Nunca usar `any`.
-* **Paradigma:** Componentes funcionales y Hooks en `PascalCase`.
-* **Modularidad y Simplicidad:** Preferir componentes pequeños, reutilizables (SOLID y DRY), evitando lógica compleja dentro de los elementos puramente visuales.
-
----
-
-## Arquitectura del proyecto
-* `/pages` ➔ Páginas principales del sistema (Inicio, Comunicados, etc.).
-* `/components` ➔ Componentes visuales reutilizables (Botones, Cards, Navbars).
-* `/layouts` ➔ Estructuras base de las páginas (Layout institucional).
-* `/data` ➔ Datos estáticos de ejemplo (comunicados, programas).
-* `/services` ➔ Consumo y llamadas a APIs externas (en desarrollo, actualmente sin uso).
-* `/types` ➔ Tipos y contratos globales de TypeScript.
-
----
-
-## Principios del sistema
-* **Separación de responsabilidades:** Separar la lógica de negocio de la UI.
-* **Mantenibilidad:** Estructura pensada para que el proyecto crezca de forma ordenada a largo plazo.
-* **Enfoque institucional:** Identidad seria, académica y profesional (evitar un estilo marcadamente comercial o de startup agresiva).
+- **Tipado estricto:** Nunca usar `any`
+- **Paradigma:** Componentes funcionales + Hooks, PascalCase
+- **Modularidad:** Componentes pequeños, reutilizables, sin lógica compleja en componentes visuales
+- **Sin comentarios en JSX:** Prohibido dejar comentarios en el código de producción
+- **Rutas dinámicas:** `/:tipo` para tipos de programa, sin página `/programas` estática

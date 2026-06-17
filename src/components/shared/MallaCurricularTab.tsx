@@ -1,17 +1,6 @@
-interface CursoConRelacion {
-  nombre: string
-  creditos: number
-  categoria: string
-  programaCurso: {
-    semestre: string
-    costo_matricula: number
-    numero_matriculas: number
-    costo_cuota: number
-    numero_cuotas: number
-  }
-}
+import type { CursoConRelacion } from '@/types'
 
-interface Props {
+interface MallaCurricularTabProps {
   cursos: CursoConRelacion[]
 }
 
@@ -28,7 +17,7 @@ function parseSemestre(sem: string): number {
   return Infinity
 }
 
-export function MallaCurricularTab({ cursos }: Props) {
+export function MallaCurricularTab({ cursos }: MallaCurricularTabProps) {
   const grouped: Record<string, CursoConRelacion[]> = {}
   cursos.forEach((c) => {
     const sem = c.programaCurso.semestre
@@ -38,7 +27,7 @@ export function MallaCurricularTab({ cursos }: Props) {
   const semestres = Object.keys(grouped).sort((a, b) => parseSemestre(a) - parseSemestre(b))
 
   if (semestres.length === 0) {
-    return <p className="text-muted-foreground">Información de malla curricular no disponible.</p>
+    return <p className="font-sans text-sm font-light leading-relaxed text-muted-foreground">Información de malla curricular no disponible.</p>
   }
 
   return (
@@ -46,24 +35,24 @@ export function MallaCurricularTab({ cursos }: Props) {
       {semestres.map((sem) => (
         <section key={sem} className="group">
           <div className="mb-4 pb-2 border-b-2 border-primary/20">
-            <h2 className="text-2xl font-semibold text-foreground tracking-tight font-heading capitalize">
+            <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
               {sem} Semestre
             </h2>
           </div>
           <div className="overflow-x-auto border border-border/40">
             <table className="w-full">
-              <thead className="border-b border-border bg-primary/5 hover:bg-primary/5">
+              <thead className="border-b border-border bg-primary/5">
                 <tr>
-                  <th className="px-6 py-2 font-medium text-primary tracking-tight text-base normal-case text-left">
+                  <th className="px-6 py-2 font-sans text-xs uppercase tracking-widest text-primary text-left">
                     Nro.
                   </th>
-                  <th className="px-6 py-2 font-medium text-primary tracking-tight text-base normal-case text-left">
+                  <th className="px-6 py-2 font-sans text-xs uppercase tracking-widest text-primary text-left">
                     Asignatura
                   </th>
-                  <th className="px-6 py-2 font-medium text-primary tracking-tight text-base normal-case text-left">
+                  <th className="px-6 py-2 font-sans text-xs uppercase tracking-widest text-primary text-left">
                     Créditos
                   </th>
-                  <th className="px-6 py-2 font-medium text-primary tracking-tight text-base normal-case text-left">
+                  <th className="px-6 py-2 font-sans text-xs uppercase tracking-widest text-primary text-left">
                     Categoría
                   </th>
                 </tr>
@@ -71,16 +60,16 @@ export function MallaCurricularTab({ cursos }: Props) {
               <tbody className="divide-y divide-border/40">
                 {grouped[sem].map((curso, i) => (
                   <tr key={i} className="transition-colors duration-150 hover:bg-primary/5 border-b-0">
-                    <td className="px-6 py-4 text-muted-foreground font-light text-base">
+                    <td className="px-6 py-4 font-sans text-sm font-light text-muted-foreground">
                       {String(i + 1)}
                     </td>
-                    <td className="px-6 py-4 text-muted-foreground font-light text-base">
+                    <td className="px-6 py-4 font-sans text-sm font-light text-muted-foreground">
                       {curso.nombre}
                     </td>
-                    <td className="px-6 py-4 text-muted-foreground font-light text-base">
+                    <td className="px-6 py-4 font-sans text-sm font-light text-muted-foreground">
                       {curso.creditos}
                     </td>
-                    <td className="px-6 py-4 text-muted-foreground font-light text-base">
+                    <td className="px-6 py-4 font-sans text-sm font-light text-muted-foreground">
                       {curso.categoria}
                     </td>
                   </tr>

@@ -77,20 +77,20 @@ export function HeroSection() {
                   : 'pointer-events-none absolute inset-x-0 top-0 bottom-0 opacity-0'
               }`}
             >
-              <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl lg:text-6xl">
+              <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl lg:text-6xl">
                 {slide.titulo}
-                <span className="mt-3 block font-sans text-lg font-light leading-relaxed text-muted-foreground">
+                <span className="mt-3 block font-sans text-base font-light leading-relaxed text-muted-foreground">
                   {slide.subtitulo}
                 </span>
               </h1>
-              <p className="mt-6 font-sans text-lg font-light leading-relaxed text-muted-foreground">
+              <p className="mt-6 font-sans text-base font-light leading-relaxed text-muted-foreground">
                 {slide.descripcion}
               </p>
               <div className="mt-10 flex justify-center gap-4 lg:justify-start">
                 <Button asChild size="lg">
                   <Link
                     to={slide.botonRuta}
-                    className="font-sans text-sm uppercase tracking-widest"
+                    className="font-sans text-sm font-normal uppercase tracking-widest"
                   >
                     {slide.botonTexto}
                     <ArrowRight className="ml-2 h-4 w-4" />

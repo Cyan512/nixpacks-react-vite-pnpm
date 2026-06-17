@@ -92,16 +92,16 @@ export default function ProgramDetail() {
   if (!program) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
+        <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
           Programa no encontrado
         </h1>
-        <p className="mt-3 font-sans font-light leading-relaxed text-muted-foreground">
+        <p className="mt-3 font-sans text-sm font-light leading-relaxed text-muted-foreground">
           El programa que buscas no existe o ha sido eliminado.
         </p>
         <Button asChild className="mt-6">
           <Link
             to={`/${tipo}`}
-            className="font-sans text-sm uppercase tracking-widest"
+            className="font-sans text-sm font-normal uppercase tracking-widest"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver a programas
@@ -121,14 +121,14 @@ export default function ProgramDetail() {
           { label: program.modality, variant: 'outline' },
         ]}
       />
-      <div className="w-full border-b border-border/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 sm:py-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="w-full border-b border-border/40 py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
 
           <aside className="lg:col-span-3 space-y-6 lg:sticky lg:top-24 h-fit">
             <Button variant="ghost" asChild className="group -ml-4 rounded-none hover:bg-transparent text-muted-foreground hover:text-foreground">
               <Link to={`/${tipo}`} className="inline-flex items-center gap-2">
                 <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                <span className="font-sans text-xs uppercase tracking-widest">
+                <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                   Volver a programas
                 </span>
               </Link>

@@ -11,16 +11,16 @@ export default function ComunicadoDetalle() {
   if (!comunicado) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
+        <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
           Comunicado no encontrado
         </h1>
-        <p className="mt-3 font-sans font-light leading-relaxed text-muted-foreground">
+        <p className="mt-3 font-sans text-sm font-light leading-relaxed text-muted-foreground">
           El comunicado que buscas no existe o ha sido eliminado.
         </p>
         <Button asChild className="mt-6">
           <Link
             to="/comunicados"
-            className="font-sans text-sm uppercase tracking-widest"
+            className="font-sans text-sm font-normal uppercase tracking-widest"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver a comunicados
@@ -45,7 +45,7 @@ export default function ComunicadoDetalle() {
             <Button variant="ghost" asChild className="group -ml-4 rounded-none hover:bg-transparent text-muted-foreground hover:text-foreground">
               <Link to="/comunicados" className="inline-flex items-center gap-2">
                 <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                <span className="font-sans text-xs uppercase tracking-widest">
+                <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                   Volver a comunicados
                 </span>
               </Link>
@@ -79,12 +79,12 @@ export default function ComunicadoDetalle() {
                 </div>
 
                 {/* Título principal */}
-                <h1 className="font-heading text-4xl font-light uppercase tracking-wide sm:text-5xl">
+                <h1 className="font-heading text-4xl font-light uppercase tracking-wide text-foreground sm:text-5xl">
                   {comunicado.title}
                 </h1>
 
                 {/* Descripción */}
-                <p className="font-sans text-lg font-light leading-relaxed text-muted-foreground">
+                <p className="font-sans text-base font-light leading-relaxed text-muted-foreground">
                   {comunicado.description}
                 </p>
 
@@ -159,7 +159,7 @@ export default function ComunicadoDetalle() {
           <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
             <div className="flex items-end justify-between">
               <div>
-                <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
+                <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
                   Comunicados relacionados
                 </h2>
                 <p className="mt-2 font-sans text-base font-light leading-relaxed text-muted-foreground">
@@ -168,7 +168,7 @@ export default function ComunicadoDetalle() {
               </div>
               <Button variant="ghost" asChild className="hidden sm:inline-flex hover:bg-muted/50 dark:hover:bg-muted/20">
                 <Link to="/comunicados">
-                  <span className="font-sans text-xs uppercase tracking-widest">
+                  <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                     Ver todos
                   </span>
                   <ChevronRight className="ml-1 h-4 w-4" />
@@ -176,13 +176,13 @@ export default function ComunicadoDetalle() {
               </Button>
             </div>
 
-            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {relacionados.map((c) => (
                 <Link key={c.slug} to={`/comunicados/${c.slug}`}>
                   <Card className="group h-full overflow-hidden pt-0! transition-shadow hover:shadow-md">
                     <div className="relative aspect-video w-full bg-muted" />
                     <CardHeader>
-                      <CardTitle className="font-heading text-lg font-light uppercase tracking-wide">
+                      <CardTitle className="font-heading text-lg font-light uppercase tracking-wide text-foreground">
                         {c.title}
                       </CardTitle>
                       <CardDescription className="font-sans text-xs uppercase tracking-widest text-muted-foreground/80">
@@ -205,7 +205,7 @@ export default function ComunicadoDetalle() {
 
             <Button variant="ghost" asChild className="mt-6 sm:hidden hover:bg-muted/50 dark:hover:bg-muted/20">
               <Link to="/comunicados">
-                <span className="font-sans text-xs uppercase tracking-widest">
+                <span className="font-sans text-xs uppercase tracking-widest text-muted-foreground">
                   Ver todos los comunicados
                 </span>
                 <ChevronRight className="ml-1 h-4 w-4" />
@@ -225,13 +225,13 @@ export default function ComunicadoDetalle() {
             académica de la UNSAAC.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
+            <Button asChild size="lg" className="bg-primary-foreground font-sans text-sm font-normal uppercase tracking-widest text-primary hover:bg-primary-foreground/90">
               <Link to="/proceso-admision">
                 Ver proceso de admisión
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
+            <Button asChild variant="outline" size="lg" className="bg-transparent border-primary-foreground/30 font-sans text-sm font-normal uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10">
               <Link to="/maestrias">
                 Explorar programas
                 <ArrowRight className="ml-2 h-4 w-4" />

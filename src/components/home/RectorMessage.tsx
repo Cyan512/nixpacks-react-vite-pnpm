@@ -18,7 +18,7 @@ export function RectorMessage() {
           </div>
         </div>
         <div className="flex flex-col justify-center lg:col-span-7">
-          <h2 className="font-heading text-3xl font-light uppercase tracking-wide sm:text-4xl">
+          <h2 className="font-heading text-3xl font-light uppercase tracking-wide text-foreground sm:text-4xl">
             Mensaje del Rector
           </h2>
           <div className="relative mt-8">
@@ -46,10 +46,10 @@ export function RectorMessage() {
             </blockquote>
           </div>
           <div className="mt-8 border-l border-muted pl-8">
-            <div className="font-heading text-lg text-foreground">
+            <div className="font-heading text-lg font-light text-foreground">
               Dr. Eleazar Crucinta Ugarte
             </div>
-            <div className="mt-1 font-sans text-xs uppercase tracking-widest text-muted-foreground/80">
+            <div className="mt-1 font-sans text-xs font-light uppercase tracking-widest text-muted-foreground/80">
               Rector de la UNSAAC
             </div>
           </div>
