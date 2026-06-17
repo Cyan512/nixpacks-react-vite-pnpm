@@ -8,10 +8,13 @@ importers:
 
   .:
     dependencies:
-      '@fontsource-variable/geist':
-        specifier: ^5.2.9
-        version: 5.2.9
-      '@fontsource/dm-serif-display':
+      '@fontsource/montserrat-alternates':
+        specifier: ^5.2.8
+        version: 5.2.8
+      '@fontsource/neuton':
+        specifier: ^5.2.7
+        version: 5.2.7
+      '@fontsource/pridi':
         specifier: ^5.2.8
         version: 5.2.8
       '@tailwindcss/vite':
@@ -292,11 +295,14 @@ packages:
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
 
-  '@fontsource-variable/geist@5.2.9':
-    resolution: {integrity: sha512-TP+QSBG3wxKGPE33CbMy/L0Nu3qvJ6Fy81Yc4LnQ95xH+i+cfEp8fyU8/kfV14YwszxIFPhnoMTbjL71waVpyQ==}
+  '@fontsource/montserrat-alternates@5.2.8':
+    resolution: {integrity: sha512-DmyZGumT4Q+KGyZ2tXWQwhFFwYWK4F1RH20r+7j2SiBEEGOylrRYokoDAkp3qzS6iyPfXCktEdPFXqG7LBdtIg==}
 
-  '@fontsource/dm-serif-display@5.2.8':
-    resolution: {integrity: sha512-GYSDSlGU6vyhv9a5MwaiVNf9HCuSVpK8hEFRyG4NNDHCDeHiX7YHDAcWsaoLKKcfXLgWG9YkBkk9T3SxM4rAjQ==}
+  '@fontsource/neuton@5.2.7':
+    resolution: {integrity: sha512-5XYm0eAoFFxdTmVpyWNnnLu/tW2h6jkhnx8MjGSpNgCcDBxKbc025pZXNPeqrXIJMM8khyQmpzQ1s3522V0BTQ==}
+
+  '@fontsource/pridi@5.2.8':
+    resolution: {integrity: sha512-7U4JWrtsjNGXXU81daI9KOYKsoUu+jZdkn6KP3GPwIrALYRwf6YY5gFEmczlPthivNSpq599zPO6o9f0tYIflg==}
 
   '@hono/node-server@1.19.14':
     resolution: {integrity: sha512-GwtvgtXxnWsucXvbQXkRgqksiH2Qed37H9xHZocE5sA3N8O8O8/8FA3uclQXxXVzc9XBZuEOMK7+r02FmSpHtw==}
@@ -3131,9 +3137,11 @@ snapshots:
 
   '@floating-ui/utils@0.2.11': {}
 
-  '@fontsource-variable/geist@5.2.9': {}
+  '@fontsource/montserrat-alternates@5.2.8': {}
 
-  '@fontsource/dm-serif-display@5.2.8': {}
+  '@fontsource/neuton@5.2.7': {}
+
+  '@fontsource/pridi@5.2.8': {}
 
   '@hono/node-server@1.19.14(hono@4.12.25)':
     dependencies:

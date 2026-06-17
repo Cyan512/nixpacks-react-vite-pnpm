@@ -16,7 +16,10 @@ Sitio web institucional moderno para la Escuela de Posgrado UNSAAC, enfocado en 
 | shadcn/ui | 4 (radix-nova) | Componentes UI base |
 | React Router DOM | 7 | Enrutamiento |
 | Lucide React | 1 | Iconos |
-| Geist Variable | 5 | Tipografía sans (**Geist Variable**) |
+| Geist Variable | 5 | Tipografía sans (Geist Variable) — reemplazada por Montserrat Alternates |
+| Montserrat Alternates | 5 | Tipografía sans principal |
+| Neuton | 5 | Tipografía serif para headings |
+| Pridi | 5 | Tipografía serif adicional |
 | CVA + clsx + tailwind-merge | — | Utilidades de clases |
 | tw-animate-css | 1 | Animaciones |
 | radix-ui | 1 | Primitivas de accesibilidad |
@@ -167,7 +170,8 @@ Definidos en `src/index.css` con `@theme inline {}`.
 | `--border` | `0.84 0.008 55` | Bordes de componentes y líneas divisorias cálidos |
 | `--radius` | `0.625rem` | Radio base |
 | `--font-sans` | `'Geist Variable', sans-serif` | Tipografía sans |
-| `--font-heading` | `'DM Serif Display', serif` | Tipografía serif (DM Serif Display) |
+| `--font-heading` | `'Neuton', serif` | Tipografía serif (Neuton) |
+| `--font-sans` | `'Montserrat Alternates', sans-serif` | Tipografía sans (Montserrat Alternates) |
 
 Modo oscuro activado con clase `.dark` en ancestro.
 

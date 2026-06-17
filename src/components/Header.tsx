@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Menu, X, Search } from 'lucide-react'
 
+const PANEL_IMG = 'https://res.cloudinary.com/ds0tjwccs/image/upload/v1779898731/large_Whats_App_Image_2024_01_24_at_10_38_22_AM_13_1_p3eu3c_569c0d75fb.png'
+
 const panel1Links = [
   { num: '01', label: 'Inicio', href: '/' },
   { num: '02', label: 'Maestrías', href: '/maestrias' },
@@ -97,8 +99,15 @@ export function Header() {
         className={`fixed inset-0 z-40 grid grid-cols-1 transition-opacity duration-500 md:grid-cols-3 ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
       >
         <div
-          className={`flex flex-col justify-end bg-primary px-4 pb-8 pt-20 transition-transform duration-[550ms] ease-[cubic-bezier(0.77,0,0.18,1)] sm:px-6 md:px-8 ${open ? 'translate-y-0' : '-translate-y-full'}`}
+          className={`relative flex flex-col justify-end overflow-hidden bg-primary px-4 pb-8 pt-20 transition-transform duration-[550ms] ease-[cubic-bezier(0.77,0,0.18,1)] sm:px-6 md:px-8 ${open ? 'translate-y-0' : '-translate-y-full'}`}
         >
+          <img
+            src={PANEL_IMG}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/85 to-primary/75" />
+          <div className="relative z-10">
           <div className="mb-8">
             <p className="mb-2 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
               Universidad Nacional de San Antonio Abad del Cusco
@@ -151,11 +160,19 @@ export function Header() {
           <p className="mt-6 hidden font-sans text-xs text-primary-foreground/20 md:block">
             UNSAAC · 2026
           </p>
+          </div>
         </div>
 
         <div
-          className={`hidden flex-col justify-end bg-primary/90 px-8 pb-8 pt-20 transition-transform duration-[550ms] ease-[cubic-bezier(0.77,0,0.18,1)] delay-[60ms] md:flex ${open ? 'translate-y-0' : '-translate-y-full'}`}
+          className={`relative hidden flex-col justify-end overflow-hidden bg-primary px-8 pb-8 pt-20 transition-transform duration-[550ms] ease-[cubic-bezier(0.77,0,0.18,1)] delay-[60ms] md:flex ${open ? 'translate-y-0' : '-translate-y-full'}`}
         >
+          <img
+            src={PANEL_IMG}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/70 to-primary/55" />
+          <div className="relative z-10">
           <div className="mb-8">
             <p className="mb-2 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
               Formación académica
@@ -172,50 +189,59 @@ export function Header() {
               <NavLink key={link.href} {...link} onClick={close} />
             ))}
           </ul>
+          </div>
         </div>
 
         <div
-          className={`hidden flex-col justify-end bg-muted px-8 pb-8 pt-20 transition-transform duration-[550ms] ease-[cubic-bezier(0.77,0,0.18,1)] delay-[120ms] md:flex ${open ? 'translate-y-0' : '-translate-y-full'}`}
+          className={`relative hidden flex-col justify-end overflow-hidden bg-primary px-8 pb-8 pt-20 transition-transform duration-[550ms] ease-[cubic-bezier(0.77,0,0.18,1)] delay-[120ms] md:flex ${open ? 'translate-y-0' : '-translate-y-full'}`}
         >
+          <img
+            src={PANEL_IMG}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/55 to-primary/35" />
+          <div className="relative z-10">
           <div className="mb-6 space-y-4">
             <div>
-              <p className="mb-1 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
+              <p className="mb-1 font-sans text-xs uppercase tracking-widest text-primary-foreground/60">
                 Correo
               </p>
-              <p className="font-sans text-sm font-light text-primary-foreground/50">
+              <p className="font-sans text-sm font-light text-primary-foreground/85">
                 posgrado@unsaac.edu.pe
               </p>
             </div>
-            <div className="h-px bg-secondary/20" />
+            <div className="h-px bg-primary-foreground/10" />
             <div>
-              <p className="mb-1 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
+              <p className="mb-1 font-sans text-xs uppercase tracking-widest text-primary-foreground/60">
                 Teléfono
               </p>
-              <p className="font-sans text-sm font-light text-primary-foreground/50">
+              <p className="font-sans text-sm font-light text-primary-foreground/85">
                 +51 84 227841
               </p>
             </div>
-            <div className="h-px bg-secondary/20" />
+            <div className="h-px bg-primary-foreground/10" />
             <div>
-              <p className="mb-1 font-sans text-xs uppercase tracking-widest text-primary-foreground/30">
+              <p className="mb-1 font-sans text-xs uppercase tracking-widest text-primary-foreground/60">
                 Dirección
               </p>
-              <p className="font-sans text-sm font-light leading-relaxed text-primary-foreground/50">
+              <p className="font-sans text-sm font-light leading-relaxed text-primary-foreground/85">
                 Av. de la Cultura s/n
                 <br />
                 Cusco, Perú
               </p>
             </div>
           </div>
-          <div className="h-px bg-secondary/20" />
+          <div className="h-px bg-primary-foreground/10" />
           <Link
             to="/proceso-admision"
             onClick={close}
-            className="mt-4 flex w-full items-center justify-between bg-primary px-4 py-3.5 font-sans text-xs uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
+            className="mt-4 flex w-full items-center justify-between bg-primary-foreground/15 px-4 py-3.5 font-sans text-xs uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary-foreground/25"
           >
             <span>Proceso de Admisión</span>
             <span className="text-secondary">→</span>
           </Link>
+          </div>
         </div>
       </div>
     </>
